@@ -19,14 +19,12 @@
     <meta property="og:image" content="undefined"/>
   
 
-  <!-- <link href="/flickr/favicon.ico" rel="icon"> -->
-  <link rel="alternate" href="/flickr/atom.xml" title="stddup" type="application/atom+xml">
-  <link rel="stylesheet" href="/flickr/css/bootstrap.min.css" type="text/css">
+  <!-- <link href="/favicon.ico" rel="icon"> -->
+  <link rel="alternate" href="/atom.xml" title="stddup" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
-<link rel="stylesheet" href="/flickr/css/style.css" type="text/css">
-
-  <script src="/flickr/js/jquery.min.js" type="text/javascript"></script>
-
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -48,6 +46,12 @@
 		    <nav id="main-nav">
   <ul class='container'>
     
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/flickr">Flickr</a></li>
+    
   </ul>
   <div class="clearfix"></div>
 </nav>
@@ -59,7 +63,7 @@
     <header>
       <div class="icon"></div>
       
-      <time datetime="2013-12-10T04:29:30.000Z"><a href="/flickr/2013/12/10/throw-try-catch-finally/">周二, 12月 10 2013, 12:29:30 中午</a></time>
+      <time datetime="2013-12-10T04:29:30.000Z"><a href="/2013/12/10/throw-try-catch-finally/">周二, 12月 10 2013, 12:29:30 中午</a></time>
 
   
     <h1 class="title">异常处理</h1>
@@ -87,31 +91,177 @@
 <p>当程序由于某种原因不能正常返回时，要立即停止现在的操作，然后跳转到能够处理问题的位置，这就是异常处理。</p>
 <p>工作原理：代码抛出异常，该异常是一个值。会跳出当前函数，还会离开该函数的调用者，一直到当前执行的最顶部（展开堆栈）。<br>异常会放大堆栈，丢弃所有有关上下文，为了不让异常一直放大到栈的根部，需要沿着栈为异常设置障碍，抓住放大的异常并且进行相应的处理，程序便可以在异常的抛出点继续运行。</p>
 <p>JavaScript编程精简里的一个示例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lastElement</span><span class="params">(array)</span></span>{</div><div class="line">    <span class="keyword">if</span>(array.length &gt; <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> array[array.length -<span class="number">1</span>];</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">throw</span> <span class="string">"empty array"</span>;</div><div class="line">}</div><div class="line"><span class="keyword">try</span>{</div><div class="line">    lastElement([]);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">catch</span>(error){</div><div class="line">   alert(error);</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">lastElement</span><span class="params">(array)</span>{</span>
+    <span class="keyword">if</span>(array.length &gt; <span class="number">0</span>)
+        <span class="keyword">return</span> array[array.length -<span class="number">1</span>];
+    <span class="keyword">else</span>
+        <span class="keyword">throw</span> <span class="string">"empty array"</span>;
+}
+<span class="keyword">try</span>{
+    lastElement([]);
+}
+
+<span class="keyword">catch</span>(error){
+   alert(error);
+}
+</pre></td></tr></table></figure>
 
 <p><code>throw</code>是抛出异常的关键字，<code>try</code>用于设立异常障碍：<br>如果代码块里的代码抛出异常，<code>catch</code>代码将会执行，在执行时，<code>catch</code>后面的变量将拥有该异常值（也就是说<code>catch</code>接收的参数，就是<code>throw</code>抛出的异常信息）。</p>
 <p>异常错误的一大优点：只在错误的发生点以及处理错误的点上才需要处理错误代码，两者之间的代码可以忽略这些。（也就是在<code>throw</code>和<code>try</code>中间执行的代码，可以忽略出错的可能性）</p>
 <hr>
 <h4 id="异常之后的错误清除">异常之后的错误清除</h4>
 <p>有如下代码:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> currentThing = <span class="literal">null</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">processThing</span><span class="params">(thing)</span></span>{</div><div class="line">        <span class="keyword">var</span> prevThing = currentThing;</div><div class="line">        currentThing = thing;</div><div class="line">       <span class="comment">/*做复杂的处理..*/</span></div><div class="line">      currentThing = prevThing;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="keyword">var</span> currentThing = <span class="literal">null</span>;
+<span class="function"><span class="keyword">function</span> <span class="title">processThing</span><span class="params">(thing)</span>{</span>
+        <span class="keyword">var</span> prevThing = currentThing;
+        currentThing = thing;
+       <span class="comment">/*做复杂的处理..*/</span>
+      currentThing = prevThing;
+}
+</pre></td></tr></table></figure>
 
 <p>如果做复杂处理的时候引发异常，<code>processThing()</code>的调用将通过异常脱离当前栈，所以<code>currentThing</code>就不能恢复到原来的值了。<br>这样就需要<code>finally</code>语句来清除错误，不管发生什么，尝试运行<code>try</code>块的代码后，运行<code>finally</code>块的代码。</p>
-<figure class="highlight javasript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> currentThing = <span class="literal">null</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">processThing</span><span class="params">(thing)</span></span>{</div><div class="line">        <span class="keyword">var</span> prevThing = currentThing;</div><div class="line">        currentThing = thing;</div><div class="line">       <span class="keyword">try</span>{</div><div class="line">                <span class="comment">/*做复杂的处理..*/</span></div><div class="line">     }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">finally</span>{</div><div class="line">       currentThing = prevThing;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight javasript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="keyword">var</span> currentThing = <span class="literal">null</span>;
+<span class="function"><span class="keyword">function</span> <span class="title">processThing</span><span class="params">(thing)</span>{</span>
+        <span class="keyword">var</span> prevThing = currentThing;
+        currentThing = thing;
+       <span class="keyword">try</span>{
+                <span class="comment">/*做复杂的处理..*/</span>
+     }
+}
+
+<span class="keyword">finally</span>{
+       currentThing = prevThing;
+}
+</pre></td></tr></table></figure>
 
 <p>现在不管复杂的处理返回正常值还是抛出异常，<code>currentThing</code>都会恢复原来的值。<br><strong>如果有<code>catch</code>语句块，<code>finally</code>块要放在它之后</strong></p>
 <hr>
-<h4 id="Error对象"><code>Error</code>对象</h4>
+<h4 id="<code>Error</code>对象"><code>Error</code>对象</h4>
 <p>可以通过<code>new</code>创建一个<code>Error</code>对象，<code>var e = new Error(&quot;empty array&quot;);</code>,每个<code>Error</code>对象都有一个<code>message</code>属性，包含对错误问题的描述。<br>这样就可以把之前的示例修改为：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"empty array"</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lastElement</span><span class="params">(array)</span></span>{</div><div class="line">    <span class="keyword">if</span>(array.length &gt; <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> array[array.length -<span class="number">1</span>];</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">throw</span> e;</div><div class="line">       <span class="comment">// ==  throw new Error("empty array");</span></div><div class="line">}</div><div class="line"><span class="keyword">try</span>{</div><div class="line">    lastElement([]);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">catch</span>(error){</div><div class="line">   alert(error.message);</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"empty array"</span>);
+<span class="function"><span class="keyword">function</span> <span class="title">lastElement</span><span class="params">(array)</span>{</span>
+    <span class="keyword">if</span>(array.length &gt; <span class="number">0</span>)
+        <span class="keyword">return</span> array[array.length -<span class="number">1</span>];
+    <span class="keyword">else</span>
+        <span class="keyword">throw</span> e;
+       <span class="comment">// ==  throw new Error("empty array");</span>
+}
+<span class="keyword">try</span>{
+    lastElement([]);
+}
+
+<span class="keyword">catch</span>(error){
+   alert(error.message);
+}
+</pre></td></tr></table></figure>
 
 <hr>
-<h4 id="选择性catch">选择性<code>catch</code></h4>
+<h4 id="选择性<code>catch</code>">选择性<code>catch</code></h4>
 <p>使用<code>catch</code>显示处理异常时，不要<code>catch</code>太多内容。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(; ;){</div><div class="line">    <span class="keyword">try</span>{</div><div class="line">        alert(inputNumber() + <span class="number">5</span>);</div><div class="line">       <span class="keyword">break</span>;</div><div class="line">  }</div><div class="line"><span class="keyword">catch</span>(e){</div><div class="line">       alert(<span class="string">"Not a number"</span>);</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="keyword">for</span>(; ;){
+    <span class="keyword">try</span>{
+        alert(inputNumber() + <span class="number">5</span>);
+       <span class="keyword">break</span>;
+  }
+<span class="keyword">catch</span>(e){
+       alert(<span class="string">"Not a number"</span>);
+  }
+}
+</pre></td></tr></table></figure>
 
 <p>以上代码要求输入数字，如果输入不合法就会抛出异常，直到输入合法数字，才停止循环。<br>但如果<code>inputNumber</code>引发其他的一些异常，程序还是会认为输入不合法，一直循环。因此，明智的做法是验证是否由输入引发的异常。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> invalidInputError = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Invalid numeric input"</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">inputNumber</span><span class="params">()</span></span>{</div><div class="line">         <span class="keyword">var</span> input = <span class="built_in">Number</span>(prompt(<span class="string">"input a number"</span>,<span class="string">""</span>));</div><div class="line">        <span class="keyword">if</span>(<span class="built_in">isNaN</span>(input))</div><div class="line">            <span class="keyword">throw</span> invalidInputError;</div><div class="line">       <span class="keyword">return</span> input;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">try</span>{</div><div class="line">    alert(inputNumber() + <span class="number">5</span>);</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">}</div><div class="line"><span class="keyword">catch</span>(e){</div><div class="line">    <span class="keyword">if</span>(e != invalidInputError)</div><div class="line">        <span class="keyword">throw</span> e;</div><div class="line">   alert(Not a number);</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre><span class="keyword">var</span> invalidInputError = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Invalid numeric input"</span>);
+<span class="function"><span class="keyword">function</span> <span class="title">inputNumber</span><span class="params">()</span>{</span>
+         <span class="keyword">var</span> input = <span class="built_in">Number</span>(prompt(<span class="string">"input a number"</span>,<span class="string">""</span>));
+        <span class="keyword">if</span>(<span class="built_in">isNaN</span>(input))
+            <span class="keyword">throw</span> invalidInputError;
+       <span class="keyword">return</span> input;
+}
+
+<span class="keyword">try</span>{
+    alert(inputNumber() + <span class="number">5</span>);
+    <span class="keyword">break</span>;
+}
+<span class="keyword">catch</span>(e){
+    <span class="keyword">if</span>(e != invalidInputError)
+        <span class="keyword">throw</span> e;
+   alert(Not a number);
+}
+</pre></td></tr></table></figure>
 
 
       
@@ -122,23 +272,23 @@
   
   <div class="categories">
   	<i class="fa fa-folder-open"></i>
-    <a href="/flickr/categories/JavaScript/">JavaScript</a>
+    <a href="/categories/JavaScript/">JavaScript</a>
   </div>
 
           
   
   <div class="tags">
   	<i class="fa fa-tag"></i>
-    <a href="/flickr/tags/异常/">异常</a>
+    <a href="/tags/异常/">异常</a>
   </div>
 
           <div class="clearfix"></div>
           <nav id="pagination">
   
-    <a href="/flickr/2013/12/10/never-need-to-enter-password-for-git-push/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Newer</a>
+    <a href="/2013/12/10/hexo-render-error/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Newer</a>
   
   
-    <a href="/flickr/2013/12/08/css-sudoku/" class="alignright next">Older<i class="fa fa-long-arrow-right"></i></a>
+    <a href="/2013/12/08/css-sudoku/" class="alignright next">Older<i class="fa fa-long-arrow-right"></i></a>
   
   <div class="clearfix"></div>
 </nav>
@@ -172,10 +322,10 @@ Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="ex
 
 <div class="clearfix"></div></footer>
 		  
-<script src="/flickr/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
-<script src="/flickr/js/gallery.js" type="text/javascript"></script>
-<script src="/flickr/js/bootstrap.min.js" type="text/javascript"></script>
-
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/fartscroll.js"></script>
 
 
 <script type="text/javascript">
@@ -208,8 +358,8 @@ var disqus_shortname = 'stddup';
 
 
 
-  <link rel="stylesheet" href="/flickr/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-  <script src="/flickr/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript">
   (function($){
     $('.fancybox').fancybox({
@@ -233,10 +383,11 @@ var disqus_shortname = 'stddup';
 
     });
   });
-</script>
-<script src="/flickr/js/jquery.anystretch.min.js" type="text/javascript"></script>
-<script src="/flickr/js/nav.js" type="text/javascript"></script>
 
+  fartscroll(800);
+</script>
+<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
+<script type="text/javascript" src="/js/nav.js"></script>
 
 		</body>
 		</html>

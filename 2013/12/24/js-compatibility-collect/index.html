@@ -19,14 +19,12 @@
     <meta property="og:image" content="undefined"/>
   
 
-  <!-- <link href="/flickr/favicon.ico" rel="icon"> -->
-  <link rel="alternate" href="/flickr/atom.xml" title="stddup" type="application/atom+xml">
-  <link rel="stylesheet" href="/flickr/css/bootstrap.min.css" type="text/css">
+  <!-- <link href="/favicon.ico" rel="icon"> -->
+  <link rel="alternate" href="/atom.xml" title="stddup" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
-<link rel="stylesheet" href="/flickr/css/style.css" type="text/css">
-
-  <script src="/flickr/js/jquery.min.js" type="text/javascript"></script>
-
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -48,6 +46,12 @@
 		    <nav id="main-nav">
   <ul class='container'>
     
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/flickr">Flickr</a></li>
+    
   </ul>
   <div class="clearfix"></div>
 </nav>
@@ -59,7 +63,7 @@
     <header>
       <div class="icon"></div>
       
-      <time datetime="2013-12-24T08:29:36.000Z"><a href="/flickr/2013/12/24/js-compatibility-collect/">周二, 12月 24 2013, 16:29:36 下午</a></time>
+      <time datetime="2013-12-24T08:29:36.000Z"><a href="/2013/12/24/js-compatibility-collect/">周二, 12月 24 2013, 16:29:36 下午</a></time>
 
   
     <h1 class="title">JS中浏览器兼容问题收集</h1>
@@ -89,44 +93,162 @@
 <h4 id="事件">事件</h4>
 <p><strong>绑定事件</strong><br>IE6使用的是 <code>attachEvent</code>， 对象. attachEvent(事件名，函数); <em>执行顺序与绑定顺序相反</em>。如<code>oBtn.attachEvent(&#39;onclick&#39;, fn);</code>，<br>解除绑定，用<code>detachEvent</code> 。<br><strong>ie中绑定事件的第二个参数，也就是函数，使用<code>this</code>的话，指向的是<code>window</code>，而不是被绑定的对象，这个可以用<code>.call()</code>方法来解决。</strong></p>
 <p>chrome,fireFox等使用的是 <code>addEventListener</code> ，对象.addEventListener(事件名，函数，是否捕获) ，<em>执行顺序与绑定顺序相同</em>。 如<code>oBtn.addEventListener(&#39;click&#39;,fn,false);</code>  <em>注意没 <code>on</code></em><br>解除绑定用，<code>removeEventListener</code>。<br>写个函数搞定</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span> <span class="params">(obj,sEvent,fn)</span> </span>{</div><div class="line">    <span class="keyword">if</span> (obj.attachEvent) {</div><div class="line">        obj.attachEvent(<span class="string">'on'</span> + sEvent,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">                     fn.call(obj);</div><div class="line">               });</div><div class="line">    }<span class="keyword">else</span>{</div><div class="line">        obj.addEventListener(sEvent,fn,<span class="literal">false</span>);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span> <span class="params">(obj,sEvent,fn)</span> {</span>
+    <span class="keyword">if</span> (obj.attachEvent) {
+        obj.attachEvent(<span class="string">'on'</span> + sEvent,<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+                     fn.call(obj);
+               });
+    }<span class="keyword">else</span>{
+        obj.addEventListener(sEvent,fn,<span class="literal">false</span>);
+    }
+}
+</pre></td></tr></table></figure>
 
 <p><em>当火狐下绑定了一个默认事件，需要使用火狐独有的<code>oEvent.preventDefault()</code>，(使用这个,ie、chrome会报错)，简单的<code>return false</code> 会失效。</em></p>
 <p>所以特别需要注意这个问题，可以这样阻止默认事件：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(oEvent.preventDefault)</div><div class="line">{</div><div class="line">    oEvent.preventDefault();</div><div class="line">}</div><div class="line"><span class="keyword">return</span> <span class="literal">false</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="keyword">if</span>(oEvent.preventDefault)
+{
+    oEvent.preventDefault();
+}
+<span class="keyword">return</span> <span class="literal">false</span>;
+</pre></td></tr></table></figure>
 
 <p><strong>IE中的事件捕获</strong><br><code>setCapture()</code>，把整个电脑的事件都占有了，这是IE独有的方法，与之对应的撤销捕获 <code>releaseCapture()</code>，这在搞定一些ie的默认事件Bug还是挺有用的。</p>
 <p><strong>鼠标滚轮事件</strong><br>ie和chrome(这次chrome叛变了)使用：<code>onmousewheel</code>，例如 <code>oBtn.onmousewheel = function () {
     alert(&#39;a&#39;);
 };</code></p>
 <p>但是fireFox使用： <code>DOMMouseScroll</code>，而且需要通过绑定事件才行,</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">oBtn.addEventListener(<span class="string">'DOMMouseScroll'</span>,<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    alert(<span class="string">'a'</span>);</div><div class="line">},<span class="literal">false</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>oBtn.addEventListener(<span class="string">'DOMMouseScroll'</span>,<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    alert(<span class="string">'a'</span>);
+},<span class="literal">false</span>);
+</pre></td></tr></table></figure>
 
 <p>这样可以稍稍利用下上面的绑定事件函数:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span> <span class="params">(obj,sEvent,fn)</span> </span>{</div><div class="line">    <span class="keyword">if</span> (obj.attachEvent) {</div><div class="line">        obj.attachEvent(<span class="string">'on'</span> + sEvent,fn);</div><div class="line">    }<span class="keyword">else</span>{</div><div class="line">        obj.addEventListener(sEvent,fn,<span class="literal">false</span>);</div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> <span class="params">()</span> </span>{</div><div class="line">    alert(<span class="string">'a'</span>);</div><div class="line">}</div><div class="line">addEvent(oBtn,<span class="string">'mousewheel'</span>,a);</div><div class="line">addEvent(oBtn,<span class="string">'DOMMouseScroll'</span>,a);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span> <span class="params">(obj,sEvent,fn)</span> {</span>
+    <span class="keyword">if</span> (obj.attachEvent) {
+        obj.attachEvent(<span class="string">'on'</span> + sEvent,fn);
+    }<span class="keyword">else</span>{
+        obj.addEventListener(sEvent,fn,<span class="literal">false</span>);
+    }
+}
+<span class="function"><span class="keyword">function</span> <span class="title">a</span> <span class="params">()</span> {</span>
+    alert(<span class="string">'a'</span>);
+}
+addEvent(oBtn,<span class="string">'mousewheel'</span>,a);
+addEvent(oBtn,<span class="string">'DOMMouseScroll'</span>,a);
+</pre></td></tr></table></figure>
 
 <p><strong>鼠标滚轮上下滚动</strong><br>IE和chrome都是使用 <code>wheelDelta</code>，并且向下滚返回负数（-120），向上滚返回整数(120)，但是firefox 使用的是<code>detail</code>，而且向上滚返回负数(-3)，向下滚返回正数(3)。<br>解决办法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">onMouseWheel</span><span class="params">(ev)</span> </span>{</div><div class="line">    <span class="keyword">var</span> oEvent = ev || <span class="built_in">window</span>.event;</div><div class="line">    <span class="keyword">var</span> bDown = <span class="literal">true</span>;</div><div class="line">    bDown = oEvent.wheelDelta ? oEvent.wheelDelta &lt; <span class="number">0</span> : oEvent.detail &gt; <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> bDown;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">onMouseWheel</span><span class="params">(ev)</span> {</span>
+    <span class="keyword">var</span> oEvent = ev || window.event;
+    <span class="keyword">var</span> bDown = <span class="literal">true</span>;
+    bDown = oEvent.wheelDelta ? oEvent.wheelDelta &lt; <span class="number">0</span> : oEvent.detail &gt; <span class="number">0</span>;
+    <span class="keyword">return</span> bDown;
+}
+</pre></td></tr></table></figure>
 
 <p><strong>事件对象<code>event</code>：</strong><br>IE里直接使用 <code>event</code>，firefox使用的是函数参数，最新版chrome，ie11两者都支持</p>
 <p>例如获取鼠标点击坐标：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.onclick = <span class="function"><span class="keyword">function</span> <span class="params">(ev)</span> </span>{</div><div class="line">        <span class="keyword">var</span> oEvent =  ev || <span class="built_in">window</span>.event ; </div><div class="line">        alert(oEvent.clientX + <span class="string">','</span> + oEvent.clientY);</div><div class="line">    }</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>document.onclick = <span class="function"><span class="keyword">function</span> <span class="params">(ev)</span> {</span>
+        <span class="keyword">var</span> oEvent =  ev || window.event ; 
+        alert(oEvent.clientX + <span class="string">','</span> + oEvent.clientY);
+    }
+</pre></td></tr></table></figure>
 
 <p><strong> 获取滚动条高度<code>scrollTop</code>：</strong><br>chrome和ie、firefox不同，使用的是<code>document.body.scrollTop;</code>，而后者是使用<code>document.documentElement.scrollTop</code> ，谷歌和火狐竟然不同步…</p>
 <hr>
 <p><strong> 创建<code>ajax</code>对象：</strong></p>
 <p>IE6以上的浏览器使用，<code>new XMLHttpRequest()</code>；<br>IE6需要使用，<code>new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;)</code>.</p>
 <p>所以创建<code>ajax</code>对象就需要这样写，</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oAjax=<span class="literal">null</span>;</div><div class="line"> <span class="comment">//使用window.XMLHttpRequest是因为IE6下XMLHttpRequest不存在，直接弹错，</span></div><div class="line"><span class="comment">//加window表示为定义这个属性</span></div><div class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest){</div><div class="line"></div><div class="line">    oAjax=<span class="keyword">new</span> XMLHttpRequest();</div><div class="line">  }<span class="keyword">else</span>{</div><div class="line">    oAjax=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);   </div><div class="line">  }</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="keyword">var</span> oAjax=<span class="literal">null</span>;
+ <span class="comment">//使用window.XMLHttpRequest是因为IE6下XMLHttpRequest不存在，直接弹错，</span>
+<span class="comment">//加window表示为定义这个属性</span>
+<span class="keyword">if</span>(window.XMLHttpRequest){
+
+    oAjax=<span class="keyword">new</span> XMLHttpRequest();
+  }<span class="keyword">else</span>{
+    oAjax=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);   
+  }
+</pre></td></tr></table></figure>
 
 <hr>
 <h4 id="获取样式表里的样式">获取样式表里的样式</h4>
 <p><strong> IE使用，<code>currentStyle</code> ， firefox和chrome使用<code>getComputedStyle</code></strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">getStyle</span><span class="params">(obj,attr)</span></span>{</div><div class="line">       <span class="keyword">if</span>(obj.currentStyle){</div><div class="line">           <span class="keyword">return</span> obj.currentStyle[attr];  </div><div class="line">       }<span class="keyword">else</span>{</div><div class="line">            <span class="keyword">return</span> getComputedStyle(obj, <span class="literal">false</span>)[attr];</div><div class="line">       }</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre> <span class="function"><span class="keyword">function</span> <span class="title">getStyle</span><span class="params">(obj,attr)</span>{</span>
+       <span class="keyword">if</span>(obj.currentStyle){
+           <span class="keyword">return</span> obj.currentStyle[attr];  
+       }<span class="keyword">else</span>{
+            <span class="keyword">return</span> getComputedStyle(obj, <span class="literal">false</span>)[attr];
+       }
+}
+</pre></td></tr></table></figure>
 
 <h4 id="DOM中存在的一些兼容性问题">DOM中存在的一些兼容性问题</h4>
 <p><strong> 子节点个数<code>childNodes</code>存在不兼容性，</strong><br>例如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"lis"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"lis"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+</pre></td></tr></table></figure>
 
 <p>上面这个<code>ul</code>下子节点的个数<code>oUl.childNodes.length</code> 在IE6下是2，<br>而 IE11，firefox chrome是5，是因为这些浏览器会添加空白部分<code>textNode</code></p>
 <p>可以使用这个方法获取子节点个数：<code>oUl.children.length</code>。</p>
@@ -141,23 +263,23 @@
   
   <div class="categories">
   	<i class="fa fa-folder-open"></i>
-    <a href="/flickr/categories/JavaScript/">JavaScript</a>
+    <a href="/categories/JavaScript/">JavaScript</a>
   </div>
 
           
   
   <div class="tags">
   	<i class="fa fa-tag"></i>
-    <a href="/flickr/tags/兼容性/">兼容性</a>
+    <a href="/tags/兼容性/">兼容性</a>
   </div>
 
           <div class="clearfix"></div>
           <nav id="pagination">
   
-    <a href="/flickr/2014/01/01/use-git/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Newer</a>
+    <a href="/2014/01/01/use-git/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Newer</a>
   
   
-    <a href="/flickr/2013/12/10/js-distribution/" class="alignright next">Older<i class="fa fa-long-arrow-right"></i></a>
+    <a href="/2013/12/10/js-distribution/" class="alignright next">Older<i class="fa fa-long-arrow-right"></i></a>
   
   <div class="clearfix"></div>
 </nav>
@@ -191,10 +313,10 @@ Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="ex
 
 <div class="clearfix"></div></footer>
 		  
-<script src="/flickr/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
-<script src="/flickr/js/gallery.js" type="text/javascript"></script>
-<script src="/flickr/js/bootstrap.min.js" type="text/javascript"></script>
-
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/fartscroll.js"></script>
 
 
 <script type="text/javascript">
@@ -227,8 +349,8 @@ var disqus_shortname = 'stddup';
 
 
 
-  <link rel="stylesheet" href="/flickr/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-  <script src="/flickr/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript">
   (function($){
     $('.fancybox').fancybox({
@@ -252,10 +374,11 @@ var disqus_shortname = 'stddup';
 
     });
   });
-</script>
-<script src="/flickr/js/jquery.anystretch.min.js" type="text/javascript"></script>
-<script src="/flickr/js/nav.js" type="text/javascript"></script>
 
+  fartscroll(800);
+</script>
+<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
+<script type="text/javascript" src="/js/nav.js"></script>
 
 		</body>
 		</html>

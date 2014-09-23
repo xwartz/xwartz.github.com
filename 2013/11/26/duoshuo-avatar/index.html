@@ -19,14 +19,12 @@
     <meta property="og:image" content="undefined"/>
   
 
-  <!-- <link href="/flickr/favicon.ico" rel="icon"> -->
-  <link rel="alternate" href="/flickr/atom.xml" title="stddup" type="application/atom+xml">
-  <link rel="stylesheet" href="/flickr/css/bootstrap.min.css" type="text/css">
+  <!-- <link href="/favicon.ico" rel="icon"> -->
+  <link rel="alternate" href="/atom.xml" title="stddup" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
-<link rel="stylesheet" href="/flickr/css/style.css" type="text/css">
-
-  <script src="/flickr/js/jquery.min.js" type="text/javascript"></script>
-
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -48,6 +46,12 @@
 		    <nav id="main-nav">
   <ul class='container'>
     
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/flickr">Flickr</a></li>
+    
   </ul>
   <div class="clearfix"></div>
 </nav>
@@ -59,7 +63,7 @@
     <header>
       <div class="icon"></div>
       
-      <time datetime="2013-11-26T12:40:12.000Z"><a href="/flickr/2013/11/26/duoshuo-avatar/">周二, 11月 26 2013, 20:40:12 晚上</a></time>
+      <time datetime="2013-11-26T12:40:12.000Z"><a href="/2013/11/26/duoshuo-avatar/">周二, 11月 26 2013, 20:40:12 晚上</a></time>
 
   
     <h1 class="title">多说评论头像旋转和圆角效果</h1>
@@ -84,7 +88,47 @@
     <div class="entry">
       
         <p>这个也是我之前博客上弄的，今天用多说的时候，发现代码还留在后台<br>就贴在这里好了。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">/*评论头像圆形，360度旋转*/</div><div class="line">#ds-reset .ds-avatar img{</div><div class="line">	width:40px;height:40px; /*设置图像的长和宽*/</div><div class="line">	border-radius: 21px;/*设置图像圆角效果,在这里我直接设置了超过width/2的像素，即为圆形了*/</div><div class="line">	-webkit-border-radius: 21px;/*圆角效果：兼容webkit浏览器*/</div><div class="line">	-moz-border-radius:21px;</div><div class="line">	box-shadow: inset 0 -1px 0 #3333sf;/*设置图像阴影效果*/</div><div class="line">	-webkit-box-shadow: inset 0 -1px 0 #3333sf;</div><div class="line">	-webkit-transition: 0.4s;</div><div class="line">	-webkit-transition: -webkit-transform 0.4s ease-out;</div><div class="line">	transition: transform 0.4s ease-out;/*变化时间设置为0.4秒(变化动作即为下面的图像旋转360读）*/</div><div class="line">	-moz-transition: -moz-transform 0.4s ease-out;</div><div class="line">} </div><div class="line">#ds-reset .ds-avatar img:hover{/*设置鼠标悬浮在头像时的CSS样式*/</div><div class="line">	box-shadow: 0 0 10px #fff; rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);</div><div class="line">	-webkit-box-shadow: 0 0 10px #fff; rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);</div><div class="line">	transform: rotateZ(360deg);/*图像旋转360度*/</div><div class="line">	-webkit-transform: rotateZ(360deg);</div><div class="line">	-moz-transform: rotateZ(360deg);</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre>/*评论头像圆形，360度旋转*/
+#ds-reset .ds-avatar img{
+	width:40px;height:40px; /*设置图像的长和宽*/
+	border-radius: 21px;/*设置图像圆角效果,在这里我直接设置了超过width/2的像素，即为圆形了*/
+	-webkit-border-radius: 21px;/*圆角效果：兼容webkit浏览器*/
+	-moz-border-radius:21px;
+	box-shadow: inset 0 -1px 0 #3333sf;/*设置图像阴影效果*/
+	-webkit-box-shadow: inset 0 -1px 0 #3333sf;
+	-webkit-transition: 0.4s;
+	-webkit-transition: -webkit-transform 0.4s ease-out;
+	transition: transform 0.4s ease-out;/*变化时间设置为0.4秒(变化动作即为下面的图像旋转360读）*/
+	-moz-transition: -moz-transform 0.4s ease-out;
+} 
+#ds-reset .ds-avatar img:hover{/*设置鼠标悬浮在头像时的CSS样式*/
+	box-shadow: 0 0 10px #fff; rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);
+	-webkit-box-shadow: 0 0 10px #fff; rgba(255,255,255,.6), inset 0 0 20px rgba(255,255,255,1);
+	transform: rotateZ(360deg);/*图像旋转360度*/
+	-webkit-transform: rotateZ(360deg);
+	-moz-transform: rotateZ(360deg);
+}
+</pre></td></tr></table></figure>
 
 
       
@@ -95,23 +139,23 @@
   
   <div class="categories">
   	<i class="fa fa-folder-open"></i>
-    <a href="/flickr/categories/blog/">blog</a>
+    <a href="/categories/blog/">blog</a>
   </div>
 
           
   
   <div class="tags">
   	<i class="fa fa-tag"></i>
-    <a href="/flickr/tags/多说/">多说</a>
+    <a href="/tags/多说/">多说</a>
   </div>
 
           <div class="clearfix"></div>
           <nav id="pagination">
   
-    <a href="/flickr/2013/11/27/static-dynamic-library/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Newer</a>
+    <a href="/2013/11/27/static-dynamic-library/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Newer</a>
   
   
-    <a href="/flickr/2013/11/26/write-markdown/" class="alignright next">Older<i class="fa fa-long-arrow-right"></i></a>
+    <a href="/2013/11/26/write-markdown/" class="alignright next">Older<i class="fa fa-long-arrow-right"></i></a>
   
   <div class="clearfix"></div>
 </nav>
@@ -145,10 +189,10 @@ Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="ex
 
 <div class="clearfix"></div></footer>
 		  
-<script src="/flickr/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
-<script src="/flickr/js/gallery.js" type="text/javascript"></script>
-<script src="/flickr/js/bootstrap.min.js" type="text/javascript"></script>
-
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/fartscroll.js"></script>
 
 
 <script type="text/javascript">
@@ -181,8 +225,8 @@ var disqus_shortname = 'stddup';
 
 
 
-  <link rel="stylesheet" href="/flickr/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-  <script src="/flickr/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript">
   (function($){
     $('.fancybox').fancybox({
@@ -206,10 +250,11 @@ var disqus_shortname = 'stddup';
 
     });
   });
-</script>
-<script src="/flickr/js/jquery.anystretch.min.js" type="text/javascript"></script>
-<script src="/flickr/js/nav.js" type="text/javascript"></script>
 
+  fartscroll(800);
+</script>
+<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
+<script type="text/javascript" src="/js/nav.js"></script>
 
 		</body>
 		</html>

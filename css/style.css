@@ -271,7 +271,7 @@ article .gallery:hover .control {
   -ms-filter: none;
   filter: none;
 }
-@media screen and (max-width: 580px) {
+@media screen and (max-width:580px) {
   article .gallery:hover img {
     -webkit-transform: none;
     -moz-transform: none;

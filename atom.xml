@@ -2,9 +2,9 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[stddup]]></title>
   <subtitle><![CDATA[stand up and stretch]]></subtitle>
-  <link href="/flickr/atom.xml" rel="self"/>
+  <link href="/atom.xml" rel="self"/>
   <link href="http://stddup.com/"/>
-  <updated>2014-09-23T16:30:21.830Z</updated>
+  <updated>2014-07-20T07:10:37.142Z</updated>
   <id>http://stddup.com/</id>
   
   <author>
@@ -15,39 +15,247 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[]]></title>
-    <link href="http://stddup.com/2014/09/24/hexo-render-error/"/>
-    <id>http://stddup.com/2014/09/24/hexo-render-error/</id>
-    <published>2014-09-23T16:29:36.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
-    <content type="html"><![CDATA[<p>title: HexoError: Render failed<br>date: 2013-12-10 14:51:42<br>categories: blog</p>
-<h2 id="tags:_hexo">tags: hexo</h2>
-<p><code>Hexo</code> 默认会对<code>source</code>目录下的所有文件进行<code>render</code>,这会造成<code>.html</code>文件不正常，<code>.html</code> 文件都会被当成 <code>.md</code> 处理。github上也有讨论组这个问题,<a href="https://github.com/tommy351/hexo/issues/158" target="_blank" rel="external">issue：HexoError: Render failed</a>。</p>
-<p>使用主题的时候遇到过这个问题，只需在<code>layout.ejs</code>里面加一个判断</p>
-<figure class="highlight ejs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="vbscript">&lt;%</span></div><div class="line"><span class="keyword">if</span>(page.layout !== <span class="comment">'false'){</span></div><div class="line">%&gt;</div><div class="line"><span class="comment">&lt;!--渲染--&gt;</span></div><div class="line"> </div><div class="line"><span class="vbscript">&lt;%}<span class="keyword">else</span>{ %&gt;</span></div><div class="line"><span class="comment">&lt;!--不想渲染的页面内容-&gt;</span></div><div class="line">&lt;%- page.content %&gt;</div><div class="line">&lt;%};%&gt;</div></pre></td></tr></table></figure>
+    <title><![CDATA[div/textarea切换时设置光标位置，以及选中文字]]></title>
+    <link href="http://stddup.com/2014/07/03/set-get-caret-position/"/>
+    <id>http://stddup.com/2014/07/03/set-get-caret-position/</id>
+    <published>2014-07-03T13:16:12.000Z</published>
+    <updated>2014-07-05T01:42:04.000Z</updated>
+    <content type="html"><![CDATA[<p> 最近在搞浏览器兼容性，被光标定位搞得够呛的，所以有必要把遇到的坑记一下。<br> 遇到的情景是这样子的，<code>div</code>和<code>textarea</code>互相切换，<code>div</code>层来表现<code>textarea</code>,<br> 因为需要展现一些标签，超链接什么的，所以需要<code>div</code>层，当然使用可编辑的<code>div</code>来表示，就另说了。<br> 张鑫旭有篇博客详细介绍了<a href="http://www.zhangxinxu.com/wordpress/2011/04/js-range-html%E6%96%87%E6%A1%A3%E6%96%87%E5%AD%97%E5%86%85%E5%AE%B9%E9%80%89%E4%B8%AD%E3%80%81%E5%BA%93%E5%8F%8A%E5%BA%94%E7%94%A8%E4%BB%8B%E7%BB%8D/" target="_blank">Range</a> 可以参考下。不过文章写的时间比较久了，最新的ie版本有些不适用了。</p>
+<p> 首先是获取点击<code>div</code>时的光标对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre>  <span class="keyword">var</span> Caret = {};
+  Caret.hasUserSelection = <span class="function"><span class="keyword">function</span> <span class="params">(argument)</span> {</span>
+    <span class="keyword">var</span> userSelection;
+    <span class="keyword">if</span> (window.getSelection) {
+      userSelection = window.getSelection();
+    } <span class="keyword">else</span> <span class="keyword">if</span> (document.selection) {
+      <span class="comment">//低版本ie</span>
+      userSelection = document.selection.createRange();
+    }
+     <span class="keyword">return</span> userSelection;
+  };
+</pre></td></tr></table></figure>
 
-<p>按照这个方法，如果创建的页面不想使用主题的渲染，可以在 <code>.html</code> 页面最上方加入:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="header">layout: false</span></div><div class="line">---</div></pre></td></tr></table></figure>
+<p> 设置range长度</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+</pre></td><td class="code"><pre> Caret.getLength = <span class="function"><span class="keyword">function</span> <span class="params">(selection, node)</span> {</span>
+    <span class="keyword">var</span> anchorNode, parentNode, range;
+    <span class="keyword">if</span> (selection !== <span class="literal">null</span>) {
+      <span class="keyword">if</span> (node == <span class="string">'anchorNode'</span>) {
+          anchorNode = selection.anchorNode, anchorOffset = selection.anchorOffset;
+        }<span class="keyword">else</span>{
+          anchorNode = selection.focusNode, anchorOffset = selection.focusOffset;
+        }
 
-<p>这样就可以在页面中使用自己创建的样式渲染，比如创建demo.</p>
+        <span class="comment">//设置range对象</span>
+        parentNode = <span class="keyword">this</span>.$el.get(<span class="number">0</span>);
+        range = document.createRange();
+        <span class="keyword">if</span> (parentNode != <span class="literal">null</span>) {
+          range.setStartBefore(parentNode);
+        }
+        <span class="keyword">if</span> (anchorNode != <span class="literal">null</span>) {
+          range.setEnd(anchorNode, anchorOffset);
+        }
+        <span class="keyword">if</span> (settings.isIE) {
+          <span class="comment">//@todo ie bug 会计算回车在内，但是点击行首又不算在内</span>
+          <span class="keyword">return</span> range.toString().replace(<span class="regexp">/\n/g</span>,<span class="string">''</span>).length;
+        }
+        <span class="keyword">return</span> range.toString().length;
+    }<span class="keyword">else</span>{
+      <span class="keyword">return</span> <span class="number">0</span>;
+    }
+  };
+</pre></td></tr></table></figure>
+
+<p> 以上代码中，<code>setStartBefore</code> 指用户选择内容起始处的容器父节点。</p>
+<p> 设置光标位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre> Caret.simulateCaret = <span class="function"><span class="keyword">function</span><span class="params">(length)</span> {</span>
+    <span class="keyword">try</span> {
+      <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).get(<span class="number">0</span>).selectionStart = length;
+      <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).get(<span class="number">0</span>).selectionEnd = length;
+    } <span class="keyword">catch</span> (_error) {}
+  };
+</pre></td></tr></table></figure>
+
+<p> 切换到<code>textarea</code>时设置光标位置或者选中文字</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+</pre></td><td class="code"><pre> Caret.showEditor = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> {</span>
+    <span class="keyword">var</span> length, startPosition, endPosition;
+    <span class="keyword">var</span> editor = <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).get(<span class="number">0</span>);
+    <span class="keyword">var</span> userSelection = Caret.hasUserSelection();
+    <span class="keyword">var</span> userSelectionText = userSelection;
+    <span class="keyword">if</span> (!((event != <span class="literal">null</span>) && $(event.target).is(<span class="string">'a'</span>))) {
+      <span class="comment">//for 低版本ie</span>
+      <span class="keyword">if</span> (document.selection) {
+        userSelectionText = userSelection.text;
+      }
+      <span class="keyword">if</span> (userSelectionText !== <span class="literal">undefined</span> && userSelectionText.toString().length) {
+        <span class="comment">// 选中文字</span>
+        <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).show();
+        startPosition = <span class="keyword">this</span>.getLength(userSelection, <span class="string">'anchorNode'</span>);
+        endPosition = <span class="keyword">this</span>.getLength(userSelection, <span class="string">'focusNode'</span>);
+          <span class="keyword">if</span> (startPosition &lt; endPosition) {
+            editor.setSelectionRange(startPosition, endPosition);
+          }<span class="keyword">else</span>{
+            editor.setSelectionRange(endPosition, startPosition);
+          }
+          <span class="keyword">if</span> (settings.isFirefox) {
+            <span class="comment">// firefox 需要获取焦点，不然不会显示选中高亮</span>
+            editor.focus();
+          }
+      }<span class="keyword">else</span>{
+        <span class="comment">// 点击</span>
+        length = <span class="keyword">this</span>.getLength(userSelection, <span class="string">'anchorNode'</span>);
+        <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).show();
+        <span class="keyword">if</span> (event != <span class="literal">null</span>) {
+          <span class="keyword">if</span> (settings.isFirefox) {
+            <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).focus();
+          }
+          <span class="keyword">this</span>.simulateCaret(length);
+        }
+      }
+    }
+  };
+</pre></td></tr></table></figure>
+
+<p>至此可以算是填了点，<code>div</code>和<code>textarea</code>互切时的光标以及选中文字的坑，但是还是存在不少问题，主要是ie下。<br>比如ie下未能在<code>textarea</code>中显示选中的文字，以及光标定位不准，点击行首的时候会跑到上一行的末尾。<br>而且测试的是IE11下，低版本就不想说什么了。</p>
+<p>关于使用可编辑<code>div</code>来替代，也就是给<code>div</code>设置 <code>contenteditable=true</code>属性，<br>应该会简单很多，至少chrome下不需要写这些定位代码了，当然chrome定位也简单。<br>IE定位应该也不需要多做处理，但是选中文字还是会存在问题，firefox选中文字也需要手动写代码。</p>
+<p>总之比较麻烦，相对来说还是可编辑<code>div</code>靠谱些。</p>
+<p>希望有好的方案可以提供。</p>
+<hr>
+<p>顺便说下窗口切换的时候记录光标位置，使用window <code>blur</code>和<code>focus</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre>
+Caret.windowSwitch = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+      <span class="keyword">var</span> _this = <span class="keyword">this</span>;
+      $(window).blur(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        focusEditor = ($(document.activeElement).is(<span class="string">'textarea'</span>) && $(document.activeElement).hasClass(<span class="string">'editor'</span>));
+      });
+      $(window).focus(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+        <span class="keyword">if</span>(focusEditor){
+          _this.$(<span class="string">'#taskcontent .editor'</span>).css(<span class="string">'display'</span>,<span class="string">'block'</span>);
+          _this.$(<span class="string">'#taskcontent .editor'</span>).focus();
+        }
+      });
+    },
+</pre></td></tr></table></figure>
+
 ]]></content>
     
+    
+      <category term="caret" scheme="http://stddup.com/tags/caret/"/>
+    
+      <category term="js" scheme="http://stddup.com/categories/js/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[]]></title>
-    <link href="http://stddup.com/2014/09/24/css3-webkit-filter/"/>
-    <id>http://stddup.com/2014/09/24/css3-webkit-filter/</id>
-    <published>2014-09-23T16:29:36.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
-    <content type="html"><![CDATA[<p>title: -webkit-filter:<br>date: 2014-03-09 13:18:47<br>categories: css</p>
-<h2 id="tags:_-webkit-filter">tags: -webkit-filter</h2>
-<p>今天在CSSConf看到首页的头像效果挺酷的，就研究了下，发现用了<code>webkit-filter</code>滤镜效果。<br>虽然之前也有看过这个css3的属性，但一直没具体去了解，今天就好好学习下。</p>
+    <title><![CDATA[-webkit-filter:]]></title>
+    <link href="http://stddup.com/2014/03/09/css3-webkit-filter/"/>
+    <id>http://stddup.com/2014/03/09/css3-webkit-filter/</id>
+    <published>2014-03-09T05:18:47.000Z</published>
+    <updated>2014-04-19T07:00:20.000Z</updated>
+    <content type="html"><![CDATA[<p>今天在CSSConf看到首页的头像效果挺酷的，就研究了下，发现用了<code>webkit-filter</code>滤镜效果。<br>虽然之前也有看过这个css3的属性，但一直没具体去了解，今天就好好学习下。</p>
 <h4 id="首先">首先</h4>
-<p>它不是那个IE下设置透明度的属性，支持它的浏览器只有<code>webkit</code>内核的。<br><a href="http://caniuse.com/css-filters" target="_blank" rel="external">caniuse</a>可以查看，最新版IE11和firefox27都还没有支持它，还是chrome最给力，最早支持，opera应该是跟随chrome用blink引擎后才支持的吧。</p>
+<p>它不是那个IE下设置透明度的属性，支持它的浏览器只有<code>webkit</code>内核的。<br><a href="http://caniuse.com/css-filters" target="_blank">caniuse</a>可以查看，最新版IE11和firefox27都还没有支持它，还是chrome最给力，最早支持，opera应该是跟随chrome用blink引擎后才支持的吧。</p>
 <h3 id="语法">语法</h3>
-<figure class="highlight css"><figcaption><span>webkit-filter</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class">.selector</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-filter</span>:<span class="value"> none | &lt;filter-function&gt; [,&lt;filter-function&gt;]*</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><figcaption><span>webkit-filter</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="class">.selector</span><span class="rules">{
+	<span class="rule"><span class="attribute">-webkit-filter</span>:<span class="value"> none | &lt;filter-function&gt; [,&lt;filter-function&gt;]*</span></span>;
+<span class="rule">}</span></span>
+</pre></td></tr></table></figure>
 
 <p><code>filter-function</code>取值：</p>
 <ul>
@@ -63,21 +271,25 @@
 <li><code>drop-shadow()</code> 阴影值</li>
 </ul>
 <p>具体用法可以写个demo试试：<br><a id="more"></a></p>
-<p></p><p data-height="348" data-theme-id="5287" data-slug-hash="ntKrE" data-default-tab="result" class="codepen">See the Pen <a href="http://codepen.io/stddup/pen/ntKrE/" target="_blank" rel="external">webkit-filter</a> by stddup (<a href="http://codepen.io/stddup" target="_blank" rel="external">@stddup</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<p><p data-height="348" data-theme-id="5287" data-slug-hash="ntKrE" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/stddup/pen/ntKrE/'>webkit-filter</a> by stddup (<a href='http://codepen.io/stddup'>@stddup</a>) on <a href='http://codepen.io'>CodePen</a>.</p></p>
 <script async src="//codepen.io/assets/embed/ei.js"></script>
 
-<p>也可以查看这里的各种效果：<a href="http://labs.qianduan.net/css_filter.html" target="_blank" rel="external">http://labs.qianduan.net/css_filter.html</a></p>
+<p>也可以查看这里的各种效果：<a href="http://labs.qianduan.net/css_filter.html" target="_blank">http://labs.qianduan.net/css_filter.html</a></p>
 <p>最后整出了这样的一个头像效果：</p>
-<p></p><p data-height="251" data-theme-id="5287" data-slug-hash="pxohF" data-default-tab="result" class="codepen">See the Pen <a href="http://codepen.io/stddup/pen/pxohF/" target="_blank" rel="external">pxohF</a> by stddup (<a href="http://codepen.io/stddup" target="_blank" rel="external">@stddup</a>) on <a href="http://codepen.io" target="_blank" rel="external">CodePen</a>.</p><p></p>
+<p><p data-height="251" data-theme-id="5287" data-slug-hash="pxohF" data-default-tab="result" class='codepen'>See the Pen <a href='http://codepen.io/stddup/pen/pxohF/'>pxohF</a> by stddup (<a href='http://codepen.io/stddup'>@stddup</a>) on <a href='http://codepen.io'>CodePen</a>.</p></p>
 <script async src="//codepen.io/assets/embed/ei.js"></script>
 ]]></content>
-    <summary type="html"><![CDATA[<p>title: -webkit-filter:<br>date: 2014-03-09 13:18:47<br>categories: css</p>
-<h2 id="tags:_-webkit-filter">tags: -webkit-filter</h2>
-<p>今天在CSSConf看到首页的头像效果挺酷的，就研究了下，发现用了<code>webkit-filter</code>滤镜效果。<br>虽然之前也有看过这个css3的属性，但一直没具体去了解，今天就好好学习下。</p>
+    <summary type="html"><![CDATA[<p>今天在CSSConf看到首页的头像效果挺酷的，就研究了下，发现用了<code>webkit-filter</code>滤镜效果。<br>虽然之前也有看过这个css3的属性，但一直没具体去了解，今天就好好学习下。</p>
 <h4 id="首先">首先</h4>
-<p>它不是那个IE下设置透明度的属性，支持它的浏览器只有<code>webkit</code>内核的。<br><a href="http://caniuse.com/css-filters" target="_blank" rel="external">caniuse</a>可以查看，最新版IE11和firefox27都还没有支持它，还是chrome最给力，最早支持，opera应该是跟随chrome用blink引擎后才支持的吧。</p>
+<p>它不是那个IE下设置透明度的属性，支持它的浏览器只有<code>webkit</code>内核的。<br><a href="http://caniuse.com/css-filters" target="_blank">caniuse</a>可以查看，最新版IE11和firefox27都还没有支持它，还是chrome最给力，最早支持，opera应该是跟随chrome用blink引擎后才支持的吧。</p>
 <h3 id="语法">语法</h3>
-<figure class="highlight css"><figcaption><span>webkit-filter</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class">.selector</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-filter</span>:<span class="value"> none | &lt;filter-function&gt; [,&lt;filter-function&gt;]*</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><figcaption><span>webkit-filter</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="class">.selector</span><span class="rules">{
+	<span class="rule"><span class="attribute">-webkit-filter</span>:<span class="value"> none | &lt;filter-function&gt; [,&lt;filter-function&gt;]*</span></span>;
+<span class="rule">}</span></span>
+</pre></td></tr></table></figure>
 
 <p><code>filter-function</code>取值：</p>
 <ul>
@@ -94,42 +306,9 @@
 </ul>
 <p>具体用法可以写个demo试试：<br>]]></summary>
     
-  </entry>
-  
-  <entry>
-    <title><![CDATA[div/textarea切换时设置光标位置，以及选中文字]]></title>
-    <link href="http://stddup.com/2014/07/03/set-get-caret-position/"/>
-    <id>http://stddup.com/2014/07/03/set-get-caret-position/</id>
-    <published>2014-07-03T13:16:12.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
-    <content type="html"><![CDATA[<p> 最近在搞浏览器兼容性，被光标定位搞得够呛的，所以有必要把遇到的坑记一下。<br> 遇到的情景是这样子的，<code>div</code>和<code>textarea</code>互相切换，<code>div</code>层来表现<code>textarea</code>,<br> 因为需要展现一些标签，超链接什么的，所以需要<code>div</code>层，当然使用可编辑的<code>div</code>来表示，就另说了。<br> 张鑫旭有篇博客详细介绍了<a href="http://www.zhangxinxu.com/wordpress/2011/04/js-range-html%E6%96%87%E6%A1%A3%E6%96%87%E5%AD%97%E5%86%85%E5%AE%B9%E9%80%89%E4%B8%AD%E3%80%81%E5%BA%93%E5%8F%8A%E5%BA%94%E7%94%A8%E4%BB%8B%E7%BB%8D/" target="_blank" rel="external">Range</a> 可以参考下。不过文章写的时间比较久了，最新的ie版本有些不适用了。</p>
-<p> 首先是获取点击<code>div</code>时的光标对象。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Caret = {};</div><div class="line">Caret.hasUserSelection = <span class="function"><span class="keyword">function</span> <span class="params">(argument)</span> </span>{</div><div class="line">  <span class="keyword">var</span> userSelection;</div><div class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.getSelection) {</div><div class="line">    userSelection = <span class="built_in">window</span>.getSelection();</div><div class="line">  } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.selection) {</div><div class="line">    <span class="comment">//低版本ie</span></div><div class="line">    userSelection = <span class="built_in">document</span>.selection.createRange();</div><div class="line">  }</div><div class="line">   <span class="keyword">return</span> userSelection;</div><div class="line">};</div></pre></td></tr></table></figure>
-
-<p> 设置range长度</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">Caret.getLength = <span class="function"><span class="keyword">function</span> <span class="params">(selection, node)</span> </span>{</div><div class="line">   <span class="keyword">var</span> anchorNode, parentNode, range;</div><div class="line">   <span class="keyword">if</span> (selection !== <span class="literal">null</span>) {</div><div class="line">     <span class="keyword">if</span> (node == <span class="string">'anchorNode'</span>) {</div><div class="line">         anchorNode = selection.anchorNode, anchorOffset = selection.anchorOffset;</div><div class="line">       }<span class="keyword">else</span>{</div><div class="line">         anchorNode = selection.focusNode, anchorOffset = selection.focusOffset;</div><div class="line">       }</div><div class="line"></div><div class="line">       <span class="comment">//设置range对象</span></div><div class="line">       parentNode = <span class="keyword">this</span>.$el.get(<span class="number">0</span>);</div><div class="line">       range = <span class="built_in">document</span>.createRange();</div><div class="line">       <span class="keyword">if</span> (parentNode != <span class="literal">null</span>) {</div><div class="line">         range.setStartBefore(parentNode);</div><div class="line">       }</div><div class="line">       <span class="keyword">if</span> (anchorNode != <span class="literal">null</span>) {</div><div class="line">         range.setEnd(anchorNode, anchorOffset);</div><div class="line">       }</div><div class="line">       <span class="keyword">if</span> (settings.isIE) {</div><div class="line">         <span class="comment">//@todo ie bug 会计算回车在内，但是点击行首又不算在内</span></div><div class="line">         <span class="keyword">return</span> range.toString().replace(<span class="regexp">/\n/g</span>,<span class="string">''</span>).length;</div><div class="line">       }</div><div class="line">       <span class="keyword">return</span> range.toString().length;</div><div class="line">   }<span class="keyword">else</span>{</div><div class="line">     <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">   }</div><div class="line"> };</div></pre></td></tr></table></figure>
-
-<p> 以上代码中，<code>setStartBefore</code> 指用户选择内容起始处的容器父节点。</p>
-<p> 设置光标位置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Caret.simulateCaret = <span class="function"><span class="keyword">function</span><span class="params">(length)</span> </span>{</div><div class="line">   <span class="keyword">try</span> {</div><div class="line">     <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).get(<span class="number">0</span>).selectionStart = length;</div><div class="line">     <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).get(<span class="number">0</span>).selectionEnd = length;</div><div class="line">   } <span class="keyword">catch</span> (_error) {}</div><div class="line"> };</div></pre></td></tr></table></figure>
-
-<p> 切换到<code>textarea</code>时设置光标位置或者选中文字</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">Caret.showEditor = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{</div><div class="line">   <span class="keyword">var</span> length, startPosition, endPosition;</div><div class="line">   <span class="keyword">var</span> editor = <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).get(<span class="number">0</span>);</div><div class="line">   <span class="keyword">var</span> userSelection = Caret.hasUserSelection();</div><div class="line">   <span class="keyword">var</span> userSelectionText = userSelection;</div><div class="line">   <span class="keyword">if</span> (!((event != <span class="literal">null</span>) && $(event.target).is(<span class="string">'a'</span>))) {</div><div class="line">     <span class="comment">//for 低版本ie</span></div><div class="line">     <span class="keyword">if</span> (<span class="built_in">document</span>.selection) {</div><div class="line">       userSelectionText = userSelection.text;</div><div class="line">     }</div><div class="line">     <span class="keyword">if</span> (userSelectionText !== <span class="literal">undefined</span> && userSelectionText.toString().length) {</div><div class="line">       <span class="comment">// 选中文字</span></div><div class="line">       <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).show();</div><div class="line">       startPosition = <span class="keyword">this</span>.getLength(userSelection, <span class="string">'anchorNode'</span>);</div><div class="line">       endPosition = <span class="keyword">this</span>.getLength(userSelection, <span class="string">'focusNode'</span>);</div><div class="line">         <span class="keyword">if</span> (startPosition &lt; endPosition) {</div><div class="line">           editor.setSelectionRange(startPosition, endPosition);</div><div class="line">         }<span class="keyword">else</span>{</div><div class="line">           editor.setSelectionRange(endPosition, startPosition);</div><div class="line">         }</div><div class="line">         <span class="keyword">if</span> (settings.isFirefox) {</div><div class="line">           <span class="comment">// firefox 需要获取焦点，不然不会显示选中高亮</span></div><div class="line">           editor.focus();</div><div class="line">         }</div><div class="line">     }<span class="keyword">else</span>{</div><div class="line">       <span class="comment">// 点击</span></div><div class="line">       length = <span class="keyword">this</span>.getLength(userSelection, <span class="string">'anchorNode'</span>);</div><div class="line">       <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).show();</div><div class="line">       <span class="keyword">if</span> (event != <span class="literal">null</span>) {</div><div class="line">         <span class="keyword">if</span> (settings.isFirefox) {</div><div class="line">           <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).focus();</div><div class="line">         }</div><div class="line">         <span class="keyword">this</span>.simulateCaret(length);</div><div class="line">       }</div><div class="line">     }</div><div class="line">   }</div><div class="line"> };</div></pre></td></tr></table></figure>
-
-<p>至此可以算是填了点，<code>div</code>和<code>textarea</code>互切时的光标以及选中文字的坑，但是还是存在不少问题，主要是ie下。<br>比如ie下未能在<code>textarea</code>中显示选中的文字，以及光标定位不准，点击行首的时候会跑到上一行的末尾。<br>而且测试的是IE11下，低版本就不想说什么了。</p>
-<p>关于使用可编辑<code>div</code>来替代，也就是给<code>div</code>设置 <code>contenteditable=true</code>属性，<br>应该会简单很多，至少chrome下不需要写这些定位代码了，当然chrome定位也简单。<br>IE定位应该也不需要多做处理，但是选中文字还是会存在问题，firefox选中文字也需要手动写代码。</p>
-<p>总之比较麻烦，相对来说还是可编辑<code>div</code>靠谱些。</p>
-<p>希望有好的方案可以提供。</p>
-<hr>
-<p>顺便说下窗口切换的时候记录光标位置，使用window <code>blur</code>和<code>focus</code>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Caret.windowSwitch = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">      <span class="keyword">var</span> _this = <span class="keyword">this</span>;</div><div class="line">      $(<span class="built_in">window</span>).blur(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">        focusEditor = ($(<span class="built_in">document</span>.activeElement).is(<span class="string">'textarea'</span>) && $(<span class="built_in">document</span>.activeElement).hasClass(<span class="string">'editor'</span>));</div><div class="line">      });</div><div class="line">      $(<span class="built_in">window</span>).focus(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">        <span class="keyword">if</span>(focusEditor){</div><div class="line">          _this.$(<span class="string">'#taskcontent .editor'</span>).css(<span class="string">'display'</span>,<span class="string">'block'</span>);</div><div class="line">          _this.$(<span class="string">'#taskcontent .editor'</span>).focus();</div><div class="line">        }</div><div class="line">      });</div><div class="line">    },</div></pre></td></tr></table></figure>
-
-]]></content>
+      <category term="-webkit-filter" scheme="http://stddup.com/tags/-webkit-filter/"/>
     
-    
-      <category term="caret" scheme="http://stddup.com/tags/caret/"/>
-    
-      <category term="js" scheme="http://stddup.com/categories/js/"/>
+      <category term="css" scheme="http://stddup.com/categories/css/"/>
     
   </entry>
   
@@ -138,16 +317,52 @@
     <link href="http://stddup.com/2014/03/08/chrome-min-fontsize/"/>
     <id>http://stddup.com/2014/03/08/chrome-min-fontsize/</id>
     <published>2014-03-08T07:12:20.000Z</published>
-    <updated>2014-09-23T16:29:35.000Z</updated>
+    <updated>2014-03-22T04:15:10.000Z</updated>
     <content type="html"><![CDATA[<p>由于需要将字体设置小于12px，但是chrome默认的最小字体是12px（其他浏览器是9px）,而<code>-webkit-text-size-adjust:none;</code>属性已经在chrome27之后被删除了，估计是由于不人性化(不能通过缩放改变)。</p>
 <p>现在只好通过<code>transform</code>的<code>scale</code>来缩小字体了。</p>
-<figure class="highlight css"><figcaption><span>css</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">body</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">9px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="at_rule">@<span class="keyword">media</span> screen and (-webkit-min-device-pixel-ratio:<span class="number">0</span>)</span>{</div><div class="line">    <span class="tag">body</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"> <span class="function">scale</span>(<span class="number">0.75</span>)</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight css"><figcaption><span>css</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="tag">body</span><span class="rules">{
+    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">9</span>px</span></span>;
+<span class="rule">}</span></span>
+<span class="at_rule">@<span class="keyword">media</span> screen and (-webkit-min-device-pixel-ratio:<span class="number">0</span>)</span>{
+    <span class="tag">body</span><span class="rules">{
+        <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"> <span class="function">scale(<span class="number">0.75</span>)</span></span></span>;
+        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;
+        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;
+    <span class="rule">}</span></span>
+}
+</pre></td></tr></table></figure>
 
 <p>以上代码对同时webkit内核的safari也会产生影响，所以需要js判断一下浏览器</p>
 <iframe width="100%" height="200" src="http://jsfiddle.net/stddup/EC8uH/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 <p>经测试此方法对<code>span</code>元素无效，然后查了下</p>
-<figure class="highlight transform"><figcaption><span>transform:</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Initial <span class="built_in">value</span>:   <span class="constant">none</span></div><div class="line">Applies <span class="built_in">to</span>:      transformable elements</div><div class="line">Inherited:       no</div><div class="line">Percentages:     refer <span class="built_in">to</span> <span class="operator">the</span> size <span class="operator">of</span> bounding box</div><div class="line">Media:           visual</div><div class="line">Computed <span class="built_in">value</span>:  <span class="keyword">as</span> specified, but <span class="operator">with</span> <span class="built_in">relative</span> lengths converted <span class="keyword">into</span> absolute lengths</div><div class="line">Animatable:      yes, <span class="keyword">as</span> <span class="operator">a</span> transform</div><div class="line">Canonical order: <span class="operator">the</span> unique non-ambiguous order defined <span class="keyword">by</span> <span class="operator">the</span> formal grammar</div></pre></td></tr></table></figure>
+<figure class="highlight transform"><figcaption><span>transform:</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>Initial <span class="built_in">value</span>:   <span class="constant">none</span>
+Applies <span class="built_in">to</span>:      transformable elements
+Inherited:       no
+Percentages:     refer <span class="built_in">to</span> <span class="operator">the</span> size <span class="operator">of</span> bounding box
+Media:           visual
+Computed <span class="built_in">value</span>:  <span class="keyword">as</span> specified, but <span class="operator">with</span> <span class="built_in">relative</span> lengths converted <span class="keyword">into</span> absolute lengths
+Animatable:      yes, <span class="keyword">as</span> <span class="operator">a</span> transform
+Canonical order: <span class="operator">the</span> unique non-ambiguous order defined <span class="keyword">by</span> <span class="operator">the</span> formal grammar
+</pre></td></tr></table></figure>
 
 <p><code>Applies to:    transformable elements</code> 适用于可变型的元素，哪些是可变型的元素啊（块元素肯定是）。。。<br>然后只能通过<code>display</code> 来检查适用哪些了。。发现<code>inline-block</code>可以（其他的还有很多，常用一个就够）。<br>所以就可以通过给内联元素设置<code>display: inline-block</code>属性，来缩放字体。</p>
 ]]></content>
@@ -164,7 +379,7 @@
     <link href="http://stddup.com/2014/03/05/css-position-opacity/"/>
     <id>http://stddup.com/2014/03/05/css-position-opacity/</id>
     <published>2014-03-05T15:58:29.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
+    <updated>2014-03-06T07:39:37.000Z</updated>
     <content type="html"><![CDATA[<p>一两个星期前了吧，在公司改论坛样式的时候碰到了设置z-index无效的bug。</p>
 <p>父标签设置了个透明度，无论子标签怎么设置z-index的值，都无法覆盖比其层级低的标签(设置了position属性)。</p>
 <p>例如：</p>
@@ -172,7 +387,7 @@
 
 <p>由于设置opacity值小于1，创建了局部的叠层上下文，子元素无法超越父级。</p>
 <p>当时搞得蛋疼死，so，记录下这个bug，z-index这么个简单的属性水也挺深的。</p>
-<p><a href="http://blog.doyoe.com/~posts/css/2014-01-21-%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BA%86%E8%A7%A3%E7%9A%84z-index%E4%B8%96%E7%95%8C.md" target="_blank" rel="external">飘零雾雨的博客</a>对于z-index有详细研究，可以多学习学习。</p>
+<p><a href="http://blog.doyoe.com/~posts/css/2014-01-21-%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BA%86%E8%A7%A3%E7%9A%84z-index%E4%B8%96%E7%95%8C.md" target="_blank">飘零雾雨的博客</a>对于z-index有详细研究，可以多学习学习。</p>
 ]]></content>
     
     
@@ -187,24 +402,40 @@
     <link href="http://stddup.com/2014/03/01/font-icon/"/>
     <id>http://stddup.com/2014/03/01/font-icon/</id>
     <published>2014-03-01T14:23:56.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
+    <updated>2014-03-01T15:03:45.000Z</updated>
     <content type="html"><![CDATA[<p><img src="http://coolestguidesontheplanet.com/wp-content/uploads/2014/02/fontawesome-icon-fonts.png" alt="Font Awesome"><br>对于我这种不会PS的人来说，font icon实在是太方便了。<br>直接引进来，在元素添加相应的<code>class</code>,就可以使用了，</p>
 <p><code>&lt;i class=&quot;fa fa-link&quot;&gt;&lt;/i&gt; fa-link</code></p>
 <p><i class="fa fa-link"></i> fa-link</p>
 <p>如果不添加class的话，也可以在自己定义的<code>class</code> 或元素上这样使用</p>
-<figure class="highlight css"><figcaption><span>font icon</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class">.icon</span><span class="pseudo">:before</span> <span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">font-family</span>:<span class="value"> FontAwesome</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">'\f0c1'</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><figcaption><span>font icon</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="class">.icon</span><span class="pseudo">:before</span> <span class="rules">{
+	<span class="rule"><span class="attribute">font-family</span>:<span class="value"> FontAwesome</span></span>;
+	<span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">'\f0c1'</span></span></span>;
+<span class="rule">}</span></span>
+</pre></td></tr></table></figure>
 
 <p><code>&lt;i class=&quot;icon&quot;&gt;&lt;/i&gt;自定义的class中使用</code></p>
 <p><i class="icon"></i>自定义的class中使用</p>
 <a id="more"></a>
 
-<p>另外的话这个这个也不错，<a href="http://weloveiconfonts.com/" target="_blank" rel="external">http://weloveiconfonts.com/</a><br><img src="http://25-horas.com/wp-content/uploads/2014/02/We-Love-Icon-Fonts-800x650.png" alt="weloveiconfonts"></p>
+<p>另外的话这个这个也不错，<a href="http://weloveiconfonts.com/" target="_blank">http://weloveiconfonts.com/</a><br><img src="http://25-horas.com/wp-content/uploads/2014/02/We-Love-Icon-Fonts-800x650.png" alt="weloveiconfonts"></p>
 ]]></content>
     <summary type="html"><![CDATA[<p><img src="http://coolestguidesontheplanet.com/wp-content/uploads/2014/02/fontawesome-icon-fonts.png" alt="Font Awesome"><br>对于我这种不会PS的人来说，font icon实在是太方便了。<br>直接引进来，在元素添加相应的<code>class</code>,就可以使用了，</p>
 <p><code>&lt;i class=&quot;fa fa-link&quot;&gt;&lt;/i&gt; fa-link</code></p>
 <p><i class="fa fa-link"></i> fa-link</p>
 <p>如果不添加class的话，也可以在自己定义的<code>class</code> 或元素上这样使用</p>
-<figure class="highlight css"><figcaption><span>font icon</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class">.icon</span><span class="pseudo">:before</span> <span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">font-family</span>:<span class="value"> FontAwesome</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">'\f0c1'</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><figcaption><span>font icon</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="class">.icon</span><span class="pseudo">:before</span> <span class="rules">{
+	<span class="rule"><span class="attribute">font-family</span>:<span class="value"> FontAwesome</span></span>;
+	<span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">'\f0c1'</span></span></span>;
+<span class="rule">}</span></span>
+</pre></td></tr></table></figure>
 
 <p><code>&lt;i class=&quot;icon&quot;&gt;&lt;/i&gt;自定义的class中使用</code></p>
 <p><i class="icon"></i>自定义的class中使用</p>
@@ -219,7 +450,7 @@
     <link href="http://stddup.com/2014/03/01/hexo-photo/"/>
     <id>http://stddup.com/2014/03/01/hexo-photo/</id>
     <published>2014-03-01T06:02:19.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
+    <updated>2014-03-01T06:28:55.000Z</updated>
     <content type="html"><![CDATA[]]></content>
     
     
@@ -234,16 +465,38 @@
     <link href="http://stddup.com/2014/02/15/new-hexo-theme/"/>
     <id>http://stddup.com/2014/02/15/new-hexo-theme/</id>
     <published>2014-02-15T09:49:34.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
+    <updated>2014-02-15T13:49:08.000Z</updated>
     <content type="html"><![CDATA[<p>很久没更新博客了，也许是因为上班的原因吧，感觉都挺忙的，没有了折腾的劲。<br>这段时期也学到了挺多，但是懒得去写东西。<br>趁周末的时间，换一个主题，这样或许能有点动力更新博客。</p>
-<p>主题用的是<a href="https://github.com/daisygao/hexo-themes-cover" target="_blank" rel="external">Cover</a>,简洁美观，暂时很喜欢。<br>但是有些风格并不那么好看，所以稍微动手了下,修改了些样式和布局。</p>
-<p>然后看了下<a href="http://momentjs.com/docs/" target="_blank" rel="external">momentjs</a>修改了文章时间格式，这个挺好的插件，能显示时间的格式很多，满足各种需求。</p>
+<p>主题用的是<a href="https://github.com/daisygao/hexo-themes-cover" target="_blank">Cover</a>,简洁美观，暂时很喜欢。<br>但是有些风格并不那么好看，所以稍微动手了下,修改了些样式和布局。</p>
+<p>然后看了下<a href="http://momentjs.com/docs/" target="_blank">momentjs</a>修改了文章时间格式，这个挺好的插件，能显示时间的格式很多，满足各种需求。</p>
 <p>之前新建一个页面的时候，一直都在<code>html</code>头部添加</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="header">layout: false</span></div><div class="line">---</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre> <span class="keyword">layout</span>: <span class="literal">false</span>
+ ---
+</pre></td></tr></table></figure>
 
-<p>实在是太麻烦了，然后看了一下<a href="http://zespia.tw/hexo/docs/themes.html" target="_blank" rel="external">hexo文档</a>,终于找到简单的一劳永逸的方法了，以后就就可以直接写<code>html</code>了。</p>
+<p>实在是太麻烦了，然后看了一下<a href="http://zespia.tw/hexo/docs/themes.html" target="_blank">hexo文档</a>,终于找到简单的一劳永逸的方法了，以后就就可以直接写<code>html</code>了。</p>
 <p><code>layout.ejs</code></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;% <span class="keyword">if</span>(page.<span class="keyword">layout</span>==<span class="string">'page'</span>){ <span class="variable">%&gt;</span></div><div class="line">  &lt;% <span class="keyword">if</span>(page.<span class="keyword">source</span>.<span class="keyword">match</span>(/\.md<span class="variable">$/</span>)){ <span class="variable">%&gt;</span></div><div class="line">     原来的内容</div><div class="line">  &lt;% }<span class="keyword">else</span>{ <span class="variable">%&gt;</span></div><div class="line">    &lt;<span class="variable">%-</span> page.content <span class="variable">%&gt;</span></div><div class="line">   &lt;% } <span class="variable">%&gt;</span></div><div class="line">&lt;% }<span class="keyword">else</span>{ <span class="variable">%&gt;</span></div><div class="line">原来的内容</div><div class="line">&lt;% } <span class="variable">%&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre>&lt;% <span class="keyword">if</span>(page.<span class="keyword">layout</span>==<span class="string">'page'</span>){ <span class="variable">%&gt;</span>
+  &lt;% <span class="keyword">if</span>(page.<span class="keyword">source</span>.<span class="keyword">match</span>(/\.md<span class="variable">$/</span>)){ <span class="variable">%&gt;</span>
+     原来的内容
+  &lt;% }<span class="keyword">else</span>{ <span class="variable">%&gt;</span>
+    &lt;<span class="variable">%-</span> page.content <span class="variable">%&gt;</span>
+   &lt;% } <span class="variable">%&gt;</span>
+&lt;% }<span class="keyword">else</span>{ <span class="variable">%&gt;</span>
+原来的内容
+&lt;% } <span class="variable">%&gt;</span>
+</pre></td></tr></table></figure>
 
 <p>主题还是慢慢添加、修改吧。</p>
 ]]></content>
@@ -260,15 +513,21 @@
     <link href="http://stddup.com/2014/01/25/remove-ie10+-clear-filed-x-button-on-input/"/>
     <id>http://stddup.com/2014/01/25/remove-ie10+-clear-filed-x-button-on-input/</id>
     <published>2014-01-24T16:58:23.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
+    <updated>2014-01-31T06:39:07.000Z</updated>
     <content type="html"><![CDATA[<p>ie10+可能是为了更好的用户体验，在input元素下，默认提供一个”X”标志，当你输入时，就会出现这个”X”，点击即可清除输入的字符。虽然很不错，但是一般来说我们都会自定义一个清除按钮，为了浏览器间保持一致，还是有必要移除ie默认的”X”.</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class">.someinput</span><span class="pseudo">::-ms-clear</span> <span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> none</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="class">.someinput</span><span class="pseudo">::-ms-clear</span> <span class="rules">{
+    <span class="rule"><span class="attribute">display</span>:<span class="value"> none</span></span>;
+<span class="rule">}</span></span>
+</pre></td></tr></table></figure>
 
-<p>这几天接触ie11比较多，发现其实微软提供了挺多的<a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh465740.aspx" target="_blank" rel="external">新特性</a>，ie在变得更好</p>
+<p>这几天接触ie11比较多，发现其实微软提供了挺多的<a href="http://msdn.microsoft.com/en-us/library/windows/apps/hh465740.aspx" target="_blank">新特性</a>，ie在变得更好</p>
 ]]></content>
     
     
-      <category term="ie input" scheme="http://stddup.com/tags/ie-input/"/>
+      <category term="ie input" scheme="http://stddup.com/tags/ie%20input/"/>
     
       <category term="css" scheme="http://stddup.com/categories/css/"/>
     
@@ -279,17 +538,63 @@
     <link href="http://stddup.com/2014/01/25/css-custom-scrollbar-style/"/>
     <id>http://stddup.com/2014/01/25/css-custom-scrollbar-style/</id>
     <published>2014-01-24T16:15:53.000Z</published>
-    <updated>2014-09-23T16:29:35.000Z</updated>
+    <updated>2014-03-01T13:13:34.000Z</updated>
     <content type="html"><![CDATA[<p>主要是为了说下ie自带的滚动条，ie下的滚动条能自定义的属性并不是很多。今天搜了下，发现都是些定义颜色的，这能有什么作用？搞不懂。<br><img src="/images/ie.png" alt="ie-scrollbar"></p>
 <p>我需要的是美化自带的滚动条，仅仅改改颜色，并不能满足我的要求，所以最后万不得已把ie默认的滚动条去掉是最好的选择，但是又得保持滚动条的作用。所以不能简单的<code>overflow:hidden</code>。最后在微软的官网找到了方法，虽然它只支持ie10+，不容易啊。</p>
 <p><code>-ms-overflow-style: auto | none | scrollbar | -ms-autohiding-scrollbar</code></p>
 <p><code>-ms-overflow-style</code>为溢出元素指定首选滚动方法。<br><code>-ms-overflow-style：none;</code>这样就可以隐藏滚动条，而又能保持滚动条的作用。</p>
-<p>其实微软还有一些控制滚动方面的属性(<a href="http://msdn.microsoft.com/zh-cn/ie/hh920761(v=vs.80).aspx" target="_blank" rel="external">http://msdn.microsoft.com/zh-cn/ie/hh920761(v=vs.80).aspx</a>)</p>
+<p>其实微软还有一些控制滚动方面的属性(<a href="http://msdn.microsoft.com/zh-cn/ie/hh920761(v=vs.80).aspx" target="_blank">http://msdn.microsoft.com/zh-cn/ie/hh920761(v=vs.80).aspx</a>)</p>
 <p>顺便搜集了下chrome(webkit)自带滚动条样式的定义，其实chrome现在自带的样式已经很漂亮了<br><img src="/images/chrome.jpg" alt="chrome-scrollbar-style"></p>
 <p>使用了下：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="pseudo">::-webkit-scrollbar</span> <span class="rules">{</span></div><div class="line">  <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">7px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="pseudo">::-webkit-scrollbar-track</span> <span class="rules">{</span></div><div class="line">  <span class="rule"><span class="attribute">-webkit-box-shadow</span>:<span class="value"> inset <span class="number">0</span> <span class="number">0</span> <span class="number">6px</span> <span class="function">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.3</span>)</span></span>;</div><div class="line">  <span class="rule"><span class="attribute">-webkit-border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;</div><div class="line">  <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="pseudo">::-webkit-scrollbar-track-piece</span><span class="pseudo">:start</span><span class="rules">{</span></div><div class="line">  <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">rgba</span>(<span class="number">9</span>,<span class="number">154</span>,<span class="number">203</span>,<span class="number">0.9</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="pseudo">::-webkit-scrollbar-track-piece</span><span class="pseudo">:end</span><span class="rules">{</span></div><div class="line">  <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">rgba</span>(<span class="number">153</span>,<span class="number">153</span>,<span class="number">153</span>,<span class="number">0.5</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="pseudo">::-webkit-scrollbar-thumb</span> <span class="rules">{</span></div><div class="line">  <span class="rule"><span class="attribute">-webkit-border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;</div><div class="line">  <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">10px</span></span></span>;</div><div class="line">  <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">rgba</span>(<span class="number">9</span>,<span class="number">154</span>,<span class="number">203</span>,<span class="number">0.9</span>)</span></span>;</div><div class="line">  <span class="rule"><span class="attribute">-webkit-box-shadow</span>:<span class="value"> inset <span class="number">0</span> <span class="number">0</span> <span class="number">6px</span> <span class="function">rgba</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.5</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="pseudo">::-webkit-scrollbar-thumb</span><span class="pseudo">:hover</span> <span class="rules">{</span></div><div class="line">  <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="code"><pre><span class="pseudo">::-webkit-scrollbar</span> <span class="rules">{
+  <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">7</span>px</span></span>;
+<span class="rule">}</span></span>
+<span class="pseudo">::-webkit-scrollbar-track</span> <span class="rules">{
+  <span class="rule"><span class="attribute">-webkit-box-shadow</span>:<span class="value"> inset <span class="number">0</span> <span class="number">0</span> <span class="number">6</span>px <span class="function">rgba(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.3</span>)</span></span></span>;
+  <span class="rule"><span class="attribute">-webkit-border-radius</span>:<span class="value"> <span class="number">10</span>px</span></span>;
+  <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">10</span>px</span></span>;
+<span class="rule">}</span></span>
+<span class="pseudo">::-webkit-scrollbar-track-piece</span><span class="pseudo">:start</span><span class="rules">{
+  <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">rgba(<span class="number">9</span>,<span class="number">154</span>,<span class="number">203</span>,<span class="number">0.9</span>)</span></span></span>;
+<span class="rule">}</span></span>
+<span class="pseudo">::-webkit-scrollbar-track-piece</span><span class="pseudo">:end</span><span class="rules">{
+  <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">rgba(<span class="number">153</span>,<span class="number">153</span>,<span class="number">153</span>,<span class="number">0.5</span>)</span></span></span>;
+<span class="rule">}</span></span>
+<span class="pseudo">::-webkit-scrollbar-thumb</span> <span class="rules">{
+  <span class="rule"><span class="attribute">-webkit-border-radius</span>:<span class="value"> <span class="number">10</span>px</span></span>;
+  <span class="rule"><span class="attribute">border-radius</span>:<span class="value"> <span class="number">10</span>px</span></span>;
+  <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="function">rgba(<span class="number">9</span>,<span class="number">154</span>,<span class="number">203</span>,<span class="number">0.9</span>)</span></span></span>;
+  <span class="rule"><span class="attribute">-webkit-box-shadow</span>:<span class="value"> inset <span class="number">0</span> <span class="number">0</span> <span class="number">6</span>px <span class="function">rgba(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">0.5</span>)</span></span></span>;
+<span class="rule">}</span></span>
+<span class="pseudo">::-webkit-scrollbar-thumb</span><span class="pseudo">:hover</span> <span class="rules">{
+  <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;
+<span class="rule">}</span></span>
+</pre></td></tr></table></figure>
 
-<p>详细说明的话还是看看<a href="http://css-tricks.com/custom-scrollbars-in-webkit/" target="_blank" rel="external">css-tricks</a>吧。</p>
+<p>详细说明的话还是看看<a href="http://css-tricks.com/custom-scrollbars-in-webkit/" target="_blank">css-tricks</a>吧。</p>
 <p>但是firefox比ie还变态，根本就不支持自定义滚动条。。。</p>
 ]]></content>
     
@@ -305,15 +610,83 @@
     <link href="http://stddup.com/2014/01/10/js-for-caret-position/"/>
     <id>http://stddup.com/2014/01/10/js-for-caret-position/</id>
     <published>2014-01-10T15:42:58.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
-    <content type="html"><![CDATA[<p>主要使用<code>Range</code> 对象，具体可查看文档<a href="http://www.w3school.com.cn/xmldom/dom_range.asp" target="_blank" rel="external">Range</a><br>还有一篇博客讲的挺详细<a href="http://www.zhangxinxu.com/wordpress/2011/04/js-range-html%E6%96%87%E6%A1%A3%E6%96%87%E5%AD%97%E5%86%85%E5%AE%B9%E9%80%89%E4%B8%AD%E3%80%81%E5%BA%93%E5%8F%8A%E5%BA%94%E7%94%A8%E4%BB%8B%E7%BB%8D/" target="_blank" rel="external">JS Range HTML文档/文字内容选中、库及应用介绍</a></p>
+    <updated>2014-03-01T10:08:56.000Z</updated>
+    <content type="html"><![CDATA[<p>主要使用<code>Range</code> 对象，具体可查看文档<a href="http://www.w3school.com.cn/xmldom/dom_range.asp" target="_blank">Range</a><br>还有一篇博客讲的挺详细<a href="http://www.zhangxinxu.com/wordpress/2011/04/js-range-html%E6%96%87%E6%A1%A3%E6%96%87%E5%AD%97%E5%86%85%E5%AE%B9%E9%80%89%E4%B8%AD%E3%80%81%E5%BA%93%E5%8F%8A%E5%BA%94%E7%94%A8%E4%BB%8B%E7%BB%8D/" target="_blank">JS Range HTML文档/文字内容选中、库及应用介绍</a></p>
 <p>获取光标的位置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">getInputCaretPosition = <span class="function"><span class="keyword">function</span><span class="params">(oField)</span> </span>{</div><div class="line">  <span class="keyword">var</span> iCaretPos = <span class="number">0</span>;</div><div class="line">  <span class="comment">// IE Support</span></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">document</span>.selection) {</div><div class="line">    <span class="comment">// Set focus on the element</span></div><div class="line">    oField.focus ();</div><div class="line">    <span class="comment">// To get cursor position, get empty selection range</span></div><div class="line">    <span class="keyword">var</span> oSel = <span class="built_in">document</span>.selection.createRange ();</div><div class="line">    <span class="comment">// Move selection start to 0 position</span></div><div class="line">    oSel.moveStart (<span class="string">'character'</span>, -oField.value.length);</div><div class="line">    <span class="comment">// The caret position is selection length</span></div><div class="line">    iCaretPos = oSel.text.length;</div><div class="line">  }</div><div class="line">  <span class="comment">// Firefox support</span></div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (oField.selectionStart || oField.selectionStart == <span class="string">'0'</span>)</div><div class="line">    iCaretPos = oField.selectionStart;</div><div class="line">  <span class="comment">// Return results</span></div><div class="line">  <span class="keyword">return</span> (iCaretPos);</div><div class="line">};</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre>getInputCaretPosition = <span class="function"><span class="keyword">function</span><span class="params">(oField)</span> {</span>
+  <span class="keyword">var</span> iCaretPos = <span class="number">0</span>;
+  <span class="comment">// IE Support</span>
+  <span class="keyword">if</span> (document.selection) {
+    <span class="comment">// Set focus on the element</span>
+    oField.focus ();
+    <span class="comment">// To get cursor position, get empty selection range</span>
+    <span class="keyword">var</span> oSel = document.selection.createRange ();
+    <span class="comment">// Move selection start to 0 position</span>
+    oSel.moveStart (<span class="string">'character'</span>, -oField.value.length);
+    <span class="comment">// The caret position is selection length</span>
+    iCaretPos = oSel.text.length;
+  }
+  <span class="comment">// Firefox support</span>
+  <span class="keyword">else</span> <span class="keyword">if</span> (oField.selectionStart || oField.selectionStart == <span class="string">'0'</span>)
+    iCaretPos = oField.selectionStart;
+  <span class="comment">// Return results</span>
+  <span class="keyword">return</span> (iCaretPos);
+};
+</pre></td></tr></table></figure>
 
 <p>设置光标的位置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">setInputCaretPosition = <span class="function"><span class="keyword">function</span> <span class="params">(oField,pos)</span> </span>{</div><div class="line">    <span class="comment">//Firefox support</span></div><div class="line">  <span class="keyword">if</span> (oField.setSelectionRange) {</div><div class="line">    oField.focus();</div><div class="line">    oField.setSelectionRange(pos,pos);</div><div class="line">  }</div><div class="line">  <span class="comment">// IE Support</span></div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (oField.createTextRange) {</div><div class="line">    <span class="keyword">var</span> range = oField.createTextRange();</div><div class="line">    range.collapse(<span class="literal">true</span>);</div><div class="line">    range.moveEnd(<span class="string">'character'</span>,pos);</div><div class="line">    range.moveStart(<span class="string">'character'</span>,pos);</div><div class="line">    range.select();</div><div class="line">  }</div><div class="line">};</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre>setInputCaretPosition = <span class="function"><span class="keyword">function</span> <span class="params">(oField,pos)</span> {</span>
+    <span class="comment">//Firefox support</span>
+  <span class="keyword">if</span> (oField.setSelectionRange) {
+    oField.focus();
+    oField.setSelectionRange(pos,pos);
+  }
+  <span class="comment">// IE Support</span>
+  <span class="keyword">else</span> <span class="keyword">if</span> (oField.createTextRange) {
+    <span class="keyword">var</span> range = oField.createTextRange();
+    range.collapse(<span class="literal">true</span>);
+    range.moveEnd(<span class="string">'character'</span>,pos);
+    range.moveStart(<span class="string">'character'</span>,pos);
+    range.select();
+  }
+};
+</pre></td></tr></table></figure>
 
-<p>关于jquery实现stackoverflow上有讨论，其实都一样<a href="http://stackoverflow.com/questions/499126/jquery-set-cursor-position-in-text-area" target="_blank" rel="external">jquery实现</a><br>写个东西用一下<a href="/demos/js/creatposition/">demo</a></p>
+<p>关于jquery实现stackoverflow上有讨论，其实都一样<a href="http://stackoverflow.com/questions/499126/jquery-set-cursor-position-in-text-area" target="_blank">jquery实现</a><br>写个东西用一下<a href="/demos/js/creatposition/">demo</a></p>
 ]]></content>
     
     
@@ -328,7 +701,7 @@
     <link href="http://stddup.com/2014/01/03/remote-debugging-chrome-on-android/"/>
     <id>http://stddup.com/2014/01/03/remote-debugging-chrome-on-android/</id>
     <published>2014-01-03T13:49:57.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
+    <updated>2014-01-03T13:52:47.000Z</updated>
     <content type="html"><![CDATA[<p>由于iphone没越狱，最后发现hosts不能更改啊。。蛋疼，懒得越狱，只好用安卓机子来debug。<br>用下来还是安卓方便很多。</p>
 <p>这里就稍微记录下怎么在安卓的机子上远程调试页面，不需要安装<code>Android SDK</code>。</p>
 <ol>
@@ -336,7 +709,7 @@
 </li>
 <li><p>usb链接上安卓机子，当然<code>hosts</code>要改一下，打开<code>usb debugging</code></p>
 </li>
-<li><p>电脑上下载安装谷歌插件<a href="https://chrome.google.com/webstore/detail/adb/dpngiggdglpdnjdoaefidgiigpemgage" target="_blank" rel="external">ABD</a></p>
+<li><p>电脑上下载安装谷歌插件<a href="https://chrome.google.com/webstore/detail/adb/dpngiggdglpdnjdoaefidgiigpemgage" target="_blank">ABD</a></p>
 </li>
 <li><p>安装插件之后，点击插件图标，wiew inspction targets<br><img src="https://developers.google.com/chrome-developer-tools/docs/remote-debugging/adb-plugin-menu-active.png" alt="wiew inspction targets"></p>
 </li>
@@ -344,7 +717,7 @@
 </li>
 <li><p>点击<code>inspct</code>就可以调试安卓机子上的页面了</p>
 </li>
-<li><p>最后来个官网教程<a href="https://developers.google.com/chrome-developer-tools/docs/remote-debugging" target="_blank" rel="external">https://developers.google.com/chrome-developer-tools/docs/remote-debugging</a></p>
+<li><p>最后来个官网教程<a href="https://developers.google.com/chrome-developer-tools/docs/remote-debugging" target="_blank">https://developers.google.com/chrome-developer-tools/docs/remote-debugging</a></p>
 </li>
 </ol>
 ]]></content>
@@ -361,14 +734,14 @@
     <link href="http://stddup.com/2014/01/01/remote-debugging-chrome-on-ios7/"/>
     <id>http://stddup.com/2014/01/01/remote-debugging-chrome-on-ios7/</id>
     <published>2014-01-01T13:21:51.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
+    <updated>2014-01-01T15:03:26.000Z</updated>
     <content type="html"><![CDATA[<p>这几天需要开发移动端的网页，想要在电脑上远程调试。查了下资料发现，android平台上很方便啊，只要在chrome上开启开发者工具就可以在电脑上调试移动端的网页了。但是手头上没有android机子，ios上的chrome没有开发者工具，真是略坑啊，然后电脑又是windows的，safari的调试功能也没得用。。。</p>
 <p>幸好还有Adobe Edge Inspect CC，用起来还是很方便的。</p>
 <p>电脑上需要做的事</p>
 <ol>
-<li><p>官网下载<a href="https://creative.adobe.com/products/inspect?promoid=KFKMN" target="_blank" rel="external">Adobe Edge Inspect CC</a>，需要注册账号，下载安装。(如果没安装过苹果软件的话，还需要安装banjour)</p>
+<li><p>官网下载<a href="https://creative.adobe.com/products/inspect?promoid=KFKMN" target="_blank">Adobe Edge Inspect CC</a>，需要注册账号，下载安装。(如果没安装过苹果软件的话，还需要安装banjour)</p>
 </li>
-<li><p>安装chrome插件 <a href="https://chrome.google.com/webstore/detail/adobe-edge-inspect-cc/ijoeapleklopieoejahbpdnhkjjgddem?" target="_blank" rel="external">Edge Inspect</a></p>
+<li><p>安装chrome插件 <a href="https://chrome.google.com/webstore/detail/adobe-edge-inspect-cc/ijoeapleklopieoejahbpdnhkjjgddem?" target="_blank">Edge Inspect</a></p>
 </li>
 <li><p>登陆账号，打开chrome插件，等待移动端的链接(需要在同一个局域网中，我用win8分享了wifi，下面说下方法)</p>
 </li>
@@ -384,7 +757,7 @@
 <li><p>点击chrome插件上的’&lt;&gt;’符号，开始在pc端调试移动端的网页<br><img src="http://html.adobe.com/_/img/edge/inspect/edge_inspect_feature2.png" alt="远程调试"></p>
 </li>
 </ol>
-<p>官网也有进一步使用的教程<a href="https://helpx.adobe.com/creative-cloud/learn/tutorials/edge-tools.html" target="_blank" rel="external">https://helpx.adobe.com/creative-cloud/learn/tutorials/edge-tools.html</a></p>
+<p>官网也有进一步使用的教程<a href="https://helpx.adobe.com/creative-cloud/learn/tutorials/edge-tools.html" target="_blank">https://helpx.adobe.com/creative-cloud/learn/tutorials/edge-tools.html</a></p>
 ]]></content>
     
     
@@ -399,8 +772,8 @@
     <link href="http://stddup.com/2014/01/01/use-git/"/>
     <id>http://stddup.com/2014/01/01/use-git/</id>
     <published>2014-01-01T07:12:08.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
-    <content type="html"><![CDATA[<p>从远端服务器获取一个仓库 <code>git clone %PATH%</code></p>
+    <updated>2014-01-09T14:48:29.000Z</updated>
+    <content type="html"><![CDATA[<p>﻿<br>从远端服务器获取一个仓库 <code>git clone %PATH%</code></p>
 <p>克隆到本地之后可以使用sublime text打开修改代码</p>
 <p>修改之后的文件可以是用 <code>git add .</code>把当前目录的文件(在项目的目录下)添加到缓存区。</p>
 <p>提交到远程仓库之前先 <code>git status</code>，查看当前信息包括当前所在的分支<code>branch</code>，和修改过的文件</p>
@@ -411,7 +784,7 @@
 <p>如果与人合作项目的话，<code>git remote add  %NAME%  %PATH%</code> 链接到服务器</p>
 <p>获取项目更新本地的： <code>git fetch %NAME%</code></p>
 <p>获取然后合并到你当前分支，<code>git merge %NAME%/%BRANCH%</code>,就可以继续工作了。</p>
-<p><em>简单的入门教程可以参考<a href="http://marklodato.github.io/visual-git-guide/index-en.html" target="_blank" rel="external">图解git</a></em></p>
+<p><em>简单的入门教程可以参考<a href="http://marklodato.github.io/visual-git-guide/index-en.html" target="_blank">图解git</a></em></p>
 ]]></content>
     
     
@@ -426,51 +799,169 @@
     <link href="http://stddup.com/2013/12/24/js-compatibility-collect/"/>
     <id>http://stddup.com/2013/12/24/js-compatibility-collect/</id>
     <published>2013-12-24T08:29:36.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
+    <updated>2013-12-24T08:33:53.000Z</updated>
     <content type="html"><![CDATA[<p>收集一些js方面的，各浏览器兼容问题。下面是平时搞小玩意的时候碰到的，或者书上读到的，或者网上博客看到的一些问题的收集，方便自己以后查找、学习，持续更新…..</p>
 <h4 id="字符串">字符串</h4>
 <p>返回某个个位置的字符<br><code>var str = “abc”</code><br>可以使用<code>charAt()</code>，如<code>str.charAt(0)</code>，也可以使用数组方式，如<code>str[0]</code> ， 但IE6只能使用前者。</p>
 <h4 id="事件">事件</h4>
 <p><strong>绑定事件</strong><br>IE6使用的是 <code>attachEvent</code>， 对象. attachEvent(事件名，函数); <em>执行顺序与绑定顺序相反</em>。如<code>oBtn.attachEvent(&#39;onclick&#39;, fn);</code>，<br>解除绑定，用<code>detachEvent</code> 。<br><strong>ie中绑定事件的第二个参数，也就是函数，使用<code>this</code>的话，指向的是<code>window</code>，而不是被绑定的对象，这个可以用<code>.call()</code>方法来解决。</strong></p>
 <p>chrome,fireFox等使用的是 <code>addEventListener</code> ，对象.addEventListener(事件名，函数，是否捕获) ，<em>执行顺序与绑定顺序相同</em>。 如<code>oBtn.addEventListener(&#39;click&#39;,fn,false);</code>  <em>注意没 <code>on</code></em><br>解除绑定用，<code>removeEventListener</code>。<br>写个函数搞定</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span> <span class="params">(obj,sEvent,fn)</span> </span>{</div><div class="line">    <span class="keyword">if</span> (obj.attachEvent) {</div><div class="line">        obj.attachEvent(<span class="string">'on'</span> + sEvent,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">                     fn.call(obj);</div><div class="line">               });</div><div class="line">    }<span class="keyword">else</span>{</div><div class="line">        obj.addEventListener(sEvent,fn,<span class="literal">false</span>);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span> <span class="params">(obj,sEvent,fn)</span> {</span>
+    <span class="keyword">if</span> (obj.attachEvent) {
+        obj.attachEvent(<span class="string">'on'</span> + sEvent,<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+                     fn.call(obj);
+               });
+    }<span class="keyword">else</span>{
+        obj.addEventListener(sEvent,fn,<span class="literal">false</span>);
+    }
+}
+</pre></td></tr></table></figure>
 
 <p><em>当火狐下绑定了一个默认事件，需要使用火狐独有的<code>oEvent.preventDefault()</code>，(使用这个,ie、chrome会报错)，简单的<code>return false</code> 会失效。</em></p>
 <p>所以特别需要注意这个问题，可以这样阻止默认事件：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(oEvent.preventDefault)</div><div class="line">{</div><div class="line">    oEvent.preventDefault();</div><div class="line">}</div><div class="line"><span class="keyword">return</span> <span class="literal">false</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="keyword">if</span>(oEvent.preventDefault)
+{
+    oEvent.preventDefault();
+}
+<span class="keyword">return</span> <span class="literal">false</span>;
+</pre></td></tr></table></figure>
 
 <p><strong>IE中的事件捕获</strong><br><code>setCapture()</code>，把整个电脑的事件都占有了，这是IE独有的方法，与之对应的撤销捕获 <code>releaseCapture()</code>，这在搞定一些ie的默认事件Bug还是挺有用的。</p>
 <p><strong>鼠标滚轮事件</strong><br>ie和chrome(这次chrome叛变了)使用：<code>onmousewheel</code>，例如 <code>oBtn.onmousewheel = function () {
     alert(&#39;a&#39;);
 };</code></p>
 <p>但是fireFox使用： <code>DOMMouseScroll</code>，而且需要通过绑定事件才行,</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">oBtn.addEventListener(<span class="string">'DOMMouseScroll'</span>,<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    alert(<span class="string">'a'</span>);</div><div class="line">},<span class="literal">false</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>oBtn.addEventListener(<span class="string">'DOMMouseScroll'</span>,<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
+    alert(<span class="string">'a'</span>);
+},<span class="literal">false</span>);
+</pre></td></tr></table></figure>
 
 <p>这样可以稍稍利用下上面的绑定事件函数:</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span> <span class="params">(obj,sEvent,fn)</span> </span>{</div><div class="line">    <span class="keyword">if</span> (obj.attachEvent) {</div><div class="line">        obj.attachEvent(<span class="string">'on'</span> + sEvent,fn);</div><div class="line">    }<span class="keyword">else</span>{</div><div class="line">        obj.addEventListener(sEvent,fn,<span class="literal">false</span>);</div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> <span class="params">()</span> </span>{</div><div class="line">    alert(<span class="string">'a'</span>);</div><div class="line">}</div><div class="line">addEvent(oBtn,<span class="string">'mousewheel'</span>,a);</div><div class="line">addEvent(oBtn,<span class="string">'DOMMouseScroll'</span>,a);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span> <span class="params">(obj,sEvent,fn)</span> {</span>
+    <span class="keyword">if</span> (obj.attachEvent) {
+        obj.attachEvent(<span class="string">'on'</span> + sEvent,fn);
+    }<span class="keyword">else</span>{
+        obj.addEventListener(sEvent,fn,<span class="literal">false</span>);
+    }
+}
+<span class="function"><span class="keyword">function</span> <span class="title">a</span> <span class="params">()</span> {</span>
+    alert(<span class="string">'a'</span>);
+}
+addEvent(oBtn,<span class="string">'mousewheel'</span>,a);
+addEvent(oBtn,<span class="string">'DOMMouseScroll'</span>,a);
+</pre></td></tr></table></figure>
 
 <p><strong>鼠标滚轮上下滚动</strong><br>IE和chrome都是使用 <code>wheelDelta</code>，并且向下滚返回负数（-120），向上滚返回整数(120)，但是firefox 使用的是<code>detail</code>，而且向上滚返回负数(-3)，向下滚返回正数(3)。<br>解决办法：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">onMouseWheel</span><span class="params">(ev)</span> </span>{</div><div class="line">    <span class="keyword">var</span> oEvent = ev || <span class="built_in">window</span>.event;</div><div class="line">    <span class="keyword">var</span> bDown = <span class="literal">true</span>;</div><div class="line">    bDown = oEvent.wheelDelta ? oEvent.wheelDelta &lt; <span class="number">0</span> : oEvent.detail &gt; <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> bDown;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">onMouseWheel</span><span class="params">(ev)</span> {</span>
+    <span class="keyword">var</span> oEvent = ev || window.event;
+    <span class="keyword">var</span> bDown = <span class="literal">true</span>;
+    bDown = oEvent.wheelDelta ? oEvent.wheelDelta &lt; <span class="number">0</span> : oEvent.detail &gt; <span class="number">0</span>;
+    <span class="keyword">return</span> bDown;
+}
+</pre></td></tr></table></figure>
 
 <p><strong>事件对象<code>event</code>：</strong><br>IE里直接使用 <code>event</code>，firefox使用的是函数参数，最新版chrome，ie11两者都支持</p>
 <p>例如获取鼠标点击坐标：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.onclick = <span class="function"><span class="keyword">function</span> <span class="params">(ev)</span> </span>{</div><div class="line">        <span class="keyword">var</span> oEvent =  ev || <span class="built_in">window</span>.event ; </div><div class="line">        alert(oEvent.clientX + <span class="string">','</span> + oEvent.clientY);</div><div class="line">    }</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>document.onclick = <span class="function"><span class="keyword">function</span> <span class="params">(ev)</span> {</span>
+        <span class="keyword">var</span> oEvent =  ev || window.event ; 
+        alert(oEvent.clientX + <span class="string">','</span> + oEvent.clientY);
+    }
+</pre></td></tr></table></figure>
 
 <p><strong> 获取滚动条高度<code>scrollTop</code>：</strong><br>chrome和ie、firefox不同，使用的是<code>document.body.scrollTop;</code>，而后者是使用<code>document.documentElement.scrollTop</code> ，谷歌和火狐竟然不同步…</p>
 <hr>
 <p><strong> 创建<code>ajax</code>对象：</strong></p>
 <p>IE6以上的浏览器使用，<code>new XMLHttpRequest()</code>；<br>IE6需要使用，<code>new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;)</code>.</p>
 <p>所以创建<code>ajax</code>对象就需要这样写，</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oAjax=<span class="literal">null</span>;</div><div class="line"> <span class="comment">//使用window.XMLHttpRequest是因为IE6下XMLHttpRequest不存在，直接弹错，</span></div><div class="line"><span class="comment">//加window表示为定义这个属性</span></div><div class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest){</div><div class="line"></div><div class="line">    oAjax=<span class="keyword">new</span> XMLHttpRequest();</div><div class="line">  }<span class="keyword">else</span>{</div><div class="line">    oAjax=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);   </div><div class="line">  }</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="keyword">var</span> oAjax=<span class="literal">null</span>;
+ <span class="comment">//使用window.XMLHttpRequest是因为IE6下XMLHttpRequest不存在，直接弹错，</span>
+<span class="comment">//加window表示为定义这个属性</span>
+<span class="keyword">if</span>(window.XMLHttpRequest){
+
+    oAjax=<span class="keyword">new</span> XMLHttpRequest();
+  }<span class="keyword">else</span>{
+    oAjax=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);   
+  }
+</pre></td></tr></table></figure>
 
 <hr>
 <h4 id="获取样式表里的样式">获取样式表里的样式</h4>
 <p><strong> IE使用，<code>currentStyle</code> ， firefox和chrome使用<code>getComputedStyle</code></strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">getStyle</span><span class="params">(obj,attr)</span></span>{</div><div class="line">       <span class="keyword">if</span>(obj.currentStyle){</div><div class="line">           <span class="keyword">return</span> obj.currentStyle[attr];  </div><div class="line">       }<span class="keyword">else</span>{</div><div class="line">            <span class="keyword">return</span> getComputedStyle(obj, <span class="literal">false</span>)[attr];</div><div class="line">       }</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre> <span class="function"><span class="keyword">function</span> <span class="title">getStyle</span><span class="params">(obj,attr)</span>{</span>
+       <span class="keyword">if</span>(obj.currentStyle){
+           <span class="keyword">return</span> obj.currentStyle[attr];  
+       }<span class="keyword">else</span>{
+            <span class="keyword">return</span> getComputedStyle(obj, <span class="literal">false</span>)[attr];
+       }
+}
+</pre></td></tr></table></figure>
 
 <h4 id="DOM中存在的一些兼容性问题">DOM中存在的一些兼容性问题</h4>
 <p><strong> 子节点个数<code>childNodes</code>存在不兼容性，</strong><br>例如：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"lis"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"lis"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+</pre></td></tr></table></figure>
 
 <p>上面这个<code>ul</code>下子节点的个数<code>oUl.childNodes.length</code> 在IE6下是2，<br>而 IE11，firefox chrome是5，是因为这些浏览器会添加空白部分<code>textNode</code></p>
 <p>可以使用这个方法获取子节点个数：<code>oUl.children.length</code>。</p>
@@ -490,59 +981,283 @@
     <link href="http://stddup.com/2013/12/10/js-distribution/"/>
     <id>http://stddup.com/2013/12/10/js-distribution/</id>
     <published>2013-12-10T13:34:45.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
+    <updated>2013-12-10T14:53:54.000Z</updated>
     <content type="html"><![CDATA[<p>如果我们需要一个函数，但是其中一个操作符的参数已经给定了会怎么样？<br>针对这种情况，分布应用就派上用场了。<br><strong>接收一个函数func和一个或多个参数，然后创建一个新函数调用func，原来的参数和新传入的参数，在调用的时候都会用到</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">partial</span><span class="params">(func)</span></span>{</div><div class="line">    <span class="keyword">var</span> knowArgs = <span class="built_in">arguments</span>;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">        <span class="keyword">var</span> realArgs = [];</div><div class="line">        <span class="comment">/*第一个参数是func，所以循环从1开始*/</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;knowArgs.length;i++)</div><div class="line">            realArgs.push(knowArgs[i]);</div><div class="line">        <span class="comment">/*获取内嵌函数的参数*/</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;<span class="built_in">arguments</span>.length;i++)</div><div class="line">            realArgs.push(<span class="built_in">arguments</span>[i]);</div><div class="line">        <span class="keyword">return</span> func.apply(<span class="literal">null</span>,realArgs);</div><div class="line">    };</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">partial</span><span class="params">(func)</span>{</span>
+    <span class="keyword">var</span> knowArgs = <span class="built_in">arguments</span>;
+    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+        <span class="keyword">var</span> realArgs = [];
+        <span class="comment">/*第一个参数是func，所以循环从1开始*/</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;knowArgs.length;i++)
+            realArgs.push(knowArgs[i]);
+        <span class="comment">/*获取内嵌函数的参数*/</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;<span class="built_in">arguments</span>.length;i++)
+            realArgs.push(<span class="built_in">arguments</span>[i]);
+        <span class="keyword">return</span> func.apply(<span class="literal">null</span>,realArgs);
+    };
+}
+</pre></td></tr></table></figure>
 
 <p><code>partial(op[&quot;*&quot;],5)</code>应该返回一个将参数与5进行相乘的新函数(javascript编程精解说是进行5次相乘，出错了吧，<code>partial(op[&quot;*&quot;],5)(2);</code>的结果是10)</p>
 <p>这里<code>op[&quot;*&quot;]</code>是自定义的操作符函数</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var op = {</div><div class="line">    <span class="string">"+"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a + b;},</div><div class="line">    <span class="string">"-"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a - b;},</div><div class="line">    <span class="string">"/"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a / b;}</div><div class="line">    /*等等<span class="keyword">...</span>*/</div><div class="line">};</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>var op = {
+    <span class="string">"+"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a + b;},
+    <span class="string">"-"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a - b;},
+    <span class="string">"/"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a / b;}
+    /*等等<span class="keyword">...</span>*/
+};
+</pre></td></tr></table></figure>
 
 <p>这里使用到了<code>apply()</code>，有必要了解一下这个函数，不然还真是有点难理解。</p>
 <hr>
 <p><code>apply()</code>和<code>call()</code>这两个方法的用途都是在特定的作用域中调用函数，实际上等于设置函数体内<code>this</code>对象的值。</p>
 <p><code>apply()</code>方法接收两个参数：一个是在其中运行函数的作用域，另一个是参数数组。其中，第二个参数可以是Array的实例，也可以是arguments对象。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> num1 + num2; </div><div class="line">} </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callSum1</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> sum.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>); <span class="comment">// 传入arguments对象</span></div><div class="line">} </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callSum2</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> sum.apply(<span class="keyword">this</span>, [num1, num2]); <span class="comment">// 传入数组</span></div><div class="line">} </div><div class="line">alert(callSum1(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20 </span></div><div class="line">alert(callSum2(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> num1 + num2; 
+} 
+<span class="function"><span class="keyword">function</span> <span class="title">callSum1</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> sum.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>); <span class="comment">// 传入arguments对象</span>
+} 
+<span class="function"><span class="keyword">function</span> <span class="title">callSum2</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> sum.apply(<span class="keyword">this</span>, [num1, num2]); <span class="comment">// 传入数组</span>
+} 
+alert(callSum1(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20 </span>
+alert(callSum2(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20</span>
+</pre></td></tr></table></figure>
 
 <p><code>call()</code>方法与<code>apply()</code>方法的作用相同，它们的区别仅在于接收参数的方式不同。对于<code>call()</code>方法而言，第一个参数是<code>this</code>值没有变化，变化的是其余参数都直接传递给函数。换句话说，在使用<code>call()</code>方法时，传递给函数的参数必须逐个列举出来。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> num1 + num2; </div><div class="line">} </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callSum</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> sum.call(<span class="keyword">this</span>, num1, num2); </div><div class="line">} </div><div class="line">alert(callSum(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> num1 + num2; 
+} 
+<span class="function"><span class="keyword">function</span> <span class="title">callSum</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> sum.call(<span class="keyword">this</span>, num1, num2); 
+} 
+alert(callSum(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20</span>
+</pre></td></tr></table></figure>
 
 <p>事实上，传递参数并非<code>apply()</code>和<code>call()</code>真正的用武之地；它们真正强大的地方是能够扩充函数<br>赖以运行的作用域。下面来看一个例子。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.color = <span class="string">"red"</span>; </div><div class="line"><span class="keyword">var</span> o = { color: <span class="string">"blue"</span> }; </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span><span class="params">()</span></span>{ </div><div class="line">alert(<span class="keyword">this</span>.color); </div><div class="line">} </div><div class="line">sayColor(); <span class="comment">//red </span></div><div class="line">sayColor.call(<span class="keyword">this</span>); <span class="comment">//red </span></div><div class="line">sayColor.call(<span class="built_in">window</span>); <span class="comment">//red </span></div><div class="line">sayColor.call(o); <span class="comment">//blue</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre>window.color = <span class="string">"red"</span>; 
+<span class="keyword">var</span> o = { color: <span class="string">"blue"</span> }; 
+<span class="function"><span class="keyword">function</span> <span class="title">sayColor</span><span class="params">()</span>{</span> 
+alert(<span class="keyword">this</span>.color); 
+} 
+sayColor(); <span class="comment">//red </span>
+sayColor.call(<span class="keyword">this</span>); <span class="comment">//red </span>
+sayColor.call(window); <span class="comment">//red </span>
+sayColor.call(o); <span class="comment">//blue</span>
+</pre></td></tr></table></figure>
 
 <p>在ECMAScript 5的严格模式中，<code>call()</code>和<code>apply()</code>的第一个参数都会变为<code>this</code>的值，哪怕传入的实参是原始值甚至是<code>null</code>,<code>undefined</code>。在ECMAScript 3和非严格模式中传入的<code>null</code>和<code>undefined</code>都会被全局对象代替，而其他原始则会被相应的包装对象所替代。</p>
 <hr>
 <p>现在再来看函数<code>partial()</code>,变量<code>knowArgs</code>是必需的，因为在内部函数里，<code>arguments</code>(<em>是个伪数组</em>)变量引用的是内部函数的参数，而不是<code>partial</code>的参数。<br><a id="more"></a></p>
 <p>函数最后返回<code>return func.apply(null,realArgs);</code> 这里<code>apply()</code>的第一个实参是全局对象,也就是<code>window</code>,所以<code>realArgs</code>不仅包含了<code>partial()</code>中的参数，还通过<code>apply()</code>包含了”内部函数”的参数(如下面示例中<code>map()</code>数组实参)。</p>
 <p>示例分析：<br><code>map(partial(op[&quot;+&quot;],1),[0,2,4]);</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*******************</span></div><div class="line">* 映射数组 map()</div><div class="line">********************/</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">map</span><span class="params">(func, array)</span></span>{</div><div class="line">    <span class="keyword">var</span> result = [];</div><div class="line">    forEach(array,<span class="function"><span class="keyword">function</span><span class="params">(element)</span></span>{</div><div class="line">        result.push(func(element));</div><div class="line">    });</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">}</div><div class="line"><span class="comment">/*forEach*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">forEach</span><span class="params">(array,action)</span></span>{</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>,len = array.length; i &lt; len; i++)</div><div class="line">        action(array[i]);</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre><span class="comment">/*******************
+* 映射数组 map()
+********************/</span>
+<span class="function"><span class="keyword">function</span> <span class="title">map</span><span class="params">(func, array)</span>{</span>
+    <span class="keyword">var</span> result = [];
+    forEach(array,<span class="function"><span class="keyword">function</span><span class="params">(element)</span>{</span>
+        result.push(func(element));
+    });
+    <span class="keyword">return</span> result;
+}
+<span class="comment">/*forEach*/</span>
+<span class="function"><span class="keyword">function</span> <span class="title">forEach</span><span class="params">(array,action)</span>{</span>
+    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>,len = array.length; i &lt; len; i++)
+        action(array[i]);
+}
+</pre></td></tr></table></figure>
 
 <p><code>map()</code>会遍历数组中的每个元素，结合<code>partial</code>使数组中的每个数字加1，结果为<code>[1,3,5]</code>。</p>
 <p><code>map</code>在接收数组参数之前接收函数参数的原因是： 将传入的函数分布应用到<code>map</code>上，它将对单一值执行运算的功能升级为对数组值执行运算的功能。</p>
 <p>例如，假设有一个数字数组的数组，计算其平方值，可以这样编写：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span><span class="params">(x)</span></span>{</div><div class="line">    <span class="keyword">return</span> x * x;</div><div class="line">}</div><div class="line"></div><div class="line">map(partial(map,square),[[<span class="number">10</span>],[<span class="number">0</span>,<span class="number">1</span>],[<span class="number">3</span>]]);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">square</span><span class="params">(x)</span>{</span>
+    <span class="keyword">return</span> x * x;
+}
+
+map(partial(map,square),[[<span class="number">10</span>],[<span class="number">0</span>,<span class="number">1</span>],[<span class="number">3</span>]]);
+</pre></td></tr></table></figure>
 
 <p>这里不小心的话，很容易以为用<code>map(square,[[10],[0,1],[3]]);</code>就可以了，但是这个数组里面含有<code>[0,1]</code>这样的数组，需要<code>map</code>来遍历处理，不然会返回<code>NaN</code>。</p>
 <p>哎哟，发现解释起来还真是麻烦，弄来弄去，貌似还没怎么说清楚。。。。</p>
 ]]></content>
     <summary type="html"><![CDATA[<p>如果我们需要一个函数，但是其中一个操作符的参数已经给定了会怎么样？<br>针对这种情况，分布应用就派上用场了。<br><strong>接收一个函数func和一个或多个参数，然后创建一个新函数调用func，原来的参数和新传入的参数，在调用的时候都会用到</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">partial</span><span class="params">(func)</span></span>{</div><div class="line">    <span class="keyword">var</span> knowArgs = <span class="built_in">arguments</span>;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">        <span class="keyword">var</span> realArgs = [];</div><div class="line">        <span class="comment">/*第一个参数是func，所以循环从1开始*/</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;knowArgs.length;i++)</div><div class="line">            realArgs.push(knowArgs[i]);</div><div class="line">        <span class="comment">/*获取内嵌函数的参数*/</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;<span class="built_in">arguments</span>.length;i++)</div><div class="line">            realArgs.push(<span class="built_in">arguments</span>[i]);</div><div class="line">        <span class="keyword">return</span> func.apply(<span class="literal">null</span>,realArgs);</div><div class="line">    };</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">partial</span><span class="params">(func)</span>{</span>
+    <span class="keyword">var</span> knowArgs = <span class="built_in">arguments</span>;
+    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+        <span class="keyword">var</span> realArgs = [];
+        <span class="comment">/*第一个参数是func，所以循环从1开始*/</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;knowArgs.length;i++)
+            realArgs.push(knowArgs[i]);
+        <span class="comment">/*获取内嵌函数的参数*/</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;<span class="built_in">arguments</span>.length;i++)
+            realArgs.push(<span class="built_in">arguments</span>[i]);
+        <span class="keyword">return</span> func.apply(<span class="literal">null</span>,realArgs);
+    };
+}
+</pre></td></tr></table></figure>
 
 <p><code>partial(op[&quot;*&quot;],5)</code>应该返回一个将参数与5进行相乘的新函数(javascript编程精解说是进行5次相乘，出错了吧，<code>partial(op[&quot;*&quot;],5)(2);</code>的结果是10)</p>
 <p>这里<code>op[&quot;*&quot;]</code>是自定义的操作符函数</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var op = {</div><div class="line">    <span class="string">"+"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a + b;},</div><div class="line">    <span class="string">"-"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a - b;},</div><div class="line">    <span class="string">"/"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a / b;}</div><div class="line">    /*等等<span class="keyword">...</span>*/</div><div class="line">};</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>var op = {
+    <span class="string">"+"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a + b;},
+    <span class="string">"-"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a - b;},
+    <span class="string">"/"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a / b;}
+    /*等等<span class="keyword">...</span>*/
+};
+</pre></td></tr></table></figure>
 
 <p>这里使用到了<code>apply()</code>，有必要了解一下这个函数，不然还真是有点难理解。</p>
 <hr>
 <p><code>apply()</code>和<code>call()</code>这两个方法的用途都是在特定的作用域中调用函数，实际上等于设置函数体内<code>this</code>对象的值。</p>
 <p><code>apply()</code>方法接收两个参数：一个是在其中运行函数的作用域，另一个是参数数组。其中，第二个参数可以是Array的实例，也可以是arguments对象。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> num1 + num2; </div><div class="line">} </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callSum1</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> sum.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>); <span class="comment">// 传入arguments对象</span></div><div class="line">} </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callSum2</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> sum.apply(<span class="keyword">this</span>, [num1, num2]); <span class="comment">// 传入数组</span></div><div class="line">} </div><div class="line">alert(callSum1(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20 </span></div><div class="line">alert(callSum2(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> num1 + num2; 
+} 
+<span class="function"><span class="keyword">function</span> <span class="title">callSum1</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> sum.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>); <span class="comment">// 传入arguments对象</span>
+} 
+<span class="function"><span class="keyword">function</span> <span class="title">callSum2</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> sum.apply(<span class="keyword">this</span>, [num1, num2]); <span class="comment">// 传入数组</span>
+} 
+alert(callSum1(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20 </span>
+alert(callSum2(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20</span>
+</pre></td></tr></table></figure>
 
 <p><code>call()</code>方法与<code>apply()</code>方法的作用相同，它们的区别仅在于接收参数的方式不同。对于<code>call()</code>方法而言，第一个参数是<code>this</code>值没有变化，变化的是其余参数都直接传递给函数。换句话说，在使用<code>call()</code>方法时，传递给函数的参数必须逐个列举出来。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> num1 + num2; </div><div class="line">} </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callSum</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> sum.call(<span class="keyword">this</span>, num1, num2); </div><div class="line">} </div><div class="line">alert(callSum(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> num1 + num2; 
+} 
+<span class="function"><span class="keyword">function</span> <span class="title">callSum</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> sum.call(<span class="keyword">this</span>, num1, num2); 
+} 
+alert(callSum(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20</span>
+</pre></td></tr></table></figure>
 
 <p>事实上，传递参数并非<code>apply()</code>和<code>call()</code>真正的用武之地；它们真正强大的地方是能够扩充函数<br>赖以运行的作用域。下面来看一个例子。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.color = <span class="string">"red"</span>; </div><div class="line"><span class="keyword">var</span> o = { color: <span class="string">"blue"</span> }; </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span><span class="params">()</span></span>{ </div><div class="line">alert(<span class="keyword">this</span>.color); </div><div class="line">} </div><div class="line">sayColor(); <span class="comment">//red </span></div><div class="line">sayColor.call(<span class="keyword">this</span>); <span class="comment">//red </span></div><div class="line">sayColor.call(<span class="built_in">window</span>); <span class="comment">//red </span></div><div class="line">sayColor.call(o); <span class="comment">//blue</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre>window.color = <span class="string">"red"</span>; 
+<span class="keyword">var</span> o = { color: <span class="string">"blue"</span> }; 
+<span class="function"><span class="keyword">function</span> <span class="title">sayColor</span><span class="params">()</span>{</span> 
+alert(<span class="keyword">this</span>.color); 
+} 
+sayColor(); <span class="comment">//red </span>
+sayColor.call(<span class="keyword">this</span>); <span class="comment">//red </span>
+sayColor.call(window); <span class="comment">//red </span>
+sayColor.call(o); <span class="comment">//blue</span>
+</pre></td></tr></table></figure>
 
 <p>在ECMAScript 5的严格模式中，<code>call()</code>和<code>apply()</code>的第一个参数都会变为<code>this</code>的值，哪怕传入的实参是原始值甚至是<code>null</code>,<code>undefined</code>。在ECMAScript 3和非严格模式中传入的<code>null</code>和<code>undefined</code>都会被全局对象代替，而其他原始则会被相应的包装对象所替代。</p>
 <hr>
@@ -559,20 +1274,30 @@
     <link href="http://stddup.com/2013/12/10/never-need-to-enter-password-for-git-push/"/>
     <id>http://stddup.com/2013/12/10/never-need-to-enter-password-for-git-push/</id>
     <published>2013-12-10T07:40:13.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
+    <updated>2013-12-10T08:00:47.000Z</updated>
     <content type="html"><![CDATA[<p>使用hexo写博客，每次<code>hexo deploy</code>都要输用户名和密码，真是太麻烦了。<br>终于找到方法可以不用再输密码了。</p>
 <ul>
 <li>首先添加环境变量</li>
 </ul>
 <p>计算机—属性—高级系统设置—环境变量</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">变量名： <span class="variable">HOME</span></div><div class="line">变量值： <span class="comment">%USERPROFILE%</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>变量名： HOME
+变量值： <span class="variable">%USERPROFILE</span>%
+</pre></td></tr></table></figure>
 
 <ul>
 <li>在用户文件夹<code>C:\Users\&quot;yourusername&quot;</code>下新建一个名为<code>_netrc</code>的文件</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">machine github.<span class="keyword">com</span></div><div class="line">login <span class="string">"your git username"</span>(你的github用户名,不包括引号)</div><div class="line">password <span class="string">"your password"</span>(你的github密码,不包括引号)</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>machine github<span class="preprocessor">.com</span>
+login <span class="string">"your git username"</span>(你的github用户名,不包括引号)
+password <span class="string">"your password"</span>(你的github密码,不包括引号)
+</pre></td></tr></table></figure>
 
-<p>参考：<a href="http://zipperary.com/2013/05/26/ssh-errors-with-github/" target="_blank" rel="external">http://zipperary.com/2013/05/26/ssh-errors-with-github/</a></p>
+<p>参考：<a href="http://zipperary.com/2013/05/26/ssh-errors-with-github/" target="_blank">http://zipperary.com/2013/05/26/ssh-errors-with-github/</a></p>
 ]]></content>
     
     
@@ -583,40 +1308,231 @@
   </entry>
   
   <entry>
+    <title><![CDATA[HexoError: Render failed]]></title>
+    <link href="http://stddup.com/2013/12/10/hexo-render-error/"/>
+    <id>http://stddup.com/2013/12/10/hexo-render-error/</id>
+    <published>2013-12-10T06:51:42.000Z</published>
+    <updated>2013-12-10T07:28:55.000Z</updated>
+    <content type="html"><![CDATA[<p><code>Hexo</code> 默认会对<code>source</code>目录下的所有文件进行<code>render</code>,这会造成<code>.html</code>文件不正常，<code>.html</code> 文件都会被当成 <code>.md</code> 处理。github上也有讨论组这个问题,<a href="https://github.com/tommy351/hexo/issues/158" target="_blank">issue：HexoError: Render failed</a>。</p>
+<p>使用主题的时候遇到过这个问题，只需在<code>layout.ejs</code>里面加一个判断</p>
+<figure class="highlight ejs"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="vbscript">&lt;%
+<span class="keyword">if</span>(page.layout !== <span class="comment">'false'){</span>
+%&gt;</span>
+<span class="comment">&lt;!--渲染--&gt;</span>
+ 
+<span class="vbscript">&lt;%}<span class="keyword">else</span>{ %&gt;</span>
+<span class="comment">&lt;!--不想渲染的页面内容-&gt;
+&lt;%- page.content %&gt;
+&lt;%};%&gt;</span>
+</pre></td></tr></table></figure>
+
+<p>按照这个方法，如果创建的页面不想使用主题的渲染，可以在 <code>.html</code> 页面最上方加入:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="header">layout: false
+---</span>
+</pre></td></tr></table></figure>
+
+<p>这样就可以在页面中使用自己创建的样式渲染，比如创建demo.</p>
+]]></content>
+    
+    
+      <category term="hexo" scheme="http://stddup.com/tags/hexo/"/>
+    
+      <category term="blog" scheme="http://stddup.com/categories/blog/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[异常处理]]></title>
     <link href="http://stddup.com/2013/12/10/throw-try-catch-finally/"/>
     <id>http://stddup.com/2013/12/10/throw-try-catch-finally/</id>
     <published>2013-12-10T04:29:30.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
+    <updated>2013-12-10T04:35:01.000Z</updated>
     <content type="html"><![CDATA[<h4 id="抛出异常">抛出异常</h4>
 <p>当程序由于某种原因不能正常返回时，要立即停止现在的操作，然后跳转到能够处理问题的位置，这就是异常处理。</p>
 <p>工作原理：代码抛出异常，该异常是一个值。会跳出当前函数，还会离开该函数的调用者，一直到当前执行的最顶部（展开堆栈）。<br>异常会放大堆栈，丢弃所有有关上下文，为了不让异常一直放大到栈的根部，需要沿着栈为异常设置障碍，抓住放大的异常并且进行相应的处理，程序便可以在异常的抛出点继续运行。</p>
 <p>JavaScript编程精简里的一个示例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lastElement</span><span class="params">(array)</span></span>{</div><div class="line">    <span class="keyword">if</span>(array.length &gt; <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> array[array.length -<span class="number">1</span>];</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">throw</span> <span class="string">"empty array"</span>;</div><div class="line">}</div><div class="line"><span class="keyword">try</span>{</div><div class="line">    lastElement([]);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">catch</span>(error){</div><div class="line">   alert(error);</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">lastElement</span><span class="params">(array)</span>{</span>
+    <span class="keyword">if</span>(array.length &gt; <span class="number">0</span>)
+        <span class="keyword">return</span> array[array.length -<span class="number">1</span>];
+    <span class="keyword">else</span>
+        <span class="keyword">throw</span> <span class="string">"empty array"</span>;
+}
+<span class="keyword">try</span>{
+    lastElement([]);
+}
+
+<span class="keyword">catch</span>(error){
+   alert(error);
+}
+</pre></td></tr></table></figure>
 
 <p><code>throw</code>是抛出异常的关键字，<code>try</code>用于设立异常障碍：<br>如果代码块里的代码抛出异常，<code>catch</code>代码将会执行，在执行时，<code>catch</code>后面的变量将拥有该异常值（也就是说<code>catch</code>接收的参数，就是<code>throw</code>抛出的异常信息）。</p>
 <p>异常错误的一大优点：只在错误的发生点以及处理错误的点上才需要处理错误代码，两者之间的代码可以忽略这些。（也就是在<code>throw</code>和<code>try</code>中间执行的代码，可以忽略出错的可能性）</p>
 <hr>
 <h4 id="异常之后的错误清除">异常之后的错误清除</h4>
 <p>有如下代码:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> currentThing = <span class="literal">null</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">processThing</span><span class="params">(thing)</span></span>{</div><div class="line">        <span class="keyword">var</span> prevThing = currentThing;</div><div class="line">        currentThing = thing;</div><div class="line">       <span class="comment">/*做复杂的处理..*/</span></div><div class="line">      currentThing = prevThing;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="keyword">var</span> currentThing = <span class="literal">null</span>;
+<span class="function"><span class="keyword">function</span> <span class="title">processThing</span><span class="params">(thing)</span>{</span>
+        <span class="keyword">var</span> prevThing = currentThing;
+        currentThing = thing;
+       <span class="comment">/*做复杂的处理..*/</span>
+      currentThing = prevThing;
+}
+</pre></td></tr></table></figure>
 
 <p>如果做复杂处理的时候引发异常，<code>processThing()</code>的调用将通过异常脱离当前栈，所以<code>currentThing</code>就不能恢复到原来的值了。<br>这样就需要<code>finally</code>语句来清除错误，不管发生什么，尝试运行<code>try</code>块的代码后，运行<code>finally</code>块的代码。</p>
-<figure class="highlight javasript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> currentThing = <span class="literal">null</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">processThing</span><span class="params">(thing)</span></span>{</div><div class="line">        <span class="keyword">var</span> prevThing = currentThing;</div><div class="line">        currentThing = thing;</div><div class="line">       <span class="keyword">try</span>{</div><div class="line">                <span class="comment">/*做复杂的处理..*/</span></div><div class="line">     }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">finally</span>{</div><div class="line">       currentThing = prevThing;</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight javasript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre><span class="keyword">var</span> currentThing = <span class="literal">null</span>;
+<span class="function"><span class="keyword">function</span> <span class="title">processThing</span><span class="params">(thing)</span>{</span>
+        <span class="keyword">var</span> prevThing = currentThing;
+        currentThing = thing;
+       <span class="keyword">try</span>{
+                <span class="comment">/*做复杂的处理..*/</span>
+     }
+}
+
+<span class="keyword">finally</span>{
+       currentThing = prevThing;
+}
+</pre></td></tr></table></figure>
 
 <p>现在不管复杂的处理返回正常值还是抛出异常，<code>currentThing</code>都会恢复原来的值。<br><strong>如果有<code>catch</code>语句块，<code>finally</code>块要放在它之后</strong></p>
 <hr>
-<h4 id="Error对象"><code>Error</code>对象</h4>
+<h4 id="<code>Error</code>对象"><code>Error</code>对象</h4>
 <p>可以通过<code>new</code>创建一个<code>Error</code>对象，<code>var e = new Error(&quot;empty array&quot;);</code>,每个<code>Error</code>对象都有一个<code>message</code>属性，包含对错误问题的描述。<br>这样就可以把之前的示例修改为：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"empty array"</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lastElement</span><span class="params">(array)</span></span>{</div><div class="line">    <span class="keyword">if</span>(array.length &gt; <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> array[array.length -<span class="number">1</span>];</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">throw</span> e;</div><div class="line">       <span class="comment">// ==  throw new Error("empty array");</span></div><div class="line">}</div><div class="line"><span class="keyword">try</span>{</div><div class="line">    lastElement([]);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">catch</span>(error){</div><div class="line">   alert(error.message);</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"empty array"</span>);
+<span class="function"><span class="keyword">function</span> <span class="title">lastElement</span><span class="params">(array)</span>{</span>
+    <span class="keyword">if</span>(array.length &gt; <span class="number">0</span>)
+        <span class="keyword">return</span> array[array.length -<span class="number">1</span>];
+    <span class="keyword">else</span>
+        <span class="keyword">throw</span> e;
+       <span class="comment">// ==  throw new Error("empty array");</span>
+}
+<span class="keyword">try</span>{
+    lastElement([]);
+}
+
+<span class="keyword">catch</span>(error){
+   alert(error.message);
+}
+</pre></td></tr></table></figure>
 
 <hr>
-<h4 id="选择性catch">选择性<code>catch</code></h4>
+<h4 id="选择性<code>catch</code>">选择性<code>catch</code></h4>
 <p>使用<code>catch</code>显示处理异常时，不要<code>catch</code>太多内容。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(; ;){</div><div class="line">    <span class="keyword">try</span>{</div><div class="line">        alert(inputNumber() + <span class="number">5</span>);</div><div class="line">       <span class="keyword">break</span>;</div><div class="line">  }</div><div class="line"><span class="keyword">catch</span>(e){</div><div class="line">       alert(<span class="string">"Not a number"</span>);</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="keyword">for</span>(; ;){
+    <span class="keyword">try</span>{
+        alert(inputNumber() + <span class="number">5</span>);
+       <span class="keyword">break</span>;
+  }
+<span class="keyword">catch</span>(e){
+       alert(<span class="string">"Not a number"</span>);
+  }
+}
+</pre></td></tr></table></figure>
 
 <p>以上代码要求输入数字，如果输入不合法就会抛出异常，直到输入合法数字，才停止循环。<br>但如果<code>inputNumber</code>引发其他的一些异常，程序还是会认为输入不合法，一直循环。因此，明智的做法是验证是否由输入引发的异常。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> invalidInputError = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Invalid numeric input"</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">inputNumber</span><span class="params">()</span></span>{</div><div class="line">         <span class="keyword">var</span> input = <span class="built_in">Number</span>(prompt(<span class="string">"input a number"</span>,<span class="string">""</span>));</div><div class="line">        <span class="keyword">if</span>(<span class="built_in">isNaN</span>(input))</div><div class="line">            <span class="keyword">throw</span> invalidInputError;</div><div class="line">       <span class="keyword">return</span> input;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">try</span>{</div><div class="line">    alert(inputNumber() + <span class="number">5</span>);</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">}</div><div class="line"><span class="keyword">catch</span>(e){</div><div class="line">    <span class="keyword">if</span>(e != invalidInputError)</div><div class="line">        <span class="keyword">throw</span> e;</div><div class="line">   alert(Not a number);</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre><span class="keyword">var</span> invalidInputError = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Invalid numeric input"</span>);
+<span class="function"><span class="keyword">function</span> <span class="title">inputNumber</span><span class="params">()</span>{</span>
+         <span class="keyword">var</span> input = <span class="built_in">Number</span>(prompt(<span class="string">"input a number"</span>,<span class="string">""</span>));
+        <span class="keyword">if</span>(<span class="built_in">isNaN</span>(input))
+            <span class="keyword">throw</span> invalidInputError;
+       <span class="keyword">return</span> input;
+}
+
+<span class="keyword">try</span>{
+    alert(inputNumber() + <span class="number">5</span>);
+    <span class="keyword">break</span>;
+}
+<span class="keyword">catch</span>(e){
+    <span class="keyword">if</span>(e != invalidInputError)
+        <span class="keyword">throw</span> e;
+   alert(Not a number);
+}
+</pre></td></tr></table></figure>
 
 ]]></content>
     
@@ -632,13 +1548,83 @@
     <link href="http://stddup.com/2013/12/08/css-sudoku/"/>
     <id>http://stddup.com/2013/12/08/css-sudoku/</id>
     <published>2013-12-08T12:52:37.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
+    <updated>2013-12-10T06:47:26.000Z</updated>
     <content type="html"><![CDATA[<p>用css实现一个如图的九宫格,border-width为5px，每个格子大小50px.<br><img src="http://farm3.staticflickr.com/2811/11269131403_0c6f5979ab_o.png" alt="九宫格"></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">*<span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="class">.mySudoku</span> <span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">170px</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> auto</span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="class">.mySudoku</span> <span class="tag">a</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">50px</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">50px</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">50px</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">5px</span> solid <span class="hexcolor">#1b12c9</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> -<span class="number">5px</span> -<span class="number">5px</span> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="class">.mySudoku</span> <span class="tag">a</span><span class="pseudo">:hover</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">border-color</span>:<span class="value"> <span class="hexcolor">#A50833</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">z-index</span>:<span class="value"> <span class="number">100</span></span></span>;</div><div class="line">    <span class="rule">}</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td><td class="code"><pre>*<span class="rules">{
+        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;
+        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;
+    <span class="rule">}</span></span>
+    <span class="class">.mySudoku</span> <span class="rules">{
+        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">170</span>px</span></span>;
+        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> auto</span></span>;
+    <span class="rule">}</span></span>
+    <span class="class">.mySudoku</span> <span class="tag">a</span><span class="rules">{
+        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;
+        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;
+        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">50</span>px</span></span>;
+        <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">50</span>px</span></span>;
+        <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">50</span>px</span></span>;
+        <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;
+        <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;
+        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">5</span>px solid <span class="hexcolor">#1b12c9</span></span></span>;
+        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> -<span class="number">5</span>px -<span class="number">5</span>px <span class="number">0</span></span></span>;
+        <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;
+    <span class="rule">}</span></span>
+    <span class="class">.mySudoku</span> <span class="tag">a</span><span class="pseudo">:hover</span><span class="rules">{
+        <span class="rule"><span class="attribute">border-color</span>:<span class="value"> <span class="hexcolor">#A50833</span></span></span>;
+        <span class="rule"><span class="attribute">z-index</span>:<span class="value"> <span class="number">100</span></span></span>;
+    <span class="rule">}</span></span>
+</pre></td></tr></table></figure>
 
 <p><code>relative</code> 主要有两个作用：<br>为子元素定位做参考；<br>当元素设置了position属性，被其他元素遮挡住时，可以通过设置更高的<code>z-index</code>(<em>仅对定位元素有效</em>),来反遮挡。</p>
 <p>上面css代码就是使用了后者方法。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"mySudoku"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>1<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>2<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>3<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>4<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>5<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>6<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>7<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>8<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>9<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre>    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"mySudoku"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>1<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>2<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>3<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>4<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>5<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>6<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>7<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>8<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>9<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td></tr></table></figure>
 
 <p>效果演示<a href="/demos/css-sudoku.html">九宫格</a></p>
 ]]></content>
@@ -655,46 +1641,114 @@
     <link href="http://stddup.com/2013/12/07/ie6-bug/"/>
     <id>http://stddup.com/2013/12/07/ie6-bug/</id>
     <published>2013-12-06T16:21:48.000Z</published>
-    <updated>2014-09-23T16:29:36.000Z</updated>
-    <content type="html"><![CDATA[<p><br></p>
+    <updated>2013-12-06T16:30:00.000Z</updated>
+    <content type="html"><![CDATA[<p><br /></p>
 <h4 id="双外边距浮动bug">双外边距浮动bug</h4>
 <p>IE6和更低版本中双外边距浮动bug，会是浮动元素的外边距加倍。<br>修复方法 将元素的<code>display</code>属性设置为<code>inline</code>就行。</p>
-<p><br></p>
+<p><br /></p>
 <h4 id="3像素文本偏移bug">3像素文本偏移bug</h4>
 <p>IE6上，当文本和一个浮动元素相邻时，这个bug就会表现出来。例如将一个元素向左浮动，并且不希望相邻段落中的文本围绕浮动元素。<br>我们可以设置如下css</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class">.myFloat</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"></div><div class="line"><span class="tag">p</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">100px</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="class">.myFloat</span><span class="rules">{
+    <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;
+    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100</span>px</span></span>;
+<span class="rule">}</span></span>
+
+<span class="tag">p</span><span class="rules">{
+    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">100</span>px</span></span>;
+<span class="rule">}</span></span>
+</pre></td></tr></table></figure>
 
 <p>如果这么做，在文本和浮动元素之间就会出现一个莫名其妙的3像素间隙。一旦浮动元素停下来，3像素间隙就会消失。</p>
 <p>修复这个bug，首先，给包含文本的元素设置任意的高度。迫使元素拥有布局，这在表面上会消除文本偏移。因为IE6将height作为min-height对待，<br>所以设置一个小的高度并不会影响元素在这些浏览器中的实际尺寸。<br>但是这会影响其他浏览器，所以要对其他浏览器隐藏这个规则。最好使用条件注释将这些样式移动单独的css文件中。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">p</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1%</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="tag">p</span><span class="rules">{
+    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1</span>%</span></span>;
+<span class="rule">}</span></span>
+</pre></td></tr></table></figure>
 
 <p>由于布局元素被限制为矩形，并且在浮动元素旁边而不是它们的下面，添加的外边距实际会在段落和浮动元素之间产生100px间隙，<br>为解决这个问题，需要将IE6的外边距重新设置为0.</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">p</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1%</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">p</span><span class="rules">{
+    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1</span>%</span></span>;
+    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">0</span></span></span>;
+<span class="rule">}</span></span>
+</pre></td></tr></table></figure>
 
 <p>文本偏移被修复了，但是在浮动元素上又会出现3像素间隙，为了去掉这个间隙，需要在浮动元素上设置一个负的3像素右外边距</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class">.myFloat</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">margin-right</span>:<span class="value"> -<span class="number">3px</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="class">.myFloat</span><span class="rules">{
+    <span class="rule"><span class="attribute">margin-right</span>:<span class="value"> -<span class="number">3</span>px</span></span>;
+<span class="rule">}</span></span>
+</pre></td></tr></table></figure>
 
-<p><br></p>
+<p><br /></p>
 <h4 id="IE6的重复字符bug">IE6的重复字符bug</h4>
 <p>一系列浮动元素的最后一个元素中的最后几个字符会在浮动元素下面重复出现。<br>当在一系列浮动元素的一个元素和最后一个元素之间有多个注释时，就会出现这个bug。前两个注释没影响，但是后续的每个注释会导致两个字符重复出现。<br>所以，3个注释会导致2个重复字符，4个注释会导致4个重复字符，5个注释会导致6个重复字符。。。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--  aaa--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line">       <span class="comment">&lt;!-- bbb---&gt;</span></div><div class="line">       <span class="comment">&lt;!-- ccc--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span>&gt;</span>
+    <span class="comment">&lt;!--  aaa--&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+       <span class="comment">&lt;!-- bbb---&gt;</span>
+       <span class="comment">&lt;!-- ccc--&gt;</span>
+      <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td></tr></table></figure>
 
 <p>为了修复这个bug，最好是删除注释。</p>
-<p><br></p>
+<p><br /></p>
 <h4 id="IE6的藏猫猫_bug">IE6的藏猫猫 bug</h4>
 <p>一个浮动元素后面跟着一些非浮动元素，然后是一个清理元素，所有这些元素都包含在一个设置了背景颜色或图像的父元素中。<br>如果清理元素碰到了浮动元素，那么中间的非浮动元素看起来消失了，隐藏到了父元素的背景颜色或者图像后面，<strong>只有在刷新页面时才重新出现。</strong></p>
 <p>修复方法： 避免清理元素与浮动元素接触；给父元素应用特定尺寸或设置行高；也可以将浮动元素和容器元素的<code>position</code>属性设置为<code>relative</code>。</p>
-<p><br></p>
+<p><br /></p>
 <h4 id="相对容器中的绝对定位">相对容器中的绝对定位</h4>
 <p>由于相对定位的元素没有获得IE的内部布局属性，因此他们创建新的定位上下文，所有绝对定位元素相对于视口进行定位。</p>
 <p>解决这个bug的方法是，为容器布局提供一个任意的高度，使容器拥有布局属性。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1%</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="class">.container</span><span class="rules">{
+    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1</span>%</span></span>;
+<span class="rule">}</span></span>
+</pre></td></tr></table></figure>
 
-<p><br><br>使用条件注释将IE6的样式单独放置</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- [if IE 6]</span></div><div class="line">    &lt;link rel="stylesheet" type="text/css" href="/css/ie6.css" /&gt;</div><div class="line">--&gt;</div></pre></td></tr></table></figure>
+<p><br /><br>使用条件注释将IE6的样式单独放置</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="comment">&lt;!-- [if IE 6]
+    &lt;link rel="stylesheet" type="text/css" href="/css/ie6.css" /&gt;
+--&gt;</span>
+</pre></td></tr></table></figure>
 
 <p>还可以向IE隐藏特定的样式表</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- [if !IE 6]&gt; --&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"/css/advanced.css"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- &lt;![endif] --&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="comment">&lt;!-- [if !IE 6]&gt; --&gt;</span>
+   <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"/css/advanced.css"</span> /&gt;</span>
+<span class="comment">&lt;!-- &lt;![endif] --&gt;</span>
+</pre></td></tr></table></figure>
 
 <p><em>摘自精通css</em></p>
 ]]></content>

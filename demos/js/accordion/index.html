@@ -5,8 +5,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>手风琴</title>
-	<link href="style.css" rel="stylesheet" type="text/css">
-	<script type="text/javascript" src="move.js"></script>
+	<link href="style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src = "move.js"></script>
 	<script type="text/javascript">
 	window.onload = function () {
 		var oAcco = document.getElementById('accordion');
@@ -18,7 +18,6 @@
 
 			aSpan[i].index = i;
 			aSpan[i].onmouseover = function () {
-				
 				for (var i = 0; i < aSpan.length; i++) {
 					fnMove(aLi[i], 20);
 
@@ -39,27 +38,27 @@
 	<div id="accordion">
 		<ul>
 			<li class="active">
-				<img src="images/1.jpg">
-				<span class="s1">1</span>
+				<img src="images/1.jpg" />
+				<span class = "s1">1</span>
 			</li>
 
 			<li>
-				<img src="images/2.jpg">
-				<span class="s2">2</span>
+				<img src="images/2.jpg" />
+				<span class = "s2">2</span>
 			</li>
 
 			<li>
-				<img src="images/3.jpg">
-				<span class="s3">3</span>
+				<img src="images/3.jpg" />
+				<span class = "s3">3</span>
 			</li>
 
 			<li>
-				<img src="images/4.jpg">
-				<span class="s4">4</span>
+				<img src="images/4.jpg" />
+				<span class = "s4">4</span>
 			</li>
 			<li>
-				<img src="images/5.jpg">
-				<span class="s5">5</span>
+				<img src="images/5.jpg" />
+				<span class = "s5">5</span>
 			</li>
 		</ul>
 	</div>

@@ -19,14 +19,12 @@
     <meta property="og:image" content="undefined"/>
   
 
-  <!-- <link href="/flickr/favicon.ico" rel="icon"> -->
-  <link rel="alternate" href="/flickr/atom.xml" title="stddup" type="application/atom+xml">
-  <link rel="stylesheet" href="/flickr/css/bootstrap.min.css" type="text/css">
+  <!-- <link href="/favicon.ico" rel="icon"> -->
+  <link rel="alternate" href="/atom.xml" title="stddup" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
-<link rel="stylesheet" href="/flickr/css/style.css" type="text/css">
-
-  <script src="/flickr/js/jquery.min.js" type="text/javascript"></script>
-
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -48,6 +46,12 @@
 		    <nav id="main-nav">
   <ul class='container'>
     
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/flickr">Flickr</a></li>
+    
   </ul>
   <div class="clearfix"></div>
 </nav>
@@ -59,7 +63,7 @@
     <header>
       <div class="icon"></div>
       
-      <time datetime="2013-12-10T13:34:45.000Z"><a href="/flickr/2013/12/10/js-distribution/">周二, 12月 10 2013, 21:34:45 晚上</a></time>
+      <time datetime="2013-12-10T13:34:45.000Z"><a href="/2013/12/10/js-distribution/">周二, 12月 10 2013, 21:34:45 晚上</a></time>
 
   
     <h1 class="title">JavaScript分布应用</h1>
@@ -84,35 +88,167 @@
     <div class="entry">
       
         <p>如果我们需要一个函数，但是其中一个操作符的参数已经给定了会怎么样？<br>针对这种情况，分布应用就派上用场了。<br><strong>接收一个函数func和一个或多个参数，然后创建一个新函数调用func，原来的参数和新传入的参数，在调用的时候都会用到</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">partial</span><span class="params">(func)</span></span>{</div><div class="line">    <span class="keyword">var</span> knowArgs = <span class="built_in">arguments</span>;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">        <span class="keyword">var</span> realArgs = [];</div><div class="line">        <span class="comment">/*第一个参数是func，所以循环从1开始*/</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;knowArgs.length;i++)</div><div class="line">            realArgs.push(knowArgs[i]);</div><div class="line">        <span class="comment">/*获取内嵌函数的参数*/</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;<span class="built_in">arguments</span>.length;i++)</div><div class="line">            realArgs.push(<span class="built_in">arguments</span>[i]);</div><div class="line">        <span class="keyword">return</span> func.apply(<span class="literal">null</span>,realArgs);</div><div class="line">    };</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">partial</span><span class="params">(func)</span>{</span>
+    <span class="keyword">var</span> knowArgs = <span class="built_in">arguments</span>;
+    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+        <span class="keyword">var</span> realArgs = [];
+        <span class="comment">/*第一个参数是func，所以循环从1开始*/</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;knowArgs.length;i++)
+            realArgs.push(knowArgs[i]);
+        <span class="comment">/*获取内嵌函数的参数*/</span>
+        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;<span class="built_in">arguments</span>.length;i++)
+            realArgs.push(<span class="built_in">arguments</span>[i]);
+        <span class="keyword">return</span> func.apply(<span class="literal">null</span>,realArgs);
+    };
+}
+</pre></td></tr></table></figure>
 
 <p><code>partial(op[&quot;*&quot;],5)</code>应该返回一个将参数与5进行相乘的新函数(javascript编程精解说是进行5次相乘，出错了吧，<code>partial(op[&quot;*&quot;],5)(2);</code>的结果是10)</p>
 <p>这里<code>op[&quot;*&quot;]</code>是自定义的操作符函数</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var op = {</div><div class="line">    <span class="string">"+"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a + b;},</div><div class="line">    <span class="string">"-"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a - b;},</div><div class="line">    <span class="string">"/"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a / b;}</div><div class="line">    /*等等<span class="keyword">...</span>*/</div><div class="line">};</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>var op = {
+    <span class="string">"+"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a + b;},
+    <span class="string">"-"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a - b;},
+    <span class="string">"/"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a / b;}
+    /*等等<span class="keyword">...</span>*/
+};
+</pre></td></tr></table></figure>
 
 <p>这里使用到了<code>apply()</code>，有必要了解一下这个函数，不然还真是有点难理解。</p>
 <hr>
 <p><code>apply()</code>和<code>call()</code>这两个方法的用途都是在特定的作用域中调用函数，实际上等于设置函数体内<code>this</code>对象的值。</p>
 <p><code>apply()</code>方法接收两个参数：一个是在其中运行函数的作用域，另一个是参数数组。其中，第二个参数可以是Array的实例，也可以是arguments对象。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> num1 + num2; </div><div class="line">} </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callSum1</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> sum.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>); <span class="comment">// 传入arguments对象</span></div><div class="line">} </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callSum2</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> sum.apply(<span class="keyword">this</span>, [num1, num2]); <span class="comment">// 传入数组</span></div><div class="line">} </div><div class="line">alert(callSum1(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20 </span></div><div class="line">alert(callSum2(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> num1 + num2; 
+} 
+<span class="function"><span class="keyword">function</span> <span class="title">callSum1</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> sum.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>); <span class="comment">// 传入arguments对象</span>
+} 
+<span class="function"><span class="keyword">function</span> <span class="title">callSum2</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> sum.apply(<span class="keyword">this</span>, [num1, num2]); <span class="comment">// 传入数组</span>
+} 
+alert(callSum1(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20 </span>
+alert(callSum2(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20</span>
+</pre></td></tr></table></figure>
 
 <p><code>call()</code>方法与<code>apply()</code>方法的作用相同，它们的区别仅在于接收参数的方式不同。对于<code>call()</code>方法而言，第一个参数是<code>this</code>值没有变化，变化的是其余参数都直接传递给函数。换句话说，在使用<code>call()</code>方法时，传递给函数的参数必须逐个列举出来。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> num1 + num2; </div><div class="line">} </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callSum</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> sum.call(<span class="keyword">this</span>, num1, num2); </div><div class="line">} </div><div class="line">alert(callSum(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> num1 + num2; 
+} 
+<span class="function"><span class="keyword">function</span> <span class="title">callSum</span><span class="params">(num1, num2)</span>{</span> 
+<span class="keyword">return</span> sum.call(<span class="keyword">this</span>, num1, num2); 
+} 
+alert(callSum(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20</span>
+</pre></td></tr></table></figure>
 
 <p>事实上，传递参数并非<code>apply()</code>和<code>call()</code>真正的用武之地；它们真正强大的地方是能够扩充函数<br>赖以运行的作用域。下面来看一个例子。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.color = <span class="string">"red"</span>; </div><div class="line"><span class="keyword">var</span> o = { color: <span class="string">"blue"</span> }; </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span><span class="params">()</span></span>{ </div><div class="line">alert(<span class="keyword">this</span>.color); </div><div class="line">} </div><div class="line">sayColor(); <span class="comment">//red </span></div><div class="line">sayColor.call(<span class="keyword">this</span>); <span class="comment">//red </span></div><div class="line">sayColor.call(<span class="built_in">window</span>); <span class="comment">//red </span></div><div class="line">sayColor.call(o); <span class="comment">//blue</span></div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre>window.color = <span class="string">"red"</span>; 
+<span class="keyword">var</span> o = { color: <span class="string">"blue"</span> }; 
+<span class="function"><span class="keyword">function</span> <span class="title">sayColor</span><span class="params">()</span>{</span> 
+alert(<span class="keyword">this</span>.color); 
+} 
+sayColor(); <span class="comment">//red </span>
+sayColor.call(<span class="keyword">this</span>); <span class="comment">//red </span>
+sayColor.call(window); <span class="comment">//red </span>
+sayColor.call(o); <span class="comment">//blue</span>
+</pre></td></tr></table></figure>
 
 <p>在ECMAScript 5的严格模式中，<code>call()</code>和<code>apply()</code>的第一个参数都会变为<code>this</code>的值，哪怕传入的实参是原始值甚至是<code>null</code>,<code>undefined</code>。在ECMAScript 3和非严格模式中传入的<code>null</code>和<code>undefined</code>都会被全局对象代替，而其他原始则会被相应的包装对象所替代。</p>
 <hr>
 <p>现在再来看函数<code>partial()</code>,变量<code>knowArgs</code>是必需的，因为在内部函数里，<code>arguments</code>(<em>是个伪数组</em>)变量引用的是内部函数的参数，而不是<code>partial</code>的参数。<br><a id="more"></a></p>
 <p>函数最后返回<code>return func.apply(null,realArgs);</code> 这里<code>apply()</code>的第一个实参是全局对象,也就是<code>window</code>,所以<code>realArgs</code>不仅包含了<code>partial()</code>中的参数，还通过<code>apply()</code>包含了”内部函数”的参数(如下面示例中<code>map()</code>数组实参)。</p>
 <p>示例分析：<br><code>map(partial(op[&quot;+&quot;],1),[0,2,4]);</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*******************</span></div><div class="line">* 映射数组 map()</div><div class="line">********************/</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">map</span><span class="params">(func, array)</span></span>{</div><div class="line">    <span class="keyword">var</span> result = [];</div><div class="line">    forEach(array,<span class="function"><span class="keyword">function</span><span class="params">(element)</span></span>{</div><div class="line">        result.push(func(element));</div><div class="line">    });</div><div class="line">    <span class="keyword">return</span> result;</div><div class="line">}</div><div class="line"><span class="comment">/*forEach*/</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">forEach</span><span class="params">(array,action)</span></span>{</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>,len = array.length; i &lt; len; i++)</div><div class="line">        action(array[i]);</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre><span class="comment">/*******************
+* 映射数组 map()
+********************/</span>
+<span class="function"><span class="keyword">function</span> <span class="title">map</span><span class="params">(func, array)</span>{</span>
+    <span class="keyword">var</span> result = [];
+    forEach(array,<span class="function"><span class="keyword">function</span><span class="params">(element)</span>{</span>
+        result.push(func(element));
+    });
+    <span class="keyword">return</span> result;
+}
+<span class="comment">/*forEach*/</span>
+<span class="function"><span class="keyword">function</span> <span class="title">forEach</span><span class="params">(array,action)</span>{</span>
+    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>,len = array.length; i &lt; len; i++)
+        action(array[i]);
+}
+</pre></td></tr></table></figure>
 
 <p><code>map()</code>会遍历数组中的每个元素，结合<code>partial</code>使数组中的每个数字加1，结果为<code>[1,3,5]</code>。</p>
 <p><code>map</code>在接收数组参数之前接收函数参数的原因是： 将传入的函数分布应用到<code>map</code>上，它将对单一值执行运算的功能升级为对数组值执行运算的功能。</p>
 <p>例如，假设有一个数字数组的数组，计算其平方值，可以这样编写：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">square</span><span class="params">(x)</span></span>{</div><div class="line">    <span class="keyword">return</span> x * x;</div><div class="line">}</div><div class="line"></div><div class="line">map(partial(map,square),[[<span class="number">10</span>],[<span class="number">0</span>,<span class="number">1</span>],[<span class="number">3</span>]]);</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">square</span><span class="params">(x)</span>{</span>
+    <span class="keyword">return</span> x * x;
+}
+
+map(partial(map,square),[[<span class="number">10</span>],[<span class="number">0</span>,<span class="number">1</span>],[<span class="number">3</span>]]);
+</pre></td></tr></table></figure>
 
 <p>这里不小心的话，很容易以为用<code>map(square,[[10],[0,1],[3]]);</code>就可以了，但是这个数组里面含有<code>[0,1]</code>这样的数组，需要<code>map</code>来遍历处理，不然会返回<code>NaN</code>。</p>
 <p>哎哟，发现解释起来还真是麻烦，弄来弄去，貌似还没怎么说清楚。。。。</p>
@@ -125,23 +261,23 @@
   
   <div class="categories">
   	<i class="fa fa-folder-open"></i>
-    <a href="/flickr/categories/JavaScript/">JavaScript</a>
+    <a href="/categories/JavaScript/">JavaScript</a>
   </div>
 
           
   
   <div class="tags">
   	<i class="fa fa-tag"></i>
-    <a href="/flickr/tags/分布应用/">分布应用</a>
+    <a href="/tags/分布应用/">分布应用</a>
   </div>
 
           <div class="clearfix"></div>
           <nav id="pagination">
   
-    <a href="/flickr/2013/12/24/js-compatibility-collect/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Newer</a>
+    <a href="/2013/12/24/js-compatibility-collect/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Newer</a>
   
   
-    <a href="/flickr/2013/12/10/never-need-to-enter-password-for-git-push/" class="alignright next">Older<i class="fa fa-long-arrow-right"></i></a>
+    <a href="/2013/12/10/never-need-to-enter-password-for-git-push/" class="alignright next">Older<i class="fa fa-long-arrow-right"></i></a>
   
   <div class="clearfix"></div>
 </nav>
@@ -175,10 +311,10 @@ Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="ex
 
 <div class="clearfix"></div></footer>
 		  
-<script src="/flickr/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
-<script src="/flickr/js/gallery.js" type="text/javascript"></script>
-<script src="/flickr/js/bootstrap.min.js" type="text/javascript"></script>
-
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/fartscroll.js"></script>
 
 
 <script type="text/javascript">
@@ -211,8 +347,8 @@ var disqus_shortname = 'stddup';
 
 
 
-  <link rel="stylesheet" href="/flickr/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-  <script src="/flickr/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript">
   (function($){
     $('.fancybox').fancybox({
@@ -236,10 +372,11 @@ var disqus_shortname = 'stddup';
 
     });
   });
-</script>
-<script src="/flickr/js/jquery.anystretch.min.js" type="text/javascript"></script>
-<script src="/flickr/js/nav.js" type="text/javascript"></script>
 
+  fartscroll(800);
+</script>
+<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
+<script type="text/javascript" src="/js/nav.js"></script>
 
 		</body>
 		</html>

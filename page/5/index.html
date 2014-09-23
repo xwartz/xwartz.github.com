@@ -19,14 +19,12 @@
     <meta property="og:image" content="undefined"/>
   
 
-  <!-- <link href="/flickr/favicon.ico" rel="icon"> -->
-  <link rel="alternate" href="/flickr/atom.xml" title="stddup" type="application/atom+xml">
-  <link rel="stylesheet" href="/flickr/css/bootstrap.min.css" type="text/css">
+  <!-- <link href="/favicon.ico" rel="icon"> -->
+  <link rel="alternate" href="/atom.xml" title="stddup" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
-<link rel="stylesheet" href="/flickr/css/style.css" type="text/css">
-
-  <script src="/flickr/js/jquery.min.js" type="text/javascript"></script>
-
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -48,6 +46,12 @@
 		    <nav id="main-nav">
   <ul class='container'>
     
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/flickr">Flickr</a></li>
+    
   </ul>
   <div class="clearfix"></div>
 </nav>
@@ -57,8 +61,8 @@
 	<div id="profile" alt="/bg.jpg">
 		
 			<div class="logo">
-			 <a href="/flickr/">
-				<img src="/flickr/logo.png" alt="Profile Picture">
+			 <a href="/">
+				<img src="/logo.png" alt="Profile Picture">
 			 </a>
 			</div>
 			<div id="title">stddup</div>
@@ -70,7 +74,7 @@
 		 <ul class="my-socials">
   
   <li>
-  	<a href="https://github.com/xwartz" class="github" target="_blank">
+  	<a href="https://github.com/hizhi" class="github" target="_blank">
   		<i class="fa fa-github"></i>
   	</a>
   </li>
@@ -99,10 +103,10 @@
     <header>
       <div class="icon"></div>
       
-      <time datetime="2013-12-05T14:06:29.000Z"><a href="/flickr/2013/12/05/css-navigation/">周四, 12月 5 2013, 22:06:29 晚上</a></time>
+      <time datetime="2013-12-05T14:06:29.000Z"><a href="/2013/12/05/css-navigation/">周四, 12月 5 2013, 22:06:29 晚上</a></time>
 
   
-    <h1 class="title"><a href="/flickr/2013/12/05/css-navigation/">css创建导航条学习</a></h1>
+    <h1 class="title"><a href="/2013/12/05/css-navigation/">css创建导航条学习</a></h1>
   
 
 <div class="clear"></div>
@@ -125,10 +129,82 @@
       
         <h4 id="创建垂直的导航条">创建垂直的导航条</h4>
 <p>首先创建<code>HTML</code></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"nav"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Home<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>About<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Server<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Work<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>News<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Contact<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"nav"</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Home<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>About<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Server<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Work<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>News<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Contact<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
+</pre></td></tr></table></figure>
 
 <p>css文档</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 创建垂直导航条 */</span></div><div class="line">    <span class="tag">ul</span><span class="class">.nav</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">list-style</span>:<span class="value"> none</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">8em</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#8BD400</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#486B02</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.nav</span> <span class="tag">a</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#2b3f00</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#e4ffd3</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#486b02</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.3em</span> <span class="number">1em</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.nav</span><span class="pseudo">:last-child</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.nav</span> <span class="tag">a</span><span class="pseudo">:hover</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#e4ffd3</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#6da203</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="comment">/* IE6下兼容 */</span></div><div class="line">    <span class="tag">ul</span><span class="class">.nav</span> <span class="tag">li</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">display</span>:<span class="value"> inline</span></span>;</div><div class="line">    <span class="rule">}</span></div></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+</pre></td><td class="code"><pre><span class="comment">/* 创建垂直导航条 */</span>
+    <span class="tag">ul</span><span class="class">.nav</span><span class="rules">{
+        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;
+        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;
+        <span class="rule"><span class="attribute">list-style</span>:<span class="value"> none</span></span>;
+        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">8</span>em</span></span>;
+        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#8BD400</span></span></span>;
+        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#486B02</span></span></span>;
+    <span class="rule">}</span></span>
+    <span class="tag">ul</span><span class="class">.nav</span> <span class="tag">a</span><span class="rules">{
+        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;
+        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#2b3f00</span></span></span>;
+        <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;
+        <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#e4ffd3</span></span></span>;
+        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#486b02</span></span></span>;
+        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.3</span>em <span class="number">1</span>em</span></span>;
+    <span class="rule">}</span></span>
+    <span class="tag">ul</span><span class="class">.nav</span><span class="pseudo">:last-child</span><span class="rules">{
+        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">0</span></span></span>;
+    <span class="rule">}</span></span>
+    <span class="tag">ul</span><span class="class">.nav</span> <span class="tag">a</span><span class="pseudo">:hover</span><span class="rules">{
+        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#e4ffd3</span></span></span>;
+        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#6da203</span></span></span>;
+    <span class="rule">}</span></span>
+    <span class="comment">/* IE6下兼容 */</span>
+    <span class="tag">ul</span><span class="class">.nav</span> <span class="tag">li</span><span class="rules">{
+        <span class="rule"><span class="attribute">display</span>:<span class="value"> inline</span></span>;
+    <span class="rule">}</span></span>
+</pre></td></tr></table></figure>
 
 <p><strong>IE6由于块元素<code>li</code>会添加额外的空间，所以需要将列表项上的<code>display</code>属性设置为<code>inline</code></strong></p>
 <p>
@@ -137,7 +213,7 @@
     <footer>
       
         <div class="alignleft">
-            <a href="/flickr/2013/12/05/css-navigation/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+            <a href="/2013/12/05/css-navigation/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
       
@@ -156,10 +232,10 @@
     <header>
       <div class="icon"></div>
       
-      <time datetime="2013-12-03T14:20:50.000Z"><a href="/flickr/2013/12/03/sublime-text-settings/">周二, 12月 3 2013, 22:20:50 晚上</a></time>
+      <time datetime="2013-12-03T14:20:50.000Z"><a href="/2013/12/03/sublime-text-settings/">周二, 12月 3 2013, 22:20:50 晚上</a></time>
 
   
-    <h1 class="title"><a href="/flickr/2013/12/03/sublime-text-settings/">Sublime Text折腾记录</a></h1>
+    <h1 class="title"><a href="/2013/12/03/sublime-text-settings/">Sublime Text折腾记录</a></h1>
   
 
 <div class="clear"></div>
@@ -181,15 +257,93 @@
     <div class="entry">
       
         <h4 id="Sublime_Text的一些快捷键：">Sublime Text的一些快捷键：</h4>
-<figure class="highlight mk"><figcaption><span>快捷键</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Ctrl+Shift+p：     打开命令板</div><div class="line">Ctrl+P：           搜索项目中的文件</div><div class="line">Ctrl+G：           跳到第几行</div><div class="line">Ctr+W：            关闭当前打开的文件</div><div class="line">Ctrl+L：           选择行，重复可增加选择下一个行</div><div class="line">Ctrl+X：           删除当前行</div><div class="line">Ctrl+Shift+Enter： 在当前行前插入新行</div><div class="line">Ctrl+M：           跳转到对应括号</div><div class="line">Ctrl+U：           撤销光标位置</div><div class="line">Ctrl+/：           注释当前行</div><div class="line">Ctrl+Shift+/：     在当前位置插入注释</div><div class="line">Alt+Shift+数字：   分屏显示</div><div class="line">Shift+右键拖动：   可选择多个位置，同时编辑</div><div class="line">按Ctrl，依次点击左键： 可同时编辑多个位置</div><div class="line"></div><div class="line">Ctrl+Shift+up/down：  替换行</div></pre></td></tr></table></figure>
+<figure class="highlight mk"><figcaption><span>快捷键</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre>Ctrl+<span class="keyword">Shift</span>+p：     打开命令板
+Ctrl+P：           搜索项目中的文件
+Ctrl+G：           跳到第几行
+Ctr+W：            关闭当前打开的文件
+Ctrl+L：           选择行，重复可增加选择下一个行
+Ctrl+X：           删除当前行
+Ctrl+<span class="keyword">Shift</span>+Enter： 在当前行前插入新行
+Ctrl+M：           跳转到对应括号
+Ctrl+U：           撤销光标位置
+Ctrl+/：           注释当前行
+Ctrl+<span class="keyword">Shift</span>+/：     在当前位置插入注释
+Alt+<span class="keyword">Shift</span>+数字：   分屏显示
+<span class="keyword">Shift</span>+右键拖动：   可选择多个位置，同时编辑
+按Ctrl，依次点击左键： 可同时编辑多个位置
+
+Ctrl+<span class="keyword">Shift</span>+up/down：  替换行
+</pre></td></tr></table></figure>
 
 <h4 id="Sublime_Text3_设置：">Sublime Text3 设置：</h4>
 <p>Setting User：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">{</div><div class="line">  "<span class="attribute">color_scheme</span>": <span class="value"><span class="string">"Packages/Theme - Flatland/Flatland Dark.tmTheme"</span></span>,</div><div class="line">  "<span class="attribute">draw_centered</span>": <span class="value"><span class="literal">true</span></span>,</div><div class="line">  "<span class="attribute">ensure_newline_at_eof_on_save</span>": <span class="value"><span class="literal">true</span></span>,</div><div class="line">  "<span class="attribute">font_face</span>": <span class="value"><span class="string">"Consolas"</span></span>,</div><div class="line">  "<span class="attribute">font_size</span>": <span class="value"><span class="number">12</span></span>,</div><div class="line">  "<span class="attribute">gutter</span>": <span class="value"><span class="literal">true</span></span>,</div><div class="line">  "<span class="attribute">highlight_line</span>": <span class="value"><span class="literal">true</span></span>,</div><div class="line">  "<span class="attribute">ignored_packages</span>":</div><div class="line">  <span class="value">[</span></div><div class="line">    <span class="string">"Markdown"</span>,</div><div class="line">    <span class="string">"Vintage"</span></div><div class="line">  ],</div><div class="line">  "<span class="attribute">line_numbers</span>": <span class="value"><span class="literal">true</span></span>,</div><div class="line">  "<span class="attribute">line_padding_bottom</span>": <span class="value"><span class="number">1</span></span>,</div><div class="line">  "<span class="attribute">line_padding_top</span>": <span class="value"><span class="number">1</span></span>,</div><div class="line">  "<span class="attribute">scroll_past_end</span>": <span class="value"><span class="literal">true</span></span>,</div><div class="line">  "<span class="attribute">tab_size</span>": <span class="value"><span class="number">2</span></span>,</div><div class="line">  "<span class="attribute">theme</span>": <span class="value"><span class="string">"Flatland Dark.sublime-theme"</span></span>,</div><div class="line">  "<span class="attribute">translate_tabs_to_spaces</span>": <span class="value"><span class="literal">false</span></span>,</div><div class="line">  "<span class="attribute">trim_trailing_white_space_on_save</span>": <span class="value"><span class="literal">true</span></span>,</div><div class="line">  "<span class="attribute">word_wrap</span>": <span class="value"><span class="literal">true</span></span></div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="code"><pre>{
+  "<span class="attribute">color_scheme</span>": <span class="value"><span class="string">"Packages/Theme - Flatland/Flatland Dark.tmTheme"</span></span>,
+  "<span class="attribute">draw_centered</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">ensure_newline_at_eof_on_save</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">font_face</span>": <span class="value"><span class="string">"Consolas"</span></span>,
+  "<span class="attribute">font_size</span>": <span class="value"><span class="number">12</span></span>,
+  "<span class="attribute">gutter</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">highlight_line</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">ignored_packages</span>":
+  <span class="value">[
+    <span class="string">"Markdown"</span>,
+    <span class="string">"Vintage"</span>
+  ]</span>,
+  "<span class="attribute">line_numbers</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">line_padding_bottom</span>": <span class="value"><span class="number">1</span></span>,
+  "<span class="attribute">line_padding_top</span>": <span class="value"><span class="number">1</span></span>,
+  "<span class="attribute">scroll_past_end</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">tab_size</span>": <span class="value"><span class="number">2</span></span>,
+  "<span class="attribute">theme</span>": <span class="value"><span class="string">"Flatland Dark.sublime-theme"</span></span>,
+  "<span class="attribute">translate_tabs_to_spaces</span>": <span class="value"><span class="literal">false</span></span>,
+  "<span class="attribute">trim_trailing_white_space_on_save</span>": <span class="value"><span class="literal">true</span></span>,
+  "<span class="attribute">word_wrap</span>": <span class="value"><span class="literal">true</span>
+</span>}
+</pre></td></tr></table></figure>
 
 <h4 id="一些插件：">一些插件：</h4>
 <p>安装插件的方法：首先安装<code>Package Control，View &gt; Show Console</code>，然后输入以下代码</p>
-<p><code>import urllib.request,os; pf = &#39;Package Control.sublime-package&#39;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &#39;wb&#39;).write(urllib.request.urlopen( &#39;http://sublime.wbond.net/&#39; + pf.replace(&#39; &#39;,&#39;%20&#39;)).read())</code><br>来源： <a href="https://sublime.wbond.net/installation#st3" target="_blank" rel="external">https://sublime.wbond.net/installation#st3</a></p>
+<p><code>import urllib.request,os; pf = &#39;Package Control.sublime-package&#39;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &#39;wb&#39;).write(urllib.request.urlopen( &#39;http://sublime.wbond.net/&#39; + pf.replace(&#39; &#39;,&#39;%20&#39;)).read())</code><br>来源： <a href="https://sublime.wbond.net/installation#st3" target="_blank">https://sublime.wbond.net/installation#st3</a></p>
 <p>然后重启Sublime Text，就可以通过<code>Ctrl+Shift+P</code>，打开<code>Control Package</code>，输入<code>install package</code>，然后就可以按照需要的插件了。</p>
 <h4 id="一些好用的插件：">一些好用的插件：</h4>
 <p><em>Alignment</em></p>
@@ -200,7 +354,69 @@
 <pre><code>    代码对齐，<span class="escape">`C</span>trl+Alt+]<span class="escape">`就</span>可以将选中的代码对齐了，写CSS的时候很有用，可以对齐属性值。
 </code></pre><p><em>Side Bar</em></p>
 <pre><code>    可以设置浏览器预览，快速打开各浏览器，非常好用。
-</code></pre><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">  [</div><div class="line">    { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+shift+c"</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"copy_path"</span> </span>},</div><div class="line">    //chrome</div><div class="line">    { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"f1"</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"side_bar_files_open_with"</span></span>,</div><div class="line">            "<span class="attribute">args</span>": <span class="value">{</span></div><div class="line">                "<span class="attribute">paths</span>": <span class="value">[]</span>,</div><div class="line">                "<span class="attribute">application</span>": <span class="value"><span class="string">"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"</span></span>,</div><div class="line">                "<span class="attribute">extensions</span>":<span class="value"><span class="string">".*"</span></span></div><div class="line">            }</div><div class="line">     },</div><div class="line">    //firefox</div><div class="line">    { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"f2"</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"side_bar_files_open_with"</span></span>,</div><div class="line">             "<span class="attribute">args</span>": <span class="value">{</span></div><div class="line">                "<span class="attribute">paths</span>": <span class="value">[]</span>,</div><div class="line">                "<span class="attribute">application</span>": <span class="value"><span class="string">"C:\\Program Files\\Mozilla Firefox\\firefox.exe"</span></span>,</div><div class="line">                "<span class="attribute">extensions</span>":<span class="value"><span class="string">".*"</span> //匹配任何文件类型</span></div><div class="line">            }</div><div class="line">    },</div><div class="line">    //ie</div><div class="line">     { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"f3"</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"side_bar_files_open_with"</span></span>,</div><div class="line">             "<span class="attribute">args</span>": <span class="value">{</span></div><div class="line">                "<span class="attribute">paths</span>": <span class="value">[]</span>,</div><div class="line">                "<span class="attribute">application</span>": <span class="value"><span class="string">"C:\\Program Files\\Internet Explorer\\iexplore.exe"</span></span>,</div><div class="line">                "<span class="attribute">extensions</span>":<span class="value"><span class="string">".*"</span></span></div><div class="line">            }</div><div class="line">    }</div><div class="line">    //safari</div><div class="line"></div><div class="line">     //opera</div><div class="line"></div><div class="line">]</div></pre></td></tr></table></figure>
+</code></pre><figure class="highlight json"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre></td><td class="code"><pre>  [
+    { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"ctrl+shift+c"</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"copy_path"</span> </span>},
+    //chrome
+    { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"f1"</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"side_bar_files_open_with"</span></span>,
+            "<span class="attribute">args</span>": <span class="value">{
+                "<span class="attribute">paths</span>": <span class="value">[]</span>,
+                "<span class="attribute">application</span>": <span class="value"><span class="string">"C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"</span></span>,
+                "<span class="attribute">extensions</span>":<span class="value"><span class="string">".*"</span>
+            </span>}
+     </span>},
+    //firefox
+    { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"f2"</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"side_bar_files_open_with"</span></span>,
+             "<span class="attribute">args</span>": <span class="value">{
+                "<span class="attribute">paths</span>": <span class="value">[]</span>,
+                "<span class="attribute">application</span>": <span class="value"><span class="string">"C:\\Program Files\\Mozilla Firefox\\firefox.exe"</span></span>,
+                "<span class="attribute">extensions</span>":<span class="value"><span class="string">".*"</span> //匹配任何文件类型
+            </span>}
+    </span>},
+    //ie
+     { "<span class="attribute">keys</span>": <span class="value">[<span class="string">"f3"</span>]</span>, "<span class="attribute">command</span>": <span class="value"><span class="string">"side_bar_files_open_with"</span></span>,
+             "<span class="attribute">args</span>": <span class="value">{
+                "<span class="attribute">paths</span>": <span class="value">[]</span>,
+                "<span class="attribute">application</span>": <span class="value"><span class="string">"C:\\Program Files\\Internet Explorer\\iexplore.exe"</span></span>,
+                "<span class="attribute">extensions</span>":<span class="value"><span class="string">".*"</span>
+            </span>}
+    </span>}
+    //safari
+
+     //opera
+
+]
+</pre></td></tr></table></figure>
 
 <p><em>Bracket Highlighter</em></p>
 <pre><code>    类似于代码匹配，可以匹配括号，引号等符号内的范围。
@@ -211,12 +427,46 @@
 </code></pre><p><em>Emmet</em> （Zen Coding更名)</p>
 <pre><code>    使用<span class="escape">`C</span>trl+Alt+Enter<span class="escape">` </span>呼出Emmet，然后就可以像这样
      <span class="escape">`d</span>iv&gt;#id&gt;.class&gt;li*<span class="number">5</span><span class="escape">`自</span>动产生以下代码了
-</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"id"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"class"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
+</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;<span class="title">div</span> <span class="attribute">id</span>=<span class="value">"id"</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"class"</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+      <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+  <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
+</pre></td></tr></table></figure>
 
-<p>功能强大，更多使用文档 <a href="http://docs.emmet.io/" target="_blank" rel="external">Emmet</a></p>
+<p>功能强大，更多使用文档 <a href="http://docs.emmet.io/" target="_blank">Emmet</a></p>
 <p><em>SublimeTmpl</em></p>
 <pre><code>    快速生成文件模板，SublimeTmpl默认的快捷键
-</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ctrl+alt+<span class="keyword">h</span> html</div><div class="line">ctrl+alt+<span class="keyword">j</span> javascript</div><div class="line">ctrl+alt+<span class="keyword">c</span> css</div><div class="line">ctrl+alt+<span class="keyword">p</span> php</div><div class="line">ctrl+alt+<span class="keyword">r</span> <span class="keyword">ruby</span></div><div class="line">ctrl+alt+shift+<span class="keyword">p</span> <span class="keyword">python</span></div></pre></td></tr></table></figure>
+</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>    ctrl+alt+h html
+    ctrl+alt+j javascript
+    ctrl+alt+c css
+    ctrl+alt+p php
+    ctrl+alt+r ruby
+    ctrl+alt+<span class="keyword">shift</span>+p python
+</pre></td></tr></table></figure>
 
 <p><em>Markdown Editing</em></p>
 <pre><code>  写Markdown文件的时候，可以显示格式效果
@@ -226,7 +476,7 @@
     <footer>
       
         <div class="alignleft">
-            <a href="/flickr/2013/12/03/sublime-text-settings/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+            <a href="/2013/12/03/sublime-text-settings/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
       
@@ -245,10 +495,10 @@
     <header>
       <div class="icon"></div>
       
-      <time datetime="2013-11-27T15:09:40.000Z"><a href="/flickr/2013/11/27/origin-null-is-not-allowed-access/">周三, 11月 27 2013, 23:09:40 晚上</a></time>
+      <time datetime="2013-11-27T15:09:40.000Z"><a href="/2013/11/27/origin-null-is-not-allowed-access/">周三, 11月 27 2013, 23:09:40 晚上</a></time>
 
   
-    <h1 class="title"><a href="/flickr/2013/11/27/origin-null-is-not-allowed-access/">关于chrome调试AJAX出现&quot;origin-null-is-not-allowed-access&quot;</a></h1>
+    <h1 class="title"><a href="/2013/11/27/origin-null-is-not-allowed-access/">关于chrome调试AJAX出现&quot;origin-null-is-not-allowed-access&quot;</a></h1>
   
 
 <div class="clear"></div>
@@ -270,8 +520,18 @@
     <div class="entry">
       
         <p>在学习AJAX，用jQuery调用load()方法加载另外html文件时，出现了错误<br><code>Failed to load resource: No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource. Origin &#39;null&#39; is therefore not allowed access.</code><br><code>XMLHttpRequest cannot load file:///E:/code/JQuery/AJAX/a.html.</code></p>
-<p>然后google了一下，在<a href="http://stackoverflow.com/questions/8456538/origin-null-is-not-allowed-by-access-control-allow-origin" target="_blank" rel="external">stackoverflow</a>上看到以下解释：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Origin <span class="keyword">null</span> <span class="keyword">is</span> the local <span class="keyword">file</span> system, so that suggests that you<span class="attribute">'re</span> loading the HTML page that does the load call via a <span class="keyword">file</span>:/// URL (e.g., just double-clicking it <span class="keyword">in</span> a local <span class="keyword">file</span> browser <span class="keyword">or</span> similar). Different browsers take different approaches <span class="keyword">to</span> applying the Same Origin Policy <span class="keyword">to</span> local files.</div><div class="line"></div><div class="line">My guess <span class="keyword">is</span> that you<span class="attribute">'re</span> seeing this using Chrome. Chrome<span class="attribute">'s</span> rules <span class="keyword">for</span> applying the SOP <span class="keyword">to</span> local files are very tight, it disallows even loading files from the same directory as the document. So does Opera. Some other browsers, such as Firefox, allow limited <span class="keyword">access</span> <span class="keyword">to</span> local files. But basically, using ajax <span class="keyword">with</span> local resources isn<span class="attribute">'t</span> going <span class="keyword">to</span> work cross-browser.</div><div class="line"></div><div class="line"><span class="keyword">If</span> you<span class="attribute">'re</span> just testing something locally that you<span class="attribute">'ll</span> really be deploying <span class="keyword">to</span> the web, rather than <span class="keyword">use</span> local files, install a simple web server <span class="keyword">and</span> test via http:// URLs instead. That gives you a much more accurate security picture.</div></pre></td></tr></table></figure>
+<p>然后google了一下，在<a href="http://stackoverflow.com/questions/8456538/origin-null-is-not-allowed-by-access-control-allow-origin" target="_blank">stackoverflow</a>上看到以下解释：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>Origin <span class="keyword">null</span> <span class="keyword">is</span> the local <span class="keyword">file</span> system, so that suggests that you<span class="attribute">'re</span> loading the HTML page that does the load call via a <span class="keyword">file</span>:/// URL (e.g., just double-clicking it <span class="keyword">in</span> a local <span class="keyword">file</span> browser <span class="keyword">or</span> similar). Different browsers take different approaches <span class="keyword">to</span> applying the Same Origin Policy <span class="keyword">to</span> local files.
+
+My guess <span class="keyword">is</span> that you<span class="attribute">'re</span> seeing this using Chrome. Chrome<span class="attribute">'s</span> rules <span class="keyword">for</span> applying the SOP <span class="keyword">to</span> local files are very tight, it disallows even loading files from the same directory as the document. So does Opera. Some other browsers, such as Firefox, allow limited <span class="keyword">access</span> <span class="keyword">to</span> local files. But basically, using ajax <span class="keyword">with</span> local resources isn<span class="attribute">'t</span> going <span class="keyword">to</span> work cross-browser.
+
+<span class="keyword">If</span> you<span class="attribute">'re</span> just testing something locally that you<span class="attribute">'ll</span> really be deploying <span class="keyword">to</span> the web, rather than <span class="keyword">use</span> local files, install a simple web server <span class="keyword">and</span> test via http:// URLs instead. That gives you a much more accurate security picture.
+</pre></td></tr></table></figure>
 
 <p>大致意思就是因为load本地的HTML文件，谷歌浏览器对于这种行为比较苛刻，禁止访问本地文件。<br>但是火狐允许，所以用火狐测试通过。这里回答者建议搭建一个简单的web server来测试AJAX。</p>
 
@@ -280,7 +540,7 @@
     <footer>
       
         <div class="alignleft">
-            <a href="/flickr/2013/11/27/origin-null-is-not-allowed-access/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+            <a href="/2013/11/27/origin-null-is-not-allowed-access/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
       
@@ -299,10 +559,10 @@
     <header>
       <div class="icon"></div>
       
-      <time datetime="2013-11-27T06:56:48.000Z"><a href="/flickr/2013/11/27/linux-ps/">周三, 11月 27 2013, 14:56:48 下午</a></time>
+      <time datetime="2013-11-27T06:56:48.000Z"><a href="/2013/11/27/linux-ps/">周三, 11月 27 2013, 14:56:48 下午</a></time>
 
   
-    <h1 class="title"><a href="/flickr/2013/11/27/linux-ps/">ps命令</a></h1>
+    <h1 class="title"><a href="/2013/11/27/linux-ps/">ps命令</a></h1>
   
 
 <div class="clear"></div>
@@ -327,11 +587,45 @@
 <h4 id="程序的觀察">程序的觀察</h4>
 <p>既然程序這麼重要，那麼我們如何查閱系統上面正在運作當中的程序呢？很簡單啊！ 利用靜態的ps 或者是動態的 top，還能以 pstree 來查閱程序樹之間的關係喔！</p>
 <p>ps ：將某個時間點的程序運作情況擷取下來</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[root@www ~]# ps aux  &lt;==觀察系統所有的程序資料</div><div class="line">[root@www ~]# ps -lA  &lt;==也是能夠觀察所有系統的資料</div><div class="line">[root@www ~]# ps axjf &lt;==連同部分程序樹狀態</div><div class="line">選項與參數：</div><div class="line">-<span class="ruby"><span class="constant">A</span>  ：所有的 process 均顯示出來，與 -e 具有同樣的效用；</span></div><div class="line">-<span class="ruby">a  ：不與 terminal 有關的所有 process ；</span></div><div class="line">-<span class="ruby">u  ：有效使用者 (effective user) 相關的 process ；</span></div><div class="line">x   ：通常與 a 這個參數一起使用，可列出較完整資訊。</div><div class="line">輸出格式規劃：</div><div class="line">l   ：較長、較詳細的將該 PID 的的資訊列出；</div><div class="line">j   ：工作的格式 (jobs format)</div><div class="line">-<span class="ruby">f  ：做一個更為完整的輸出。</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre>[root@www ~]# ps aux  &lt;==觀察系統所有的程序資料
+[root@www ~]# ps -lA  &lt;==也是能夠觀察所有系統的資料
+[root@www ~]# ps axjf &lt;==連同部分程序樹狀態
+選項與參數：
+-<span class="ruby"><span class="constant">A</span>  ：所有的 process 均顯示出來，與 -e 具有同樣的效用；
+</span>-<span class="ruby">a  ：不與 terminal 有關的所有 process ；
+</span>-<span class="ruby">u  ：有效使用者 (effective user) 相關的 process ；
+</span>x   ：通常與 a 這個參數一起使用，可列出較完整資訊。
+輸出格式規劃：
+l   ：較長、較詳細的將該 PID 的的資訊列出；
+j   ：工作的格式 (jobs format)
+-<span class="ruby">f  ：做一個更為完整的輸出。</span>
+</pre></td></tr></table></figure>
 
 <p>鳥哥個人認為 ps 這個指令的 man page 不是很好查閱，因為很多不同的 Unix 都使用這個 ps 來查閱程序狀態， 為了要符合不同版本的需求，所以這個 man page 寫的非常的龐大！因此，通常鳥哥都會建議你，直接背兩個比較不同的選項， 一個是只能查閱自己 bash 程序的『 ps -l 』一個則是可以查閱所有系統運作的程序『 ps aux 』！注意，你沒看錯，是『 ps aux 』沒有那個減號 (-) ！先來看看關於自己 bash 程序狀態的觀察：</p>
 <p>僅觀察自己的 bash 相關程序： ps -l</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">範例一：將目前屬於您自己這次登入的 PID 與相關資訊列示出來(只與自己的 bash 有關)</div><div class="line">[root<span class="variable">@www</span> ~]<span class="comment"># ps -l</span></div><div class="line">F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD</div><div class="line"><span class="number">4</span> S     <span class="number">0</span> <span class="number">13639</span> <span class="number">13637</span>  <span class="number">0</span>  <span class="number">75</span>   <span class="number">0</span> -  <span class="number">1287</span> <span class="keyword">wait</span>   pts/<span class="number">1</span>    <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> bash</div><div class="line"><span class="number">4</span> R     <span class="number">0</span> <span class="number">13700</span> <span class="number">13639</span>  <span class="number">0</span>  <span class="number">77</span>   <span class="number">0</span> -  <span class="number">1101</span> -      pts/<span class="number">1</span>    <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> ps</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>範例一：將目前屬於您自己這次登入的 PID 與相關資訊列示出來(只與自己的 bash 有關)
+[root<span class="variable">@www</span> ~]<span class="comment"># ps -l</span>
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+<span class="number">4</span> S     <span class="number">0</span> <span class="number">13639</span> <span class="number">13637</span>  <span class="number">0</span>  <span class="number">75</span>   <span class="number">0</span> -  <span class="number">1287</span> <span class="keyword">wait</span>   pts/<span class="number">1</span>    <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> bash
+<span class="number">4</span> R     <span class="number">0</span> <span class="number">13700</span> <span class="number">13639</span>  <span class="number">0</span>  <span class="number">77</span>   <span class="number">0</span> -  <span class="number">1101</span> -      pts/<span class="number">1</span>    <span class="number">00</span>:<span class="number">00</span>:<span class="number">00</span> ps
+</pre></td></tr></table></figure>
 
 <p>系統整體的程序運作是非常多的，但如果使用 ps -l 則僅列出與你的操作環境 (bash) 有關的程序而已， 亦即最上層的父程序會是你自己的 bash 而沒有延伸到 init 這支程序去！那麼 ps -l 秀出來的資料有哪些呢？ 我們就來觀察看看：</p>
 <p>F：代表這個程序旗標 (process flags)，說明這個程序的總結權限，常見號碼有：<br>若為 4 表示此程序的權限為 root ；<br>若為 1 則表示此子程序僅進行複製(fork)而沒有實際執行(exec)。</p>
@@ -345,15 +639,85 @@
 <p>CMD：就是 command 的縮寫，造成此程序的觸發程式之指令為何。<br>所以你看到的 ps -l 輸出訊息中，他說明的是：『bash 的程式屬於 UID 為 0 的使用者，狀態為睡眠 (sleep)， 之所以為睡眠因為他觸發了 ps (狀態為 run) 之故。此程序的 PID 為 13639，優先執行順序為 75 ， 下達 bash 所取得的終端介面為 pts/1 ，運作狀態為等待 (wait) 。』這樣已經夠清楚了吧？ 您自己嘗試解析一下那麼 ps 那一行代表的意義為何呢？ ^_^</p>
 <p>接下來讓我們使用 ps 來觀察一下系統內所有的程序狀態吧！</p>
 <p>觀察系統所有程序： ps aux</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">範例二：列出目前所有的正在記憶體當中的程序：</div><div class="line">[root@www ~]# ps aux</div><div class="line">USER       PID %<span class="built_in">CPU</span> %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND</div><div class="line">root         <span class="number">1</span>  <span class="number">0.0</span>  <span class="number">0.0</span>   <span class="number">2064</span>   <span class="number">616</span> ?        <span class="literal">Ss</span>   Mar11   <span class="number">0</span>:<span class="number">01</span> init [<span class="number">5</span>]</div><div class="line">root         <span class="number">2</span>  <span class="number">0.0</span>  <span class="number">0.0</span>      <span class="number">0</span>     <span class="number">0</span> ?        S&lt;   Mar11   <span class="number">0</span>:<span class="number">00</span> [migration/<span class="number">0</span>]</div><div class="line">root         <span class="number">3</span>  <span class="number">0.0</span>  <span class="number">0.0</span>      <span class="number">0</span>     <span class="number">0</span> ?        SN   Mar11   <span class="number">0</span>:<span class="number">00</span> [ksoftirqd/<span class="number">0</span>]</div><div class="line">.....(中間省略).....</div><div class="line">root     <span class="number">13639</span>  <span class="number">0.0</span>  <span class="number">0.2</span>   <span class="number">5148</span>  <span class="number">1508</span> pts/<span class="number">1</span>    <span class="literal">Ss</span>   <span class="number">11</span>:<span class="number">44</span>   <span class="number">0</span>:<span class="number">00</span> -bash</div><div class="line">root     <span class="number">14232</span>  <span class="number">0.0</span>  <span class="number">0.1</span>   <span class="number">4452</span>   <span class="number">876</span> pts/<span class="number">1</span>    R+   <span class="number">15</span>:<span class="number">52</span>   <span class="number">0</span>:<span class="number">00</span> ps aux</div><div class="line">root     <span class="number">18593</span>  <span class="number">0.0</span>  <span class="number">0.0</span>   <span class="number">2240</span>   <span class="number">476</span> ?        <span class="literal">Ss</span>   Mar14   <span class="number">0</span>:<span class="number">00</span> /usr/sbin/atd</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre>範例二：列出目前所有的正在記憶體當中的程序：
+[root<span class="variable">@www</span> ~]<span class="comment"># ps aux</span>
+USER       PID <span class="variable">%CPU</span> <span class="variable">%MEM</span>    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         <span class="number">1</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">0</span>.<span class="number">0</span>   <span class="number">2064</span>   <span class="number">616</span> ?        Ss   Mar11   <span class="number">0</span>:<span class="number">01</span> init [<span class="number">5</span>]
+root         <span class="number">2</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">0</span>.<span class="number">0</span>      <span class="number">0</span>     <span class="number">0</span> ?        S&lt;   Mar11   <span class="number">0</span>:<span class="number">00</span> [migration/<span class="number">0</span>]
+root         <span class="number">3</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">0</span>.<span class="number">0</span>      <span class="number">0</span>     <span class="number">0</span> ?        SN   Mar11   <span class="number">0</span>:<span class="number">00</span> [ksoftirqd/<span class="number">0</span>]
+.....(中間省略).....
+root     <span class="number">13639</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">0</span>.<span class="number">2</span>   <span class="number">5148</span>  <span class="number">1508</span> pts/<span class="number">1</span>    Ss   <span class="number">11</span>:<span class="number">44</span>   <span class="number">0</span>:<span class="number">00</span> -bash
+root     <span class="number">14232</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">0</span>.<span class="number">1</span>   <span class="number">4452</span>   <span class="number">876</span> pts/<span class="number">1</span>    R+   <span class="number">15</span>:<span class="number">52</span>   <span class="number">0</span>:<span class="number">00</span> ps aux
+root     <span class="number">18593</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">0</span>.<span class="number">0</span>   <span class="number">2240</span>   <span class="number">476</span> ?        Ss   Mar14   <span class="number">0</span>:<span class="number">00</span> /usr/sbin/atd
+</pre></td></tr></table></figure>
 
 <p>你會發現 ps -l 與 ps aux 顯示的項目並不相同！在 ps aux 顯示的項目中，各欄位的意義為：<br>USER：該 process 屬於那個使用者帳號的？<br>PID ：該 process 的程序識別碼。<br>%CPU：該 process 使用掉的 CPU 資源百分比；<br>%MEM：該 process 所佔用的實體記憶體百分比；<br>VSZ ：該 process 使用掉的虛擬記憶體量 (Kbytes)<br>RSS ：該 process 佔用的固定的記憶體量 (Kbytes)<br>TTY ：該 process 是在那個終端機上面運作，若與終端機無關則顯示 ?，另外， tty1-tty6 是本機上面的登入者程序，若為 pts/0 等等的，則表示為由網路連接進主機的程序。<br>STAT：該程序目前的狀態，狀態顯示與 ps -l 的 S 旗標相同 (R/S/T/Z)<br>START：該 process 被觸發啟動的時間；<br>TIME ：該 process 實際使用 CPU 運作的時間。<br>COMMAND：該程序的實際指令為何？<br>一般來說，ps aux 會依照 PID 的順序來排序顯示，我們還是以 13639 那個 PID 那行來說明！該行的意義為『 root 執行的 bash PID 為 13639，佔用了 0.2% 的記憶體容量百分比，狀態為休眠 (S)，該程序啟動的時間為 11:44 ， 且取得的終端機環境為 pts/1 。』與 ps aux 看到的其實是同一個程序啦！這樣可以理解嗎？ 讓我們繼續使用 ps 來觀察一下其他的資訊吧！</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">範例三：以範例一的顯示內容，顯示出所有的程序：</div><div class="line">[root<span class="variable">@www</span> ~]<span class="comment"># ps -lA</span></div><div class="line"><span class="constant">F</span> <span class="constant">S</span>   <span class="constant">UID</span>   <span class="constant">PID</span>  <span class="constant">PPID</span>  <span class="constant">C</span> <span class="constant">PRI</span>  <span class="constant">NI</span> <span class="constant">ADDR</span> <span class="constant">SZ</span> <span class="constant">WCHAN</span>  <span class="constant">TTY</span>          <span class="constant">TIME</span> <span class="constant">CMD</span></div><div class="line"><span class="number">4</span> <span class="constant">S</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>  <span class="number">0</span>  <span class="number">76</span>   <span class="number">0</span> -   <span class="number">435</span> -      ?        <span class="number">00</span><span class="symbol">:</span><span class="number">00</span><span class="symbol">:</span><span class="number">01</span> init</div><div class="line"><span class="number">1</span> <span class="constant">S</span>     <span class="number">0</span>     <span class="number">2</span>     <span class="number">1</span>  <span class="number">0</span>  <span class="number">94</span>  <span class="number">19</span> -     <span class="number">0</span> ksofti ?        <span class="number">00</span><span class="symbol">:</span><span class="number">00</span><span class="symbol">:</span><span class="number">00</span> ksoftirqd/<span class="number">0</span></div><div class="line"><span class="number">1</span> <span class="constant">S</span>     <span class="number">0</span>     <span class="number">3</span>     <span class="number">1</span>  <span class="number">0</span>  <span class="number">70</span>  -<span class="number">5</span> -     <span class="number">0</span> worker ?        <span class="number">00</span><span class="symbol">:</span><span class="number">00</span><span class="symbol">:</span><span class="number">00</span> events/<span class="number">0</span></div><div class="line">....(以下省略)....</div><div class="line"><span class="comment"># 你會發現每個欄位與 ps -l 的輸出情況相同，但顯示的程序則包括系統所有的程序。</span></div><div class="line"></div><div class="line">範例四：列出類似程序樹的程序顯示：</div><div class="line">[root<span class="variable">@www</span> ~]<span class="comment"># ps axjf</span></div><div class="line"> <span class="constant">PPID</span>   <span class="constant">PID</span>  <span class="constant">PGID</span>   <span class="constant">SID</span> <span class="constant">TTY</span>      <span class="constant">TPGID</span> <span class="constant">STAT</span>   <span class="constant">UID</span>   <span class="constant">TIME</span> <span class="constant">COMMAND</span></div><div class="line">    <span class="number">0</span>     <span class="number">1</span>     <span class="number">1</span>     <span class="number">1</span> ?           -<span class="number">1</span> <span class="constant">Ss</span>       <span class="number">0</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">01</span> init [<span class="number">5</span>]</div><div class="line">.....(中間省略).....</div><div class="line">    <span class="number">1</span>  <span class="number">4586</span>  <span class="number">4586</span>  <span class="number">4586</span> ?           -<span class="number">1</span> <span class="constant">Ss</span>       <span class="number">0</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">00</span> /usr/sbin/sshd</div><div class="line"> <span class="number">4586</span> <span class="number">13637</span> <span class="number">13637</span> <span class="number">13637</span> ?           -<span class="number">1</span> <span class="constant">Ss</span>       <span class="number">0</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">00</span>  \<span class="number">_</span> <span class="symbol">sshd:</span> root<span class="variable">@pts</span>/<span class="number">1</span></div><div class="line"><span class="number">13637</span> <span class="number">13639</span> <span class="number">13639</span> <span class="number">13639</span> pts/<span class="number">1</span>    <span class="number">14266</span> <span class="constant">Ss</span>       <span class="number">0</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">00</span>      \<span class="number">_</span> -bash</div><div class="line"><span class="number">13639</span> <span class="number">14266</span> <span class="number">14266</span> <span class="number">13639</span> pts/<span class="number">1</span>    <span class="number">14266</span> <span class="constant">R</span>+       <span class="number">0</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">00</span>          \<span class="number">_</span> ps axjf</div><div class="line">.....(後面省略).....</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre>範例三：以範例一的顯示內容，顯示出所有的程序：
+[root<span class="variable">@www</span> ~]<span class="comment"># ps -lA</span>
+<span class="constant">F</span> <span class="constant">S</span>   <span class="constant">UID</span>   <span class="constant">PID</span>  <span class="constant">PPID</span>  <span class="constant">C</span> <span class="constant">PRI</span>  <span class="constant">NI</span> <span class="constant">ADDR</span> <span class="constant">SZ</span> <span class="constant">WCHAN</span>  <span class="constant">TTY</span>          <span class="constant">TIME</span> <span class="constant">CMD</span>
+<span class="number">4</span> <span class="constant">S</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>  <span class="number">0</span>  <span class="number">76</span>   <span class="number">0</span> -   <span class="number">435</span> -      ?        <span class="number">00</span><span class="symbol">:</span><span class="number">00</span><span class="symbol">:</span><span class="number">01</span> init
+<span class="number">1</span> <span class="constant">S</span>     <span class="number">0</span>     <span class="number">2</span>     <span class="number">1</span>  <span class="number">0</span>  <span class="number">94</span>  <span class="number">19</span> -     <span class="number">0</span> ksofti ?        <span class="number">00</span><span class="symbol">:</span><span class="number">00</span><span class="symbol">:</span><span class="number">00</span> ksoftirqd/<span class="number">0</span>
+<span class="number">1</span> <span class="constant">S</span>     <span class="number">0</span>     <span class="number">3</span>     <span class="number">1</span>  <span class="number">0</span>  <span class="number">70</span>  -<span class="number">5</span> -     <span class="number">0</span> worker ?        <span class="number">00</span><span class="symbol">:</span><span class="number">00</span><span class="symbol">:</span><span class="number">00</span> events/<span class="number">0</span>
+....(以下省略)....
+<span class="comment"># 你會發現每個欄位與 ps -l 的輸出情況相同，但顯示的程序則包括系統所有的程序。</span>
+
+範例四：列出類似程序樹的程序顯示：
+[root<span class="variable">@www</span> ~]<span class="comment"># ps axjf</span>
+ <span class="constant">PPID</span>   <span class="constant">PID</span>  <span class="constant">PGID</span>   <span class="constant">SID</span> <span class="constant">TTY</span>      <span class="constant">TPGID</span> <span class="constant">STAT</span>   <span class="constant">UID</span>   <span class="constant">TIME</span> <span class="constant">COMMAND</span>
+    <span class="number">0</span>     <span class="number">1</span>     <span class="number">1</span>     <span class="number">1</span> ?           -<span class="number">1</span> <span class="constant">Ss</span>       <span class="number">0</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">01</span> init [<span class="number">5</span>]
+.....(中間省略).....
+    <span class="number">1</span>  <span class="number">4586</span>  <span class="number">4586</span>  <span class="number">4586</span> ?           -<span class="number">1</span> <span class="constant">Ss</span>       <span class="number">0</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">00</span> /usr/sbin/sshd
+ <span class="number">4586</span> <span class="number">13637</span> <span class="number">13637</span> <span class="number">13637</span> ?           -<span class="number">1</span> <span class="constant">Ss</span>       <span class="number">0</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">00</span>  \<span class="number">_</span> <span class="symbol">sshd:</span> root<span class="variable">@pts</span>/<span class="number">1</span>
+<span class="number">13637</span> <span class="number">13639</span> <span class="number">13639</span> <span class="number">13639</span> pts/<span class="number">1</span>    <span class="number">14266</span> <span class="constant">Ss</span>       <span class="number">0</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">00</span>      \<span class="number">_</span> -bash
+<span class="number">13639</span> <span class="number">14266</span> <span class="number">14266</span> <span class="number">13639</span> pts/<span class="number">1</span>    <span class="number">14266</span> <span class="constant">R</span>+       <span class="number">0</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">00</span>          \<span class="number">_</span> ps axjf
+.....(後面省略).....
+</pre></td></tr></table></figure>
 
 <p>看出來了吧？其實鳥哥在進行一些測試時，都是以網路連線進主機來測試的，所以囉，你會發現其實程序之間是有相關性的啦！ 不過，其實還可以使用 pstree 來達成這個程序樹喔！以上面的例子來看，鳥哥是透過 sshd 提供的網路服務取得一個程序， 該程序提供 bash 給我使用，而我透過 bash 再去執行 ps axjf ！這樣可以看的懂了嗎？其他各欄位的意義請 man ps (雖然真的很難 man 的出來！) 囉！</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">範例五：找出與 cron 與 syslog 這兩個服務有關的 <span class="constant">PID</span> 號碼？</div><div class="line">[root<span class="variable">@www</span> ~]<span class="comment"># ps aux | egrep '(cron|syslog)'</span></div><div class="line">root   <span class="number">4286</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">1720</span>   <span class="number">572</span> ?      <span class="constant">Ss</span>  <span class="constant">Mar11</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">00</span> syslogd -m <span class="number">0</span></div><div class="line">root   <span class="number">4661</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">0</span>.<span class="number">1</span>  <span class="number">5500</span>  <span class="number">1192</span> ?      <span class="constant">Ss</span>  <span class="constant">Mar11</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">00</span> crond</div><div class="line">root  <span class="number">14286</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">4116</span>   <span class="number">592</span> pts/<span class="number">1</span>  <span class="constant">R</span>+  <span class="number">16</span><span class="symbol">:</span><span class="number">15</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">00</span> egrep (cron|syslog)</div><div class="line"><span class="comment"># 所以號碼是 4286 及 4661 這兩個囉！就是這樣找的啦！</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>範例五：找出與 cron 與 syslog 這兩個服務有關的 <span class="constant">PID</span> 號碼？
+[root<span class="variable">@www</span> ~]<span class="comment"># ps aux | egrep '(cron|syslog)'</span>
+root   <span class="number">4286</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">1720</span>   <span class="number">572</span> ?      <span class="constant">Ss</span>  <span class="constant">Mar11</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">00</span> syslogd -m <span class="number">0</span>
+root   <span class="number">4661</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">0</span>.<span class="number">1</span>  <span class="number">5500</span>  <span class="number">1192</span> ?      <span class="constant">Ss</span>  <span class="constant">Mar11</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">00</span> crond
+root  <span class="number">14286</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">0</span>.<span class="number">0</span>  <span class="number">4116</span>   <span class="number">592</span> pts/<span class="number">1</span>  <span class="constant">R</span>+  <span class="number">16</span><span class="symbol">:</span><span class="number">15</span>   <span class="number">0</span><span class="symbol">:</span><span class="number">00</span> egrep (cron|syslog)
+<span class="comment"># 所以號碼是 4286 及 4661 這兩個囉！就是這樣找的啦！</span>
+</pre></td></tr></table></figure>
 
-<p>除此之外，我們必須要知道的是『僵屍 (zombie) 』程序是什麼？ 通常，造成僵屍程序的成因是因為該程序應該已經執行完畢，或者是因故應該要終止了， 但是該程序的父程序卻無法完整的將該程序結束掉，而造成那個程序一直存在記憶體當中。 如果你發現在某個程序的 CMD 後面還接上 <defunct> 時，就代表該程序是僵屍程序啦，例如：</defunct></p>
+<p>除此之外，我們必須要知道的是『僵屍 (zombie) 』程序是什麼？ 通常，造成僵屍程序的成因是因為該程序應該已經執行完畢，或者是因故應該要終止了， 但是該程序的父程序卻無法完整的將該程序結束掉，而造成那個程序一直存在記憶體當中。 如果你發現在某個程序的 CMD 後面還接上 <defunct> 時，就代表該程序是僵屍程序啦，例如：</p>
 <p><code>apache  8683  0.0  0.9 83384 9992 ?   Z  14:33   0:00 /usr/sbin/httpd &lt;defunct&gt;</code></p>
 <p>當系統不穩定的時候就容易造成所謂的僵屍程序，可能是因為程式寫的不好啦，或者是使用者的操作習慣不良等等所造成。 如果你發現系統中很多僵屍程序時，記得啊！要找出該程序的父程序，然後好好的做個追蹤，好好的進行主機的環境最佳化啊！ 看看有什麼地方需要改善的，不要只是直接將他 kill 掉而已呢！不然的話，萬一他一直產生，那可就麻煩了！ @_@</p>
 <p>事實上，通常僵屍程序都已經無法控管，而直接是交給 init 這支程式來負責了，偏偏 init 是系統第一支執行的程式， 他是所有程式的父程式！我們無法殺掉該程式的 (殺掉他，系統就死掉了！)，所以囉，如果產生僵屍程序， 而系統過一陣子還沒有辦法透過核心非經常性的特殊處理來將該程序刪除時，那你只好透過 reboot 的方式來將該程序抹去了！</p>
@@ -363,7 +727,7 @@
     <footer>
       
         <div class="alignleft">
-            <a href="/flickr/2013/11/27/linux-ps/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+            <a href="/2013/11/27/linux-ps/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
       
@@ -382,10 +746,10 @@
     <header>
       <div class="icon"></div>
       
-      <time datetime="2013-11-27T06:23:21.000Z"><a href="/flickr/2013/11/27/static-dynamic-library/">周三, 11月 27 2013, 14:23:21 下午</a></time>
+      <time datetime="2013-11-27T06:23:21.000Z"><a href="/2013/11/27/static-dynamic-library/">周三, 11月 27 2013, 14:23:21 下午</a></time>
 
   
-    <h1 class="title"><a href="/flickr/2013/11/27/static-dynamic-library/">linux中静态库和动态库的区别</a></h1>
+    <h1 class="title"><a href="/2013/11/27/static-dynamic-library/">linux中静态库和动态库的区别</a></h1>
   
 
 <div class="clear"></div>
@@ -407,7 +771,23 @@
     <div class="entry">
       
         <p>今天被问到静态库和动态库的区别，当时一愣，貌似没用过..<br>然后现在google了一下，原来还真的没具体去了解过这个，怪不得一点印象都没有..<br>linux其实学的有点少了，鸟哥的linux看到一半多就放着没看了，还得好好学习。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">一、不同</div><div class="line">库从本质上来说是一种可执行代码的二进制格式，可以被载入内存中执行。库分静态库和动态库两种。 </div><div class="line"><span class="bullet">1. </span>静态函数库</div><div class="line"><span class="code">    这类库的名字一般是libxxx.a；利用静态函数库编译成的文件比较大，因为整个 函数库的所有数据都会被整合进目标代码中，他的优点就显而易见了，即编译后的执行程序不需要外部的函数库支持，因为所有使用的函数都已经被编译进去了。当然这也会成为他的缺点，因为如果静态函数库改变了，那么你的程序必须重新编译。</span></div><div class="line"><span class="bullet">2. </span>动态函数库</div><div class="line"><span class="code">    这类库的名字一般是libxxx.so;相对于静态函数库，动态函数库在编译的时候 并没有被编译进目标代码中，你的程序执行到相关函数时才调用该函数库里的相应函数，因此动态函数库所产生的可执行文件比较小。由于函数库没有被整合进你的程序，而是程序运行时动态的申请并调用，所以程序的运行环境中必须提供相应的库。动态函数库的改变并不影响你的程序，所以动态函数库的升级比较方便。</span></div><div class="line">二、相同</div><div class="line">都是由*.o目标文件生成</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>一、不同
+库从本质上来说是一种可执行代码的二进制格式，可以被载入内存中执行。库分静态库和动态库两种。 
+<span class="number">1.</span> 静态函数库
+    这类库的名字一般是libxxx<span class="preprocessor">.a</span>；利用静态函数库编译成的文件比较大，因为整个 函数库的所有数据都会被整合进目标代码中，他的优点就显而易见了，即编译后的执行程序不需要外部的函数库支持，因为所有使用的函数都已经被编译进去了。当然这也会成为他的缺点，因为如果静态函数库改变了，那么你的程序必须重新编译。
+<span class="number">2.</span> 动态函数库
+    这类库的名字一般是libxxx<span class="preprocessor">.so</span><span class="comment">;相对于静态函数库，动态函数库在编译的时候 并没有被编译进目标代码中，你的程序执行到相关函数时才调用该函数库里的相应函数，因此动态函数库所产生的可执行文件比较小。由于函数库没有被整合进你的程序，而是程序运行时动态的申请并调用，所以程序的运行环境中必须提供相应的库。动态函数库的改变并不影响你的程序，所以动态函数库的升级比较方便。</span>
+二、相同
+都是由*<span class="preprocessor">.o</span>目标文件生成
+</pre></td></tr></table></figure>
 
 
       
@@ -415,7 +795,7 @@
     <footer>
       
         <div class="alignleft">
-            <a href="/flickr/2013/11/27/static-dynamic-library/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+            <a href="/2013/11/27/static-dynamic-library/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
       
@@ -431,18 +811,17 @@
 
 <nav id="pagination">
   
-    <a href="/flickr/page/4/" class="alignleft prev">上一页</a>
+    <a href="/page/4/" class="alignleft prev">上一页</a>
   
   
-    <a href="/flickr/page/6/" class="alignright next">下一页</a>
+    <a href="/page/6/" class="alignright next">下一页</a>
   
   <div class="clearfix"></div>
 </nav>
 
 
-<script src="/flickr/js/jquery.anystretch.min.js" type="text/javascript"></script>
-<script src="/flickr/js/cover.js" type="text/javascript"></script>
-
+<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
+<script type="text/javascript" src="/js/cover.js"></script>
 
 
 		    <div class="clearfix"></div>
@@ -456,10 +835,10 @@ Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="ex
 
 <div class="clearfix"></div></footer>
 		  
-<script src="/flickr/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
-<script src="/flickr/js/gallery.js" type="text/javascript"></script>
-<script src="/flickr/js/bootstrap.min.js" type="text/javascript"></script>
-
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/fartscroll.js"></script>
 
 
 <script type="text/javascript">
@@ -492,8 +871,8 @@ var disqus_shortname = 'stddup';
 
 
 
-  <link rel="stylesheet" href="/flickr/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-  <script src="/flickr/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript">
   (function($){
     $('.fancybox').fancybox({
@@ -517,10 +896,11 @@ var disqus_shortname = 'stddup';
 
     });
   });
-</script>
-<script src="/flickr/js/jquery.anystretch.min.js" type="text/javascript"></script>
-<script src="/flickr/js/nav.js" type="text/javascript"></script>
 
+  fartscroll(800);
+</script>
+<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
+<script type="text/javascript" src="/js/nav.js"></script>
 
 		</body>
 		</html>

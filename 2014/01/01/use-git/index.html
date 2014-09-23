@@ -19,14 +19,12 @@
     <meta property="og:image" content="undefined"/>
   
 
-  <!-- <link href="/flickr/favicon.ico" rel="icon"> -->
-  <link rel="alternate" href="/flickr/atom.xml" title="stddup" type="application/atom+xml">
-  <link rel="stylesheet" href="/flickr/css/bootstrap.min.css" type="text/css">
+  <!-- <link href="/favicon.ico" rel="icon"> -->
+  <link rel="alternate" href="/atom.xml" title="stddup" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
-<link rel="stylesheet" href="/flickr/css/style.css" type="text/css">
-
-  <script src="/flickr/js/jquery.min.js" type="text/javascript"></script>
-
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -48,6 +46,12 @@
 		    <nav id="main-nav">
   <ul class='container'>
     
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/flickr">Flickr</a></li>
+    
   </ul>
   <div class="clearfix"></div>
 </nav>
@@ -59,7 +63,7 @@
     <header>
       <div class="icon"></div>
       
-      <time datetime="2014-01-01T07:12:08.000Z"><a href="/flickr/2014/01/01/use-git/">周三, 1月 1 2014, 15:12:08 下午</a></time>
+      <time datetime="2014-01-01T07:12:08.000Z"><a href="/2014/01/01/use-git/">周三, 1月 1 2014, 15:12:08 下午</a></time>
 
   
     <h1 class="title">git使用</h1>
@@ -83,7 +87,7 @@
     
     <div class="entry">
       
-        <p>从远端服务器获取一个仓库 <code>git clone %PATH%</code></p>
+        <p>﻿<br>从远端服务器获取一个仓库 <code>git clone %PATH%</code></p>
 <p>克隆到本地之后可以使用sublime text打开修改代码</p>
 <p>修改之后的文件可以是用 <code>git add .</code>把当前目录的文件(在项目的目录下)添加到缓存区。</p>
 <p>提交到远程仓库之前先 <code>git status</code>，查看当前信息包括当前所在的分支<code>branch</code>，和修改过的文件</p>
@@ -94,7 +98,7 @@
 <p>如果与人合作项目的话，<code>git remote add  %NAME%  %PATH%</code> 链接到服务器</p>
 <p>获取项目更新本地的： <code>git fetch %NAME%</code></p>
 <p>获取然后合并到你当前分支，<code>git merge %NAME%/%BRANCH%</code>,就可以继续工作了。</p>
-<p><em>简单的入门教程可以参考<a href="http://marklodato.github.io/visual-git-guide/index-en.html" target="_blank" rel="external">图解git</a></em></p>
+<p><em>简单的入门教程可以参考<a href="http://marklodato.github.io/visual-git-guide/index-en.html" target="_blank">图解git</a></em></p>
 
       
     </div>
@@ -104,23 +108,23 @@
   
   <div class="categories">
   	<i class="fa fa-folder-open"></i>
-    <a href="/flickr/categories/git/">git</a>
+    <a href="/categories/git/">git</a>
   </div>
 
           
   
   <div class="tags">
   	<i class="fa fa-tag"></i>
-    <a href="/flickr/tags/git/">git</a>
+    <a href="/tags/git/">git</a>
   </div>
 
           <div class="clearfix"></div>
           <nav id="pagination">
   
-    <a href="/flickr/2014/01/01/remote-debugging-chrome-on-ios7/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Newer</a>
+    <a href="/2014/01/01/remote-debugging-chrome-on-ios7/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Newer</a>
   
   
-    <a href="/flickr/2013/12/24/js-compatibility-collect/" class="alignright next">Older<i class="fa fa-long-arrow-right"></i></a>
+    <a href="/2013/12/24/js-compatibility-collect/" class="alignright next">Older<i class="fa fa-long-arrow-right"></i></a>
   
   <div class="clearfix"></div>
 </nav>
@@ -154,10 +158,10 @@ Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="ex
 
 <div class="clearfix"></div></footer>
 		  
-<script src="/flickr/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
-<script src="/flickr/js/gallery.js" type="text/javascript"></script>
-<script src="/flickr/js/bootstrap.min.js" type="text/javascript"></script>
-
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/fartscroll.js"></script>
 
 
 <script type="text/javascript">
@@ -190,8 +194,8 @@ var disqus_shortname = 'stddup';
 
 
 
-  <link rel="stylesheet" href="/flickr/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-  <script src="/flickr/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript">
   (function($){
     $('.fancybox').fancybox({
@@ -215,10 +219,11 @@ var disqus_shortname = 'stddup';
 
     });
   });
-</script>
-<script src="/flickr/js/jquery.anystretch.min.js" type="text/javascript"></script>
-<script src="/flickr/js/nav.js" type="text/javascript"></script>
 
+  fartscroll(800);
+</script>
+<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
+<script type="text/javascript" src="/js/nav.js"></script>
 
 		</body>
 		</html>

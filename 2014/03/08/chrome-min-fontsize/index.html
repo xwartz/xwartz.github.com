@@ -19,14 +19,12 @@
     <meta property="og:image" content="undefined"/>
   
 
-  <!-- <link href="/flickr/favicon.ico" rel="icon"> -->
-  <link rel="alternate" href="/flickr/atom.xml" title="stddup" type="application/atom+xml">
-  <link rel="stylesheet" href="/flickr/css/bootstrap.min.css" type="text/css">
+  <!-- <link href="/favicon.ico" rel="icon"> -->
+  <link rel="alternate" href="/atom.xml" title="stddup" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
-<link rel="stylesheet" href="/flickr/css/style.css" type="text/css">
-
-  <script src="/flickr/js/jquery.min.js" type="text/javascript"></script>
-
+<link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -48,6 +46,12 @@
 		    <nav id="main-nav">
   <ul class='container'>
     
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+      <li><a href="/flickr">Flickr</a></li>
+    
   </ul>
   <div class="clearfix"></div>
 </nav>
@@ -59,7 +63,7 @@
     <header>
       <div class="icon"></div>
       
-      <time datetime="2014-03-08T07:12:20.000Z"><a href="/flickr/2014/03/08/chrome-min-fontsize/">周六, 3月 8 2014, 15:12:20 下午</a></time>
+      <time datetime="2014-03-08T07:12:20.000Z"><a href="/2014/03/08/chrome-min-fontsize/">周六, 3月 8 2014, 15:12:20 下午</a></time>
 
   
     <h1 class="title">设置小于chrome默认最小字体</h1>
@@ -85,13 +89,49 @@
       
         <p>由于需要将字体设置小于12px，但是chrome默认的最小字体是12px（其他浏览器是9px）,而<code>-webkit-text-size-adjust:none;</code>属性已经在chrome27之后被删除了，估计是由于不人性化(不能通过缩放改变)。</p>
 <p>现在只好通过<code>transform</code>的<code>scale</code>来缩小字体了。</p>
-<figure class="highlight css"><figcaption><span>css</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">body</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">9px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="at_rule">@<span class="keyword">media</span> screen and (-webkit-min-device-pixel-ratio:<span class="number">0</span>)</span>{</div><div class="line">    <span class="tag">body</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"> <span class="function">scale</span>(<span class="number">0.75</span>)</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight css"><figcaption><span>css</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="tag">body</span><span class="rules">{
+    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">9</span>px</span></span>;
+<span class="rule">}</span></span>
+<span class="at_rule">@<span class="keyword">media</span> screen and (-webkit-min-device-pixel-ratio:<span class="number">0</span>)</span>{
+    <span class="tag">body</span><span class="rules">{
+        <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"> <span class="function">scale(<span class="number">0.75</span>)</span></span></span>;
+        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;
+        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;
+    <span class="rule">}</span></span>
+}
+</pre></td></tr></table></figure>
 
 <p>以上代码对同时webkit内核的safari也会产生影响，所以需要js判断一下浏览器</p>
 <iframe width="100%" height="200" src="http://jsfiddle.net/stddup/EC8uH/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 <p>经测试此方法对<code>span</code>元素无效，然后查了下</p>
-<figure class="highlight transform"><figcaption><span>transform:</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Initial <span class="built_in">value</span>:   <span class="constant">none</span></div><div class="line">Applies <span class="built_in">to</span>:      transformable elements</div><div class="line">Inherited:       no</div><div class="line">Percentages:     refer <span class="built_in">to</span> <span class="operator">the</span> size <span class="operator">of</span> bounding box</div><div class="line">Media:           visual</div><div class="line">Computed <span class="built_in">value</span>:  <span class="keyword">as</span> specified, but <span class="operator">with</span> <span class="built_in">relative</span> lengths converted <span class="keyword">into</span> absolute lengths</div><div class="line">Animatable:      yes, <span class="keyword">as</span> <span class="operator">a</span> transform</div><div class="line">Canonical order: <span class="operator">the</span> unique non-ambiguous order defined <span class="keyword">by</span> <span class="operator">the</span> formal grammar</div></pre></td></tr></table></figure>
+<figure class="highlight transform"><figcaption><span>transform:</span></figcaption><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre>Initial <span class="built_in">value</span>:   <span class="constant">none</span>
+Applies <span class="built_in">to</span>:      transformable elements
+Inherited:       no
+Percentages:     refer <span class="built_in">to</span> <span class="operator">the</span> size <span class="operator">of</span> bounding box
+Media:           visual
+Computed <span class="built_in">value</span>:  <span class="keyword">as</span> specified, but <span class="operator">with</span> <span class="built_in">relative</span> lengths converted <span class="keyword">into</span> absolute lengths
+Animatable:      yes, <span class="keyword">as</span> <span class="operator">a</span> transform
+Canonical order: <span class="operator">the</span> unique non-ambiguous order defined <span class="keyword">by</span> <span class="operator">the</span> formal grammar
+</pre></td></tr></table></figure>
 
 <p><code>Applies to:    transformable elements</code> 适用于可变型的元素，哪些是可变型的元素啊（块元素肯定是）。。。<br>然后只能通过<code>display</code> 来检查适用哪些了。。发现<code>inline-block</code>可以（其他的还有很多，常用一个就够）。<br>所以就可以通过给内联元素设置<code>display: inline-block</code>属性，来缩放字体。</p>
 
@@ -103,23 +143,23 @@
   
   <div class="categories">
   	<i class="fa fa-folder-open"></i>
-    <a href="/flickr/categories/css/">css</a>
+    <a href="/categories/css/">css</a>
   </div>
 
           
   
   <div class="tags">
   	<i class="fa fa-tag"></i>
-    <a href="/flickr/tags/chrome/">chrome</a>
+    <a href="/tags/chrome/">chrome</a>
   </div>
 
           <div class="clearfix"></div>
           <nav id="pagination">
   
-    <a href="/flickr/2014/07/03/set-get-caret-position/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Newer</a>
+    <a href="/2014/03/09/css3-webkit-filter/" class="alignleft prev"><i class="fa fa-long-arrow-left"></i>Newer</a>
   
   
-    <a href="/flickr/2014/03/05/css-position-opacity/" class="alignright next">Older<i class="fa fa-long-arrow-right"></i></a>
+    <a href="/2014/03/05/css-position-opacity/" class="alignright next">Older<i class="fa fa-long-arrow-right"></i></a>
   
   <div class="clearfix"></div>
 </nav>
@@ -153,10 +193,10 @@ Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="ex
 
 <div class="clearfix"></div></footer>
 		  
-<script src="/flickr/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
-<script src="/flickr/js/gallery.js" type="text/javascript"></script>
-<script src="/flickr/js/bootstrap.min.js" type="text/javascript"></script>
-
+<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
+<script type="text/javascript" src="/js/gallery.js"></script>
+<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/fartscroll.js"></script>
 
 
 <script type="text/javascript">
@@ -189,8 +229,8 @@ var disqus_shortname = 'stddup';
 
 
 
-  <link rel="stylesheet" href="/flickr/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-  <script src="/flickr/fancybox/jquery.fancybox.pack.js"></script>
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
   <script type="text/javascript">
   (function($){
     $('.fancybox').fancybox({
@@ -214,10 +254,11 @@ var disqus_shortname = 'stddup';
 
     });
   });
-</script>
-<script src="/flickr/js/jquery.anystretch.min.js" type="text/javascript"></script>
-<script src="/flickr/js/nav.js" type="text/javascript"></script>
 
+  fartscroll(800);
+</script>
+<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
+<script type="text/javascript" src="/js/nav.js"></script>
 
 		</body>
 		</html>

@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,7 +24,6 @@
 	<script type="text/javascript">
 
 	window.onload = function () {
-		
 		var oDiv = document.getElementById('ball');
 		oDiv.timer = null;
 		fnMove(oDiv,50,8);
@@ -30,12 +31,10 @@
 
 		/*一个球的运动*/
 			function fnMove (obj,iSpeedX,iSpeedY) {
-				
 			  clearInterval(obj.timer);
 				obj.timer = setInterval(function () {
 
 					iSpeedY += 3; //这个加速度一定要放最前面
-					
 					var left = iSpeedX + obj.offsetLeft;
 				  var top = iSpeedY + obj.offsetTop;
 				  var disX =  document.documentElement.clientWidth - obj.offsetWidth;

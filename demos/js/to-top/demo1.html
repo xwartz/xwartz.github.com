@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -46,7 +48,6 @@
 			//鼠标滚动停止
 			stopMove(oTop);
 		};
-		
 		//点击按钮
 		oTop.onclick = function(){
 			toTop(this);
@@ -77,7 +78,6 @@
 
 				if (scrollTop == 0) {
 					clearInterval(obj.timer);
-					
 				} else{
 					obj.bSys = true;
 					document.documentElement.scrollTop = document.body.scrollTop = scrollTop + speed;
@@ -98,6 +98,6 @@
 	</script>
 </head>
 <body>
-	<a id="top" title="回到顶部" href="javascript:;" target="_blank" rel="external">^</a>
+	<a id = "top" title="回到顶部" href="javascript:;">^</a>
 </body>
 </html>

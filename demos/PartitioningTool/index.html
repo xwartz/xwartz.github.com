@@ -3,14 +3,14 @@
 			<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Partitioning Tool for Multi-core Reservations - The Online Tool</title>
 
-    <link href="css/ui.core.css" rel="stylesheet" type="text/css">
-    <link href="css/theme.css" rel="stylesheet" type="text/css">
+    <link href="css/ui.core.css" rel="stylesheet" type="text/css" />
+    <link href="css/theme.css" rel="stylesheet" type="text/css" />
 
-    <link href="css/mrr.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" type="text/css" href="css/imgselect/imgareaselect-default.css">
+    <link href="css/mrr.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="css/imgselect/imgareaselect-default.css" />
 
     <script type="text/javascript" src="libs/jquery-1.8.0.js"></script>
    <script type="text/javascript" src="libs/jquery-ui-1.7.2.custom.js"></script>
@@ -69,14 +69,14 @@
 					<span id="tip-a-param" class="ui-state-default ui-corner-all tooltip">
 						<span class="ui-icon ui-icon-help"></span>
 					</span>
-				</div><br>
-                <label for="a-a">Arrival time:</label><input id="a-a" type="text">
-                <label for="a-T">Period:</label><input id="a-T" type="text">
-                <label for="a-D">Deadline:</label><input id="a-D" type="text">
-                <label for="a-k" title="Context Switch Overhead">sigma:</label><input id="a-k" type="text">
-                <label>sequentialC:</label><span id="a-sC"></span>
-                <label>parallelC:</label><span id="a-pC"></span><br>
-                <label>max Parallel<br>Number:</label><span id="a-maxNn"></span><br>
+				</div><br />
+                <label for="a-a">Arrival time:</label><input id="a-a" type="text" />
+                <label for="a-T">Period:</label><input id="a-T" type="text" />
+                <label for="a-D">Deadline:</label><input id="a-D" type="text" />
+                <label for="a-k" title="Context Switch Overhead">sigma:</label><input id="a-k" type="text" />
+                <label>sequentialC:</label><span id="a-sC" ></span>
+                <label>parallelC:</label><span id="a-pC" ></span><br />
+                <label>max Parallel<br />Number:</label><span id="a-maxNn" ></span><br />
                 <!--<button type="button" id="a-btn-show">Show Params</button>-->
                 <button type="button" id="a-btn-set">Set Params</button>
 			</div>
@@ -85,12 +85,12 @@
 					<span id="tip-a-config" class="ui-state-default ui-corner-all tooltip">
 						<span class="ui-icon ui-icon-help"></span>
 					</span>
-				</div><br>
+				</div><br />
 				<!--<input type="checkbox" id="a-chk-chetto" title="Set deadlines of tasks using Chetto's algorithm" /><span class="input-descp">Using Chetto's</span><br />-->
 				<fieldset>
 					<legend>Deadline Assignment Method</legend>
-					<input type="radio" name="mode-d-set-option" value="1"><span class="input-descp">Chetto*</span>
-					<input type="radio" name="mode-d-set-option" value="2"><span class="input-descp">Chetto</span>
+					<input type="radio" name="mode-d-set-option" value="1" /><span class="input-descp">Chetto*</span>
+					<input type="radio" name="mode-d-set-option" value="2" /><span class="input-descp">Chetto</span>
 				</fieldset>
 			</div>
             <div class="ui-corner-all ui-state-default mrr-widget-inner-panel">
@@ -98,17 +98,17 @@
 					<span id="tip-a" class="ui-state-default ui-corner-all tooltip">
 						<span class="ui-icon ui-icon-help"></span>
 					</span>
-				</div><br>
+				</div><br />
                 <div id="dv-input-format"><a href="#" id="dialog_link" class="ui-state-default ui-corner-all">
                     <span class="ui-icon ui-icon-newwin"></span>Input Format</a>
                 </div>
-				<div class="dv-app ui-state-default ui-corner-all"><a href="#" id="a-btn-app1">1</a>
+				<div class="dv-app ui-state-default ui-corner-all"><a href="#" id="a-btn-app1" >1</a>
                 </div>
-				<div class="dv-app ui-state-default ui-corner-all"><a href="#" id="a-btn-app2">2</a>
+				<div class="dv-app ui-state-default ui-corner-all"><a href="#" id="a-btn-app2" >2</a>
                 </div>
-				<br>
+				<br />
                 <textarea id="a-create-window" class="ui-widget-content ui-corner-all"></textarea>
-                <button type="button" id="a-btn-create">Create</button> <br>
+                <button type="button" id="a-btn-create">Create</button> <br/>
 				<button type="button" id="a-btn-load">Load</button>
                 <button type="button" id="a-btn-save">Save</button>
             </div>
@@ -119,13 +119,13 @@
 					<span id="tip-n-param" class="ui-state-default ui-corner-all tooltip">
 						<span class="ui-icon ui-icon-help"></span>
 					</span>
-				</div><br>
-                <label>id:</label><span id="n-id"></span><br>
-                <label>X-axis:</label><span id="n-X"></span><label>Y-axis:</label><span id="n-Y"></span><br>
-                <label>flow:</label><span id="n-flow"></span><br>
-                <label>Activation:</label><span id="n-a"></span><br>
-                <label>Deadline:</label><span id="n-D"></span><br>
-                <label for="n-C">WCET:</label><input id="n-C" type="text"><br>
+				</div><br />
+                <label>id:</label><span id="n-id" ></span><br />
+                <label>X-axis:</label><span id="n-X" ></span><label>Y-axis:</label><span id="n-Y" ></span><br />
+                <label>flow:</label><span id="n-flow" ></span><br />
+                <label>Activation:</label><span id="n-a" ></span><br />
+                <label>Deadline:</label><span id="n-D" ></span><br />
+                <label for="n-C">WCET:</label><input id="n-C" type="text" /><br />
                 <!-- <<button type="button" id="n-btn-set">Set Params</button> -->
 			</div>
 			<div class="ui-corner-all ui-state-default mrr-widget-inner-panel">
@@ -133,7 +133,7 @@
 					<span id="tip-n" class="ui-state-default ui-corner-all tooltip">
 						<span class="ui-icon ui-icon-help"></span>
 					</span>
-				</div><br>
+				</div><br />
                 <button type="button" id="n-btn-add">Add</button>
 				<button type="button" id="n-btn-remove" disabled="disabled">Remove</button>
             </div>
@@ -142,11 +142,11 @@
 					<span id="tip-r" class="ui-state-default ui-corner-all tooltip">
 						<span class="ui-icon ui-icon-help"></span>
 					</span>
-				</div><br>
+				</div><br />
                 <!-- <label>id:</label><span id="r-id" ></span><br /> -->
-                <label>predecessor:</label><span id="r-pre"></span><br>
-                <label>successor:</label><span id="r-suc"></span><br>
-                <label for="r-c">Latency:</label><input id="r-c" type="text"><br>
+                <label>predecessor:</label><span id="r-pre"></span><br />
+                <label>successor:</label><span id="r-suc"></span><br />
+                <label for="r-c">Latency:</label><input id="r-c" type="text" /><br />
 				<button type="button" id="n-btn-conn" disabled="disabled">Set</button>
                 <button type="button" id="r-btn-remove" disabled="disabled">Remove</button>
             </div>
@@ -155,7 +155,7 @@
 					<span id="tip-a-utility" class="ui-state-default ui-corner-all tooltip">
 						<span class="ui-icon ui-icon-help"></span>
 					</span>
-				</div><br>
+				</div><br />
                 <button type="button" id="a-btn-topo" title="Show topological order">Topological</button>
                 <button type="button" id="a-btn-path">Critical Path</button>
                 <!--<button type="button" id="a-btn-timeline" title="Show the timeline representation of the application">TimeLine</button>
@@ -177,10 +177,10 @@
 					<span id="tip-f-goal" class="ui-state-default ui-corner-all tooltip">
 						<span class="ui-icon ui-icon-help"></span>
 					</span>
-				</div><br>
-				<input type="radio" name="opt-goal-option" value="1"><span class="input-descp">Fragmentation</span><label class="lbl-cost" id="cost-beta"></label><br>
-				<input type="radio" name="opt-goal-option" value="2"><span class="input-descp">Total Bandwidth</span><label class="lbl-cost" id="cost-B"></label>
-				<br>
+				</div><br />
+				<input type="radio" name="opt-goal-option" value="1" /><span class="input-descp">Fragmentation</span><label class="lbl-cost" id="cost-beta"></label><br />
+				<input type="radio" name="opt-goal-option" value="2" /><span class="input-descp">Total Bandwidth</span><label class="lbl-cost" id="cost-B"></label>
+				<br />
             </div>
 			<!-- <div class="ui-corner-all ui-state-default mrr-widget-inner-panel">
 				<div class="inner-pnl-title">Automatic Partitioning
@@ -211,9 +211,9 @@
 					<span id="tip-f-manual" class="ui-state-default ui-corner-all tooltip">
 						<span class="ui-icon ui-icon-help"></span>
 					</span>
-				</div><br>
-				<select id="f-select-flows"></select><br>
-				<button type="button" id="f-btn-flow" disabled="disabled">Create</button>
+				</div><br />
+				<select id="f-select-flows"></select><br />
+				<button type="button" id="f-btn-flow" disabled="disabled" >Create</button>
 				<button type="button" id="f-btn-remove" disabled="disabled">Remove</button>
             </div>
 			<!--<div class="ui-corner-all ui-state-default mrr-widget-inner-panel">
@@ -225,7 +225,7 @@
         </div>
 		<div id="pnl-log">
 			<div class="ui-corner-all ui-state-default mrr-widget-inner-panel">
-				<textarea id="mrr-logwindow" class="ui-widget-content ui-corner-all"></textarea><br>
+				<textarea id="mrr-logwindow" class="ui-widget-content ui-corner-all"></textarea><br />
 				<button type="button" id="l-btn-clear">Clear</button>
 			</div>
 		</div>
@@ -236,38 +236,38 @@
     <div id="dialog" title="Input Format of Application">
         <div class="mrr-dialog-left">
             <h4>Format (* 0-based-index)</h4>
-            <p>[<br>
-            &nbsp&nbsp [[WCET,X,Y], ...],&nbsp&nbsp//X,Y optional<br>
-            &nbsp&nbsp [[predecessor,successor], ...],&nbsp&nbsp//relations<br>
-            &nbsp&nbsp [[task,task,...],...],&nbsp&nbsp//flows<br>
-            &nbsp&nbsp [D,a,T],&nbsp&nbsp//D,a,T optional<br>
+            <p>[<br />
+            &nbsp&nbsp [[WCET,X,Y], ...],&nbsp&nbsp//X,Y optional<br />
+            &nbsp&nbsp [[predecessor,successor], ...],&nbsp&nbsp//relations<br />
+            &nbsp&nbsp [[task,task,...],...],&nbsp&nbsp//flows<br />
+            &nbsp&nbsp [D,a,T],&nbsp&nbsp//D,a,T optional<br />
             ]</p>
         </div>
         <div class="mrr-dialog-right">
             <h4>Example(try 'copy & paste')</h4>
-            <p>[<br>
-            &nbsp&nbsp [[4],[1],[5],[2],[3]],<br>
-            &nbsp&nbsp [[0,1],[0,3],[1,4],[1,2],[3,4]],<br>
-            &nbsp&nbsp [[0,1,2],[3,4]],<br>
-            &nbsp&nbsp [20,0,0,1]<br>
+            <p>[<br />
+            &nbsp&nbsp [[4],[1],[5],[2],[3]],<br />
+            &nbsp&nbsp [[0,1],[0,3],[1,4],[1,2],[3,4]],<br />
+            &nbsp&nbsp [[0,1,2],[3,4]],<br />
+            &nbsp&nbsp [20,0,0,1]<br />
             ]</p>
         </div>
 	</div>
 
 	<div id="dialog-app1" title="Application 1">
-		<img src="pic/app1.png">
+		<img src="pic/app1.png" />
 	</div>
 	<div id="dialog-app2" title="Application 2">
-		<img src="pic/app2.png">
+		<img src="pic/app2.png" />
 	</div>
 
     <div id="dialog-load" title="Load Application">
         <form id="form-load-app" method="POST" enctype="multipart/form-data" action="javascript: uploadAndOpenApp();">
-            <input id="uploadfile" type="file" name="uploadfile">
-            <input type="submit" value="Load">
-            <input type="hidden" name="method" value="loadapp">
+            <input id="uploadfile" type="file" name="uploadfile"/>
+            <input type="submit" value="Load"/>
+            <input type="hidden" name="method" value="loadapp"/>
         </form>
-        <label for="load-file-name">Application Name:</label><input id="load-file-name" size="30">
+        <label for="load-file-name">Application Name:</label><input id="load-file-name" size="30"/>
     </div>
 
 	<div id="container_pGraph">
@@ -325,7 +325,7 @@
     </ul>
     </p>
   </div>
-  <div id="fade" class="black_overlay" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"></div>
+  <div id="fade" class="black_overlay" onclick = "document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'"></div>
 
 </body>
 </html>
