@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>瀑布流---浮动方法</title>
+
+	<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+	}
+	div#waterfall{
+		width: 870px;
+		height: auto;
+		margin: 20px auto;
+	}
+
+	#waterfall ul{
+		width: 250px;
+		margin: 10px;
+		float: left;
+	}
+	#waterfall ul img{
+		width: 250px;
+	}
+	</style>
+
+
+	<script src="img.js"></script>
+	<script type="text/javascript">
+	window.onload = function () {
+		var oWfall = document.getElementById('waterfall');
+		var aUl = oWfall.getElementsByTagName('ul');
+		var j = 0;
+		window.onscroll = function () {
+			var viewHeight = document.documentElement.clientHeight;//获取客户窗口大小
+			var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+			for (var i = 0; i < aUl.length; i++) {
+				var aLi = aUl[i].getElementsByTagName('li');//每个ul下的li
+				var lastLi = aLi[aLi.length - 1];//最后一个li
+
+				if (lastLiDis(lastLi) < viewHeight + scrollTop ) {
+
+					//getNewImg ();
+					
+
+					var src = images[j++ % images.length].src;
+
+					var oLi = document.createElement('li');
+					
+					oLi.innerHTML = '<img src = "' + src + '"/>';
+					aUl[i].appendChild(oLi);
+					            
+				}
+			}
+				
+			};
+	};
+
+/*	function getNewImg () {
+		var imgSrc;
+		var url = 'http://api.flickr.com/services/feeds/photos_public.gne?tags=Landscape&tagmode=any&format=json&jsoncallback=?';
+		
+		ajax(url,function (data) {
+			var json = eval(data);
+			var items = json.items;
+			var media = items[0].media;
+		  imgSrc = media.m;	  
+		});
+		return imgSrc;
+
+		
+		// var oImg = new Image();
+		// oImg.src = 'http://i11.topit.me/t/201101/14/12949742814823.jpg';
+		
+		//  return oImg.src;
+
+
+	}*/
+
+	function lastLiDis (obj) {
+		var dis = 0;
+		while(obj){
+			dis += obj.offsetTop;
+			obj = obj.offsetParent;
+		}
+		return dis;
+
+	}
+	</script>
+</head>
+<body>
+	<div id="waterfall">
+		<ul>
+			<li><img src="http://f11.topit.me/l/201101/14/12950097957342.jpg"></li>
+			<li><img src="http://i11.topit.me/t/201101/14/12949742814823.jpg"></li>
+			<li><img src="http://f2.topit.me/2/79/bf/11646557572a8bf792l.jpg"></li>
+		</ul>
+
+		<ul>
+			<li><img src="http://fd.topit.me/d/d9/4f/116465459698b4fd9dl.jpg"></li>
+			<li><img src="http://f11.topit.me/l/201101/14/12949691215971.jpg"></li>
+			<li><img src="http://f7.topit.me/7/ff/c9/1164640822a60c9ff7l.jpg"></li>
+		</ul>
+
+		<ul>
+			<li><img src="http://ie.topit.me/e/2a/0d/1164655752f9d0d2aet.jpg"></li>
+			<li><img src="http://f8.topit.me/8/a1/dd/1134237593abddda18l.jpg"></li>
+			<li><img src="http://f9.topit.me/9/8c/71/11799285731be718c9l.jpg"></li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>一个球</title>
+
+	<style type="text/css">
+	*{
+    margin:            0;
+    padding:           0;
+	}
+
+	a{
+		display: block;
+    height:            50px;
+    width:             50px;
+    background:        red;
+    border-radius:     25px;
+    position:          absolute;
+	}
+	</style>
+
+	<script type="text/javascript">
+		//碰撞运动
+	window.onload = function () {
+
+		var oBall = document.getElementById('ball');
+
+		fnMove(oBall,10,15);
+
+	function fnMove (obj,iSpeedX,iSpeedY) {
+		
+		setInterval(function () {
+
+			var left = iSpeedX + obj.offsetLeft;
+		  var top = iSpeedY + obj.offsetTop;
+
+			if(top >= document.documentElement.clientHeight - obj.offsetHeight){
+				iSpeedY *= -1;
+				top = document.documentElement.clientHeight - obj.offsetHeight;
+			}
+		 else if (left >= document.documentElement.clientWidth - obj.offsetWidth) {
+				iSpeedX *= -1;
+				left = document.documentElement.clientWidth - obj.offsetWidth;
+			}
+
+			if (top <= 0) {
+				iSpeedY *= -1;
+				top = 0;
+			}
+			else if(left <= 0){
+				iSpeedX *= -1;
+				left = 0;
+			}
+
+			obj.style.left = left  + 'px';
+			obj.style.top = top  + 'px';
+		},30);
+	}
+};
+
+	</script>
+</head>
+<body>
+<a id="ball"></a>	
+</body>
+</html>

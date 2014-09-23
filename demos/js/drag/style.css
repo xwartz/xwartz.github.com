@@ -1,0 +1,22 @@
+﻿* {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background: #ccc;
+  position: absolute;
+  /*请使用支持css3的浏览器*/
+  border-radius: 50px;
+}
+
+a:              hover {
+  background: #48A65F;
+}
+
+a:              active {
+  background: #AF191B;
+}

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百叶窗</title>
+	<style type="text/css">
+	*{
+    margin:           0;
+    padding:          0;
+	}
+	ul#louver{
+    width:            500px;
+    margin:           40px auto;
+    /*background:     #eee;*/
+	}
+	#louver li{
+    width:            500px;
+    height:           100px;
+    list-style:       none;
+    margin-bottom:    1px;
+    overflow:         hidden;
+    position:         relative;
+	}
+	#louver li ul{
+    width:            500px;
+    height:           200px;
+    position:         absolute;
+    top:              -100px;
+		
+	}
+	#louver li ul li{
+    height:           100px;
+    list-style:       none;
+    background:       #eee;
+	}
+  #louver li ul li:first-child{
+    background:       green;
+	}
+	</style>
+
+	<script src="slide.js"></script>
+	<script type="text/javascript">
+	window.onload = function () {
+		var oUl = document.getElementById('louver');
+		var aUl = oUl.getElementsByTagName('ul');
+		var iNow = 0;
+		var bChange = true;
+		var timer = null;
+
+		toShow();
+
+		function toShow(){
+
+			setTimeout(toShow,4000);
+			
+			timer = setInterval(function () {
+			/*	if(iNow == aUl.length){
+					iNow = 0;
+					bChange = !bChange;
+					clearInterval(timer);
+				}else{
+					fnMove(aUl[iNow],{top: bChange ? 0 : -100});
+					iNow++;
+				}
+				*/
+
+				if (bChange) {
+					fnMove(aUl[iNow],{top: 0});
+					iNow++;
+					if (iNow == aUl.length) {
+						bChange = !bChange;
+						clearInterval(timer);
+					}
+				}else{
+					iNow--;
+					fnMove(aUl[iNow],{top: -100});
+					if (iNow == 0) {
+						bChange = !bChange;
+						clearInterval(timer);
+					}
+				}
+			},1000);
+		}
+
+
+	};
+
+	
+	</script>
+</head>
+<body>
+		<ul id="louver">
+			<li>
+				<ul>
+					<li>1</li>
+					<li>2</li>
+				</ul>
+			</li>
+
+			<li>
+				<ul>
+					<li>3</li>
+					<li>4</li>
+				</ul>
+			</li>
+
+			<li>
+				<ul>
+					<li>5</li>
+					<li>6</li>
+				</ul>
+			</li>
+
+			<li>
+				<ul>
+					<li>7</li>
+					<li>8</li>
+				</ul>
+			</li>		
+		</ul>
+</body>
+</html>

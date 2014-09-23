@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css实现水平和垂直居中，支持IE8+</title>
+
+	<style type="text/css">
+	*{
+    margin:                 0;
+    padding:                0;
+	}
+	div.centerContainer{
+    width:                  500px;
+    height:                 500px;
+    background:             green;
+    position:               relative;
+	}
+	.absoluteCenter{
+    width:                  200px;
+    height:                 200px;
+    margin:                 auto;
+    position:               absolute;
+    top:                    0;left: 0;bottom: 0;right: 0;
+    background:             red;
+    overflow:               auto;
+	}
+	</style>
+</head>
+<body>
+	<div class="centerContainer">
+		<div class="absoluteCenter"></div>
+	</div>
+	
+	<!-- 
+	<ul>
+		<li>1.在普通文档流里，margin: auto; 的意思是设置元素的margin-top和margin-bottom为0。</li>
+	
+		<li>
+			2. 设置了position: absolute; 的元素会变成块元素，并脱离普通文档流。而文档的其余部分照常渲染，元素像是不在原来的位置一样。
+		</li>
+	
+		<li>
+			3. 设置了top: 0; left: 0; bottom: 0; right: 0; 样式的块元素会让浏览器为它包裹一层新的盒子，因此这个元素会填满它相对父元素的内部空间，这个相对父元素可以是是body标签，或者是一个设置了position: relative; 样式的容器。
+		</li>
+	
+		<li>
+			4. 给元素设置了宽高以后，浏览器会阻止元素填满所有的空间，根据margin: auto; 的要求，重新计算，并包裹一层新的盒子。
+		</li>
+	
+		<li>
+			5. 既然块元素是绝对定位的，又脱离了普通文档流，因此浏览器在包裹盒子之前会给margin-top和margin-bottom设置一个相等的值。
+			具体可以查看 http://blog.jobbole.com/46574/
+		</li>
+	
+	</ul> 
+	-->
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+*{
+		margin: 0;
+		padding: 0;
+	}
+	body{
+		width: 870px;
+		margin: 0 auto;
+		position: relative;
+	}
+	li{
+		list-style: none;
+	}
+	img{
+		border: none;
+	}
+	div#accordion{
+		width: 610px;
+		height: 323px;
+		border: 1px solid #eee;
+		margin: 100px auto;
+		/*position: relative;*/
+	}
+	#accordion ul{
+		width: 610px;
+		height: 323px;
+		overflow: hidden;
+	}
+	#accordion ul li{
+		width: 20px;
+		height: 323px;
+		float: left;
+		overflow: hidden;
+		position: relative;
+	}
+	#accordion ul .active{
+		width: 530px;
+	}
+	 #accordion ul li img{
+		width: 510px;
+		/*height: 323px;*/
+	}
+	#accordion ul span{
+		width: 20px;
+		height: 323px;
+		line-height: 323px;
+		text-align: center;
+		position: absolute;
+		top: 0;
+		right: 0;
+		cursor: pointer;
+	}
+
+	.s1{    background: #091A24;  }
+	.s2{	  background: #335530;	}
+	.s3{		background: #554138;	}
+	.s4{		background: #E3E778;	}
+	.s5{		background: #E8E0D3;	}

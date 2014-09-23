@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>照片墙 | IE6真麻烦</title>
+<style>
+* {
+  margin:          0;
+  padding:         0;
+}
+
+ul#imgs {
+  width:           370px;
+  height:          370px;
+  position:        relative;
+  margin:          10px auto;
+
+}
+#imgs li {
+  width:           100px;
+  height:          100px;
+  float:           left;
+  list-style:      none;
+  margin:          10px;
+  z-index:         1;
+}
+
+#imgs li img{
+  width:           100px;
+  height:          100px;
+}
+#imgs .active{
+  border:          1px dashed #0768ca;
+}
+</style>
+
+<script src="switch.js"></script>
+<script type="text/javascript">
+window.onload = function () {
+	var oImg = document.getElementById('imgs');
+	var aImg = oImg.getElementsByTagName('li');
+	var iMinZindex = 2;
+
+	/*布局转换*/
+	var aPos = [];
+	for (var i = 0; i < aImg.length; i++) {
+		aPos[i] = {left: aImg[i].offsetLeft, top: aImg[i].offsetTop};
+	}
+	for (var i = 0; i < aImg.length; i++) {
+		aImg[i].style.left = aPos[i].left + 'px';
+		aImg[i].style.top = aPos[i].top + 'px';
+
+		aImg[i].style.position = 'absolute';
+		aImg[i].style.margin = '0';
+	}
+
+
+	//拖拽
+	for (var i = 0; i < aImg.length; i++) {
+		aImg[i].index = i;  //添加个索引值
+		fnDrag(aImg[i],aImg);
+	}
+
+	function fnDrag (oCur,aTotal) {
+
+		oCur.onmousedown = function (ev) {
+			var oEvent = ev || window.event;
+			var disX = oEvent.clientX - oCur.offsetLeft;
+			var disY = oEvent.clientY - oCur.offsetTop;
+
+			//IE6兼容
+			if (oCur.setCapture) {
+				oCur.setCapture(); //捕获事件,IE特有的全局捕获
+				oCur.onmousemove = mouseMove;
+				oCur.onmouseup = mouseUp;
+			}else{
+				//其他浏览器方法
+				document.onmousemove = mouseMove;
+				document.onmouseup = mouseUp;
+			}
+
+
+		  function mouseMove(ev) {
+				var oEvent = ev || window.event;
+
+				//移动后的位置
+				var left = oEvent.clientX - disX;
+				var top = oEvent.clientY - disY;
+
+				//能移动的最大距离
+				var iMaxDisX = oImg.offsetWidth - oCur.offsetWidth;
+				var iMaxDisY = oImg.offsetHeight - oCur.offsetHeight;
+				//能移动的范围
+				if (left < 0) {
+					left = 0;
+				}
+				else if(left > iMaxDisX){
+					left = iMaxDisX;
+				}
+				if (top < 0) {
+					top = 0;
+				}
+				else if (top > iMaxDisY ) {
+					top = iMaxDisY;
+				}
+
+				oCur.style.zIndex = iMinZindex++; //增加
+
+				oCur.style.left = left + 'px';
+				oCur.style.top = top + 'px';
+
+				for (var i = 0; i < aTotal.length; i++) {
+					aTotal[i].className = '';
+				}
+				var oNearest = findNearest(oCur,aTotal);
+				if (oNearest) {
+					oNearest.className = 'active';
+				}
+			};
+
+		  function mouseUp() {
+				this.onmousemove = null;
+				this.onmouseup = null;
+
+				//IE6,撤销事件捕获
+				if (this.releaseCapture) {
+					this.releaseCapture();
+				}
+
+				var oNearest = findNearest(oCur,aTotal);
+				if (oNearest) {
+					oNearest.className = '';
+					oNearest.style.zIndex = iMinZindex++; //增加要交换的那个z-index
+					// oCur.style.zIndex = iMinZindex++;
+
+					//交换位置
+					startMove(oNearest,aPos[oCur.index]);
+					startMove(oCur,aPos[oNearest.index]);
+					var temp = 0;
+					temp = oCur.index;
+					oCur.index = oNearest.index;
+					oNearest.index = temp;
+				}else{
+					startMove(oCur,aPos[oCur.index]);
+				}
+			};
+
+			clearInterval(oCur.timer);
+			return false;
+		};
+	}
+};
+	
+</script>
+</head>
+
+<body>
+<ul id="imgs">
+	<li><img src="images/1.jpg"></li>
+	<li><img src="images/2.jpg"></li>
+	<li><img src="images/3.jpg"></li>
+	<li><img src="images/4.jpg"></li>
+	<li><img src="images/5.jpg"></li>
+	<li><img src="images/6.jpg"></li>
+	<li><img src="images/7.jpg"></li>
+	<li><img src="images/8.jpg"></li>
+	<li><img src="images/9.jpg"></li>
+	
+</ul>
+</body>
+</html>

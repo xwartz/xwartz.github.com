@@ -1,0 +1,352 @@
+﻿body
+{
+	margin: 0 auto;
+	padding: 0px;
+	font: 62.5% Verdana, sans-serif;
+}
+
+h3{	margin:2px;	float:left;}
+
+#container_pGraph,#container_timeline,#container_dbf
+{
+	/*min-height: 400px;*/
+	width: 600px;
+	margin: 5px;
+	/*float:left;*/
+}
+/*#container_timeline
+{
+	min-height: 220px;
+}*/
+#pGraphCanvas
+{
+	position: relative;
+	height: 200px;
+	width: 600px;
+	background: #ffffcc;
+	border: #000000;
+}
+#timeLineCanvas
+{
+	position: relative;
+	height: 220px;
+	width: 600px;
+	background: #ffffcc;
+	border: #000000;
+	padding-top: 20px;
+}
+#dbfCanvas
+{
+	position: relative;
+	height: 200px;
+	width: 600px;
+	background: #ffffcc;
+	border: #000000;
+}
+.canvas-head
+{
+	height:20px;
+	padding: 1px;
+}
+.btn-toggle
+{
+	float:right;
+	cursor:pointer;
+	padding:1px;
+}
+#pGraph-subtitle
+{
+	margin:2px;	
+	float:left;
+	font-size:9pt;
+}
+
+#Panel
+{
+	height: 630px;
+	width: 300px;
+	float: right;
+	right: 10px;
+	top: 10px;
+	z-index: 1002;
+}
+#dialog {
+	z-index: 1003;
+}
+#Log
+{
+	height: 400px;
+	width: 200px;
+	float: right;
+}
+#mrr-logwindow
+{
+	width: 100%;
+	height: 300px;
+	overflow: auto;
+}
+#a-create-window, #f-text-opt
+{
+	width:100%;
+	height:100px;
+	overflow: auto;
+	margin:5px 0;
+}
+#dv-input-format
+{
+	width:50%;	
+	float: left;
+}
+.dv-app
+{
+	float: left;
+	width: 20px;
+	margin: 0px 5px;
+	text-align: center;
+}
+.a-btn-app
+{	
+	text-align: center;
+}
+.mrr-widget-common
+{
+	margin:5px;
+	padding:0.2em 0.2em 0;
+}
+.mrr-widget-header
+{
+	text-align: center;
+	padding: 0.2em 0;
+}
+.mrr-widget-header h1
+{
+	font-size: large;
+	margin: 0 auto;
+}
+.mrr-widget-content
+{
+	padding: 0.5em;
+}
+#n-nodes
+{
+	padding: 10px;	
+	height: 56px;
+	overflow: scroll;
+}
+.mrr-widget-inner-panel
+{
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.mrr-widget-inner-panel span
+{
+	float:left;
+	/*line-height: 15px;*/
+}
+.mrr-widget-inner-panel label,
+.mrr-widget-inner-panel input,
+.mrr-widget-inner-panel select {
+	display: block;
+	width: 100px;
+	float: left;
+	margin-bottom: 10px;
+}
+.mrr-widget-inner-panel input {	
+	width: 26px;		
+}
+.mrr-widget-inner-panel input[type="checkbox"], input[type="radio"] {	
+	width: 20px;		
+	margin: 5px 2px;
+}
+.mrr-widget-inner-panel label
+{
+	text-align: right;
+	width: 80px;
+	padding-right: 10px;
+
+}
+.lbl-title
+{
+	padding: 2px 0px !important;
+	width: 100px !important;
+	margin: 5px 12px !important; /*12px instead of 10px, because in FF, button/select has border*/	 	
+}
+.mrr-widget-inner-panel .input-descp
+{
+	min-width: 85px;
+	margin: 5px 0px;	
+}
+.mrr-widget-inner-panel br
+{
+	clear:left;
+}
+.mrr-widget-inner-panel button, select
+{
+	width: 100px;
+	margin: 5px 10px;		
+}
+.mrr-widget-inner-panel .lbl-cost
+{
+	float: right;
+}
+.inner-pnl-title
+{
+	font-size: 1.1em;
+	font-weight: bold;
+	margin: 0px 5px;
+	text-align: center;
+}
+.mrr-dialog-left, .mrr-dialog-right
+{
+	width:45%;
+	float:left;
+	padding: 10px;
+}
+
+.in-legend
+{
+	margin-left: 5px !important;
+	margin-right: 5px !important;
+}
+
+
+#bottom-bar
+{
+	bottom:0;
+	position:fixed;
+	width:100%;
+	z-index:99;
+	height:25px;
+	font-size:11px;
+}
+
+#msg-bar
+{
+	margin-left:15px;
+	margin-right:15px;
+	position:relative;
+	background:#9c9c9c;
+	height:100%;
+}
+#bottom
+{		
+	clear:both;
+	background:#363636;
+	margin: 0px 5px;
+	height:40px;
+}
+#bottom-txt
+{
+	font-weight: normal;
+	font-size: small;
+	color:white;
+	text-align:center;
+	margin-top:10px;
+}
+#bottom-txt 	a:link { color: white;}
+#bottom-txt 	a:visited { color: white;}
+#bottom-txt 	a:hover { color: white;}
+#bottom-txt 	a:active { color: white;}
+
+#bottom-txt-left
+{
+	width:35%;
+	float:left;	
+}
+#bottom-txt-center
+{
+	width:30%;
+	float:left;	
+	padding-top:10px;
+}
+#bottom-txt-right
+{
+	padding-top:10px;
+}
+.bottom-logo
+{
+	height:36px;
+	margin:2px;
+	float:left;
+}
+
+#dialog-app1, #dialog-app2
+{
+	background: #ffffcc;
+}
+
+#dialog-load input
+{
+    margin-top: 5px;
+}
+#dialog-load input[type="submit"]
+{
+    float: right;
+}
+
+/* editable */
+.editable-input-text 
+{
+	height:11px;
+	font-size:10px;
+}
+
+/* tooltips */
+.tooltip
+{
+	cursor: pointer;
+	float: right !important;
+}
+.dv-head-left
+{
+	float:left;
+}
+.dv-head-right
+{	
+	float:right;
+	margin-right: 10px;
+}
+.spacer
+{
+	clear:both;
+}
+input /* align the checkbox */
+{
+	vertical-align:middle;
+}
+
+
+/* lightbox-like */
+.black_overlay{
+	display: none;
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	z-index:2001;
+	-moz-opacity: 0.8;
+	opacity:.80;
+	filter: alpha(opacity=80);
+}
+ 
+.white_content {
+	display: none;
+	position: fixed;
+	top: 10%;
+	left: 25%;
+  width: 50%;
+	padding: 10px;
+	border: 2px solid black;
+	background-color: white;
+	z-index:2002;
+	overflow: auto;
+}
+
+/* for test */
+.pnl-btn
+{
+	padding: 0.4em 1em;
+	text-decoration: none;
+}

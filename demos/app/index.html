@@ -1,0 +1,326 @@
+
+	
+			<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>TickTick</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta content="black" name="apple-mobile-web-app-status-bar-style">
+  <style type="text/css">
+  body, p{
+  	margin:0;
+  }
+  ul{
+  	margin:0;
+  	padding:0;
+    list-style-type: none;
+  }
+  body {
+  	font: 12px/18px "Lucida Grande","Lucida Sans Unicode",Arial,Verdana,sans-serif;
+  	padding: 8px;
+  	background: #fff;
+  }
+  .header{
+  	padding: 10px 0;
+  }
+  .clear{
+  	clear: both;
+  }
+  .block-title{
+  	font-size: 17px;
+  	color: #474747;
+  	padding-left: 7px;
+  	margin: 10px 0 10px 0;
+  	border-left: 3px solid #5f7fb0;
+  }
+  .hr{
+  	margin-top: 10px;
+  	height: 1px;
+  	background: #e8e8e8;
+  }
+
+  img.icon {
+  	width: 60px;
+  	height: 60px;
+  	float: left;
+    border-radius: 10px;
+    border: 1px solid #e4e4e4;
+  }
+  .app-info{
+  	float: left;
+  	margin-left: 10px;
+  	height: 60px;
+  }
+  .app-name,
+  .rating{
+  	height: 31px;
+  	line-height: 35px;
+  }
+  .app-name{
+  	font-size: 22px;
+  	color: #474747;
+  }
+  .app-name.en{
+    font-size: 15px;
+  }
+  .rating{
+  	font-size: 17px;
+  	color: #ffd966;
+  }
+  .view-box{
+  	width: 100%;
+  	overflow-x: scroll;
+  }
+  .overview{
+  	width: 800px;
+  	float: left;
+  }
+  .overview img{
+  	float: left;
+  	width: 150px;
+  	margin-right: 10px;
+  }
+  .description{
+  	font-size: 12px;
+  	color: #898989;
+  }
+  .comments-list{
+    font-size: 12px;
+    color: #898989;
+  }
+  .comments-list .author{
+    font-size: 12px;
+    color: #555;
+    float: right;
+  }
+  .space{
+    height: 60px;
+  }
+  .download{
+  	position: fixed;
+  	bottom: 0;
+  	width: 100%;
+    height: 46px;
+    background: #f7f7f7;
+    padding: 3px;
+    margin-left: -7px;
+    box-shadow: -1px -1px 2px #e7e7e7;
+    box-sizing: border-box;
+  }
+  .install{
+  	width: 190px;
+  	height: 40px;
+  	line-height: 40px;
+  	text-align: center;
+  	background: #5f7fb0;
+    margin: 0 auto;
+  }
+  .install a{
+    display: block;
+    width: 190px;
+    height: 40px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+  }
+  @media screen and (min-width: 900px) {
+    .view-box{
+      width: 100%;
+      overflow-x: hidden;
+    }
+    .overview{
+      width: 825px;
+      float: none;
+      margin: 0 auto;
+    }
+    .overview img{
+      float: none;
+    }
+  }
+  </style>
+</head>
+<body>
+	<div id="header" class="header">
+		<div class="app-icon">
+			<img src="data:image/jpg;base64,/9j/4AAQSkZJRgABAQIAHAAcAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCACvAK8DAREAAhEBAxEB/8QAHQABAAICAwEBAAAAAAAAAAAAAAcIAgYBBQkEA//EAD8QAAEDAwIDBQUFBgUFAQAAAAEAAgMEBREGEgchMQhBUWFxExQyUoEiQpGxwRUWI3Kh0TNDYoKiJCU0U5Ky/8QAHAEBAAIDAQEBAAAAAAAAAAAAAAUGAQQHAwII/8QANhEAAQMDAgIIBQQDAAMBAAAAAAECAwQRIQUxElEGEyIyQWFx0RSBkaGxI1LB4RVC8CQzovH/2gAMAwEAAhEDEQA/APVNDFwguEFwguEFwguEFwguEFwguEFwguEFwguEFwguEFwguEFwguEFwguYIZCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgONyGLDcgsNyCw3ILDcgsNyCw3ILDcgsNyCw3ILDcgsNyCw3ILDcgsNyCw3ILDcgsM+SAbkFhuQWG5BYbkFjHIWcGMjITAyMhMDIyEwMjITAyMhMDIyEwMjITAyMhMDJjJKyFpdI9rGj7zjgLKZ2B01TrjTlG/ZUagtcD+m2Stjaf6uXskMi7MX6HmsjE3cn1O4hniqImSxSNlieNzXsOWuHiCOq8VwtlPTczyFjAyMhMDIyEwMjITAyRlxQ4iPt5dZ7TMWVh/8AIqGHnEPlB+b8ly/pV0jdTqtBQus//Zyf6+Sef4Lfo2lpL/5NQnZ8E5+foR/pXVF2sl8pZY62oqI5JWtlglkLxICcHke/n1XPNJ1WuoayN7ZXORVRFRVVUVFXz8Sz1tHT1EDmqxEVEwqJaxY3IX6TOU5GQmBkZCYGRkJgZMMrIyMoMjKDIygyMoMjKDIQZIe4qdqTRvDGSWhE7r9e2ZBt9uIdsd4SP+FvpzPkpam02ep7VuFvNTRmrI4cbqVk1p2ueIur3SR22en0rQu+FlCzfNjzld+gCscOlUsWXJxL5+xEyVsz+7hCJbvc7vqOodUXi9XC6TO6uqql7/zKlGNZGlmNRPkaTlc/Lludb+xqX/1NP0XpxqfHChcfsL1V5/dzUdHUPlksNPPH7kZSSGSEH2jGZ7sbDjuJ81UtaRnGxyd5d/4J3TldwuTwLQ5VbJfIygyMoMmkcSdejTNJ7lRODrrO3ljn7FvzHz8AqJ0n6QJpcXw1Ov6zv/lOa+fL6li0jTFrH9bL3E+68vchHmS5z3F73Euc5xyST1JXCcqquct1Xc6NjZNiRuE2kBXVX7Zq2Zp4HYga777/AJvQfn6LpXRDRviZfj507Le75rz+X59Cp65X9Uz4aNcrv6f2S/ldnKGMoMjKDIygyY5WTAygGUAygGUB8t0utHZLdU19fUxUdFTMMk08ztrGNHUkr6a1z3I1qXVTCqjUuuxSTjj2q7tr6eosukJprPp0EskrW5ZU1g78Hqxh8BzPfjorjRaYyBEfNl3LwQgKisdJ2Y8J+SCKSgAe2OKN0krzgBo3OcT+ZU2rvFSORCceH3ZM1jrGOKquTY9N29/MPrATM4eIiHP/AOiFCz6pBFhvaXy9yQiopH5XCE5ad7Guh7VHG651FwvU4+LfL7GMn+VvP/koaTV6h3cREJBtDE3vXU3OLs68NYWNYNJUTgO975HE+pLlprX1S/7qbHwsP7TerRZ7fp+3xUFso4KCiiGGQU7AxjfoFpPe568T1upsNajUs1LIfZlfJkZQGta41nBpC2b/ALMtdNlsEOep+Y+QVX1/W49Gp+LeR3dT+V8k/omNN099fLbZqbr/AN4kC1NVPX1UtVVSGapmdue93UlfnqWWWoldPO7ie7KqdOYxkTEjjSyIdnpfT02p7zDRRZa0ndLJ8jB1Kk9K06TVKptMzZd15J4qalZVNo4Vld8vNSwtDRwW2jhpaZgjghaGMaO4L9I09PHSwtgiSzWpZDlMsrpnrI9bqp++VsnkMoBlAMoDDKAZQDKAZQGMkrIo3Pe9rGNBc5zjgADqSU3BQztH8eKjitfJbJaJ3R6SoZMDYce/SA/4jv8AQPuj6+GLvp9ElK3rH99fsVyqqVmdwN7qfcjvQ+h7tr6/09lsdKamrl5k9GRN73vPc0LfmmZAxXyLg1o43SO4Wl5+EHZ909wppo6ksZddQFv8S4zNz7M94iafhHn1PiqXV18lUttm8vcsMFMyHO6kpE5PMqNNsZQDKAZQDKA6rU2pKTS9qkrap2cfZjjB+1I7uAUPquqQaTTLUTr6J4qvJP8AsG9R0klbKkUfzXkhAF4vFVqG5y19a7dNJyDR0Y3uaPJfnOtrZ9SqHVVSt3L9ETkh1Onp46SJIYkwn38z5Gtc9wa0FznHAA6krURFVbJue6qiJdSedA6Ubpezj2rR7/UAPnPy+DPp+a/QXRzR00qlu9P1H5d5ck+X5OZarXLWTdnut29zZsq2kIMoBlAMoBlAYZQDKAZQDKArl2w+LEmnNPQaPtc5juV3YXVb43YdFTZwR5F55egd4qwaTSpI9Znphu3r/RF103A3q27r+CoVms9Td7hR2y3wOqKypkbDDCwc3OJwArW96MRXOXCEI1qqqNTc9CuC/CSg4R6Vjo4wya7VAD6+sA5yP+UH5G9APr3qh1lU6qk4vBNizU8CQtt4+Jt0WprTPXe5x3KlfVZ2+xbKC7PhhVxmqUMk3w7J2q/ldLkq6jqWs610a8POx2WVKGmMoBlAMoD5bpdKazUE1ZVyiKCIZc4/kPErTq6uGhgdUVDrNbv/ANzPeCGSokSKNLqpAWqdT1OrbqaubMdOz7MEGeTG/wBz3lfnPV9Wm1qpWeTDU7reSe6+J1KhomUEXVtyq7rzX2OpUOb5IvCnSXvdT+2atmYITina77z+93oPz9F0rofo3xEn+QmTst7vmvP5fn0Knrlf1TPho1yu/p/ZLOfNdmKGcZQDKAZQDKAZQGGQs5AyEyBkJkGMkrIY3yPcGMYC5zj0AHUrOVB5q8S9ZS8Q+IN71BI5xjqJyyma452Qt+zGB9Bn1JXQ6eFIIWxp4fkqksiyyK8nnsZ8OWVdbcNZ1sQc2lcaOg3DP8Qj+I8eYBAH8xUHq9QqIkDfHKkjQRXVZF+RZfXDqr907n7mXCf2XVnxBuRux9Mrm3SFZ00qf4fvW8N7eP2uW7TEjWsj63a//wCfcr4KdjcFv2XDmHDkQfFfmlI0SyphTq6uVdyTtDcUSwx26+SeDYq13f5P/v8AiutdHul6pw0epu8kf/Dvf6lL1PRL3npE9W+3sSiHhwBByDzBC66i3S6FJ2GQmTBhPUR00L5ZXtjiYC5z3HAAHevOSRsTFkkWzUyqn21rnuRrUuqkGa61lJq6v2RFzLZA7+Ew8vaH5z+i/PfSHXX61PwR4hbsnNf3L/HI6bpmnNoI+J3fXfy8vc1tVUmDt9L6em1NeIqOLLWfFLJ8jB1P9lMaVpsmq1TaePbdV5J4/wBeZo1tW2jhWV3y81J+pKWGgpYaanYI4IWhjGjuAX6Sp6eOlibBElmtSyHKpZHTPWR63VT9chbGTyGQmQMhMgZCZAyEyBkJkGG5ZA3IBuQGgcfNRu0xwf1RWx5EzqQ08Z8HSkRg/wDLK36GPraljV5/jJrVL+CFynnc0CGEY7gr7uVfZD0e4N6aZo/hfpy2BobI2kZLKQMZkkG9xP1dj6Ln1XJ1s73+ZaqdnVxNabnuHhnyWoqIqWU2NiF+Iukv3fuXvVMzFvqSS0DpG7vb/ZcB6T6Kul1PWxJ+k/byXxT2Ok6RX/FxcD17bfunP3NOc0PGCMhUlURUspPotjb9FcRKjTTmUdeX1Ns6Nd1fD6eI8leOj/SiXSlSmq7uh8ObfdPL6Fe1LSGVl5YcP+y/2THSV0FdSsqaeVs0DxubIw5BC7rDPFURJNC5HNXKKmxzuSN8T1Y9LKngRHxG1wb7O62UEn/b4nfxZG/5zh3fyj+q4l0q6Q/5F60NKv6Td1/cvsn3L/o+mfDNSomTtrsnJPc0oDAwqAiWLMZMY6RzWtBc5xwABkkr6RFcqIiZMKqIl1Jz0Nphul7OGyNHv0+Hzu8PBv0/NfoTo3o6aVSXkT9R+XeXJPl+TmOq1y1k3Z7rdvc2LcraQo3IBuQDcgG5ANyAbkBhkoBkoBkoCD+2JWPp+DxiaeVRcaeN3oNzvzaFNaSl6m/JFI6vW0PzKYWikFfeLdSnpPUxRH/c8D9VbnrwtVfIgUS6oh6fNYImtjaMNYNoA7gFzjct1jnJWDJ8l1tkF7t09DVDdDKMZHVp7nDzCj6+hi1GmdTTJhfsvgvyNmmqH0sqSsXKEC3uzVFhuc1FUjEkZ5OHRze5w8ivzZX0UunVDqaZMt+6eCp6nVqaoZVRJLHsp8BGVHqlzaProrxcLbQ1VFS1b4qWpGJIweXnjwz05Ldp6+spIZKaCRUY/dPblfxsa0tNBNI2WRt3N2X/ALc+NrQwADotFEREshsqtzlfRgkPhbpX3if9s1TMwxHFO133n97vQfn6LpfQ/RfiJP8AITp2W93zXn8vz6FT1yv6tvw0a5Xf05fMlHcSuzlDGSgOo1bqij0Zpq5Xy4Oc2joIHTybBlxA6AeZOAPVesUbpnpG3dTze9I2q5fAqvbu3NdzqFklw0tSxafe8BwhmcamNmfiyfsuIHPGB6qzO0VnBZr+19iGTUXcWW4Lc0dZFcKOCqp3iSCeNssbx0c1wyD+BVWVFaqopOIt0uh+2SvkyMlAMlAYZWcmMDKZGBlMjBB/bCpX1HCH2jeYguMD3eh3N/NwUzpK2qM8lI6uS8PzKaWerFvvVtqnfDBVRSn0a8H9Fb3pxNVOaEEi2VFPToSCUB7TlruYPkub2Ut2DnKZGBlMjBrGvdKjUlr9rAzNwpgXR46yN72f2VJ6UaJ/k6brok/VZt5p4p7E/pGofCS8D17DvsvMhYggkEYI6grgW2FOlHCAIDttMafl1Ld4qSPLY/ilk+Rg6n+ymNJ02TVattOzbdV5J4/0aNbVto4Vld8vNSd6anioqaKnp2COCJoYxg7gF+k6enZSxNhiSzWpZDlEsjpnrI9bqp+mVsZPPAymRgjHtK1rKPglqcyH/FhjhbnvLpWAKS05qrVM/wC8DTq1RIXFA5W5gcMdRjCvKFbXY9NdJ0zqLStlp38nRUMDCPMRtC5zKt5HKnNS2sSzUTyO1yvLJ94GUyMDKZGDDJX0YGSgGSgNA492F+peEOpqSPnKyl95YPExESY/BpW9RP6uoYq87fU1qlvHE5Dz3lHtICB3hXtCsrsejPCLU7dX8NNOXRrsulo42Sc8kSMGx4P1aVQKqPqp3s8y0QP442uNuyVqnuMlAchxBzlARfxN0p7rMbxSMxBK7FQxo+B5+96H8/VcT6X6J8LL8fAnYd3vJefov59S/wCiah1rPhpF7Sbeaf0aAubFrMmMdI5rWguc44AHUlZRFcqIiZUKqIl1Ju0XppumLQ2N4Hvs+Hzu8D3N9B+eV+h+jejppNInGn6j8u/hPl+Tl+q1y1s3Z7qbe/zO+yVbSFGSgGSgK8dtDUzaLRNosTTma41ntnDPSOIZ/wD05v4Ke0iPildJyT8kXXvsxG8yrOj7I/UmrbJaY/jrKyKH0BcMn8MqyzP6uNz18EIhjeN6N5npaMNAa3k0ch6LnhaxkoBkoBkoDDPmgGfNAM+aAxljjqInxStD4pGlj2no5pGCPwWUW2UMep5x8RdITaD1veLFMDilncInEY3xHmxw9WkK/wBPKk8TZE8SrysWN6sUnTsbcRG081y0VWShu9xrqDcep/zWD8A4D+ZQurU90Sdvov8ABIUEtrxL8i1WfNVkmRnzQDPmgMZGRzxPimY2WGQbXxvGQ4eBXjNDHURrFKl2rhUU+2PdG5HsWyoaZcOEtuqZjJR18lGwnPspGe0DfQ5B/Fc1qug0Ej1dTSq1OSpf2LZD0hka20rLrz2Oz09oG16cnbUB766rb8MkoAaw+Ib4+ZUzpPRSk02RJ3rxvTZV2T0Q0K3WZqtvVtThavLxNi3Z71dyvjPmgGfNAC4AEl2AOpJQFAOPnEJvEjibXVdNJ7S10A9yoyOjmtJ3PH8ziT6YV5oYPh4Eau65UrVTL1sqqmyG69kTRbr5r+ov00eaSzQnY5w5GeQFrQPMN3H8Fp6rNwRJGm7vwbFFHxScfIuVnzVSJ0Z80Az5oBnzQH57kA3IBuQDcgK99rXhi6+WWDV9vhL6y3M9lWtaOb4M8n/7CfwPkp7SqngcsLtl29SLrYeJOsTwKnW261un7rRXa2TGnuFFKJoZR3OH6HoR4FWhzWyNVj9lIVFVqo5u6F/uEXFS3cV9Jw3OlLYa6PEdbR5+1BLjn/tPUHvHmCqNV0zqWTgXbwUs0EzZ28Sbm77lpGwNyAbkA3IBuQDcgG5ANyAr92o+NrdL2mTSNkqAb5Xx7aqWM86SA9efc9w5DwGT4Ke02j6x3XSJ2U281IusqOBOrbupUagoZamaCkpYnTTyvbHHEwZL3E4AH1Vpc5ERXKQqJ4IegvB7h5Hww0JRWghrq9//AFFdI370zgMj0aMNHoqJV1C1Mqv8PD0LNBF1MaN8fE3XctM2BuQDcgG5AYblm4G5LgbkuBuS4MZGMnikiljbLDI0sfG8Za5pGCCPAhLqmUMblIuP3BSfhje3V9vjdLpmteTTyAZ93cefsn/oe8eYVyoaxKlnC7vJ9/Mr9TTrC66d1SPdFa3vPDbUUV7sU/s5m/Zmp384qhnex4/XqO5b80LKhnVyJ/RqxyOhdxMLu8JuOWn+LFC0UcoobxG3NRa53ASsPeW/O3zH1AVOqqOWlXOW8ywQVLJ0xheRIm5R9zbG5LgbkuBuS4G5LgbkuCv/ABu7UVDpNlRY9JyxXS/kFklWw7oKQ+vR7/Ich3+CnaPTXS2kmw37qRlRWIzsx5X8FRppp6yrnrK2eSqrKh5kmnlduc9x6klWpERERrUsiEJlVuu5avsxcD32hsGs7/TllW9ubZSSt5xtI/xnDuJHwjw5+CrGpVvF+hGuPH2Jmjp7fqv+RY7cVX7kqNyXA3JcDclwNyXBhlfQGUAygGUAygPlutror9bKm23OljrbfUs2TQSjIcP0Pge5Za5zHI5q2VD5c1HJwu2KecZuzddNBST3WxMlu+mydxLRumpR4SAdR/qH1wrZSagyfsSYd+SCnpXRdpuUITY2SCpiqqWaSlqojujngeWPYfEEcwpjCpZcoR+2UJo0N2uNW6WZHS6hpI9TUbRgT7vY1QHm4Da76jPmoibS4ZcxLwr9jfjrpGYfn8k1ae7W/Dy9NaKuvqrJNjJZcKdwAPhubuCh5NLqWbJf0JBtdC7dbG4UnG/QFdGHw6xs5afnq2sP4OwVqrR1Kbxr9D3SohX/AGQ/Cv4+cO7aP42sbWT4Qze1P/HKy2hqXbRqYWqhTdyEf6n7Zmj7Yx7LJSXC/wBQDhpbH7CI+e5/P8Grej0id3/sVGp9TWfXxp3UuQNxB7QWteJTJKWarbY7Q/kaG3EtLx4Pk+J3oMDyU5BQwU+UTiXmpGS1Us2L2Q0C3Wx888VLR07555HBscUTC5zz4ADmSt5zkRLuU10b4IWs4IdmIWaWnv8ArSBslW3ElNZ3Yc2M9Q6buJ/0/j4KsVmpcd44NvFfYmaekt25foWLc8vOSVAEqcZWQMoBlAMoBlAYIYCAIAgCAIDJkjozlp9R4rFgRNxF7NGlNePlrKAfu1d35JlpWA08jvF0fd6tx9VKU+ozQdl3aT7/AFNKWkjkymFK86w7Muu9KOe+K2ftyjBOKi1n2uR4lnxD8FPxajTy7rZfMi30krPC/oRbX2magldFWUktLIDgsnjLCD6EKSa5HZappq226HxGgp3fcavviU+eFDltFAzoxoWLqLId1Y9JXfUM7YbTaKy4Su6NpYHP/ILyfKyNLvciHo1jnYalyY9F9kbVV7dHPfpoNN0RwS2QiWoI8AxpwD6lRM2qwsxH2l+xvx0Uju9hCx/D7hJpfhfCDZqL2twIw+51eHzu9D0aPJuFXp6qWp7645eBKxQRw91M8zbySTknJWoe4WQEAQBAEAQHGQh8jIQDIQDIQDIQDIQDIQDIQGTJSw5a4tPksGTGsbBcovZV1NT10Z+5UwtkH9Qsoqty1bBc7odIdBaRcSXaTshJ6n3CP+y9uvm/ev1PPqo/2ofpT6L0tRyiSn0vZYZB0c2gjyP6LCzSrhXr9QkcabNQ7tlS6KMRxbYYxyDImhoH0C8bXyp6XMC7JyTn1WTBxkIBkIBkIBkIBkIBkIBkIBkIDFAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAEAQBAYIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIAgCAIDjmgHNAOaAc0A5oBzQDmgHNAOaAc0A5oBzQDmgHNAOaAc0A5oBzQDmgHNAOaAc0B//9k=" alt="" class="icon">
+		</div>
+		<div class="app-info">
+			<p class="app-name" id="app-name"></p>
+			<p class="rating">★★★★★</p>
+		</div>
+	</div>
+	<div class="clear"></div>
+	<div class="hr"></div>
+	<div id="content" class="content">
+		<div class="screenshot">
+			<div class="block-title" id="screenshorts"></div>
+			<div class="scrollbar-wrap">
+				<div class="view-box">
+					<div class="overview" data-length="6">
+						<img src="" alt="">
+						<img src="" alt="">
+						<img src="" alt="">
+						<img src="" alt="">
+						<img src="" alt="">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="hr"></div>
+		<div class="desc-info">
+			<div class="block-title" id="desc"></div>
+			<div class="description">
+				<p class="intro" id="intro"></p>
+			</div>
+		</div>
+    <div class="clear"></div>
+		<div class="hr"></div>
+		<div class="comments">
+			<div class="block-title" id="review"></div>
+			<ul class="comments-list" id="comments-list"></ul>
+		</div>
+		<!-- <div class="hr"></div> -->
+	</div>
+  <div class="space"></div>
+	<div id="footer" class="footer">
+   <div class="download">
+    <p class="install" id="install"></p>
+   </div>
+  </div>
+  <script type="text/javascript">
+  var appName = document.getElementById('app-name'),
+      screenshorts = document.getElementById('screenshorts'),
+      desc = document.getElementById('desc'),
+      intro = document.getElementById('intro'),
+      review = document.getElementById('review'),
+      commentsList = document.getElementById('comments-list'),
+      install = document.getElementById('install');
+  var nameText, screenText, descText, introText, reviewText,li, installText;
+  var lang = '';
+  var images = [];
+  var content = document.getElementById('content');
+  var screenImg = content.getElementsByTagName('img');
+  function getImg() {
+      for (i = 0; i < getImg.arguments.length; i++) {
+          screenImg[i].src = getImg.arguments[i];
+      }
+  }
+  function setText () {
+    appName.innerHTML = nameText;
+    screenshorts.innerHTML = screenText;
+    desc.innerHTML = descText;
+    intro.innerHTML = introText;
+    review.innerHTML = reviewText;
+    commentsList.innerHTML = li;
+    install.innerHTML = installText;
+  }
+  function download(fileUrl){
+      if(window.installer){
+          window.installer.doInstall(fileUrl);
+      }
+  }
+
+  if (navigator.appName == "Netscape"){
+      lang = navigator.language
+  }else{
+      lang = navigator.userLanguage
+    }
+  lang = lang.substr(0,2)
+  if (lang == "zh"){
+    nameText = "TickTick任务提醒";
+    screenText = "截图";
+    descText = "描述";
+    introText = "TickTick是由GTasks/GNotes团队最新推出的一款待办事项应用，我们过去4年一直专注笔记和待办清单的应用开发，积累了丰富的经验，屡获用户好评和媒体报道。<br>"
+                +"TickTick虽然很新, 但它已经受到了广泛关注，曾被Lifehacker, 三星, Webmarketing等多家海内外媒体与市场报道与推荐，并被豌豆荚评为装机必备应用。<br>"
+                +"作为一个待办事项应用,核心功能一样没少,包括<br>"
+                +"- 跨平台同步<br>"
+                +"- 清单和笔记模式的切换<br>"
+                +"- 多优先级<br>"
+                +"- 重复任务<br>"
+                +"- 桌面小部件以及时间/地点提醒<br>"
+                +"和传统此类应用相较,它的一些独特功能也更迎合当今智能化的生活，你可以<br>"
+                +"- 直接从手机上传附件到任务<br>"
+                +"- 通过邮件来创建任务<br>"
+                +"- 运用标签管理任务<br>"
+                +"- 还可以订阅您的任务到日历应用中<br>"
+                +"所有的功能,同样可以在TickTick自己的云端 <a href=http://www.ticktick.com>www.ticktick.com </a>操作。";
+    reviewText = "评论";
+    li = "<li>“真心觉得很好用; 网页版的很喜欢, 办公室里就用网页, 回到家手机端同步一下太方便了, 希望可以一直坚持着用。”<br><p class=author>Angelastudio</p></li><span class=clear></span><br>"
+    +"<br><li>“什么时候收费啊？大概费用多少？我还有几十刀，等着来收这个应用。”<br><p class=author>sobbin</p></li><span class=clear></span><br>"
+    +"<br><li>“早几个月用过，觉得有很多不足，今天再用一次，真把我惊到了，进步的速度真是太惊人了。而且有很好的新设计，比如那个钟表直接设置日期时间的功能，真是太赞了，不用再像苹果那样上下搓手机来设置时间了。进步惊人，值得点赞。”<br><p class=author>radiooo</p></li><span class=clear></span><br>"
+    +"<br><li>“靠，GNotes团队的啊这伙人太低调了，关键是做的应用都深得人心啊。”<br><p class=author>Everp</p></li><span class=clear></span>";
+    installText = "<a onClick="+"_gaq.push(['_trackEvent','app','download','zh']);"+">安装</a>";
+    setText();
+    getImg(
+        "screenshots_cn/1.png",
+        "screenshots_cn/2.png",
+        "screenshots_cn/3.png",
+        "screenshots_cn/4.png",
+        "screenshots_cn/5.png"
+    );
+    install.onclick = function () {
+      var url = 'http://cn.ticktick.com/static/apk/ticktick_latest.apk';
+      download(url);
+    }
+  }else{
+    appName.className += " en";
+    nameText = "TickTick - A superior to-do list";
+    screenText = "Screenshots";
+    descText = "Description";
+    introText = "TickTick is a rising to-do list app developed by GTasks team (The top ranked to-do app synchronizing with Google Tasks).<br>"
+                +"Though it is new, it has attracted extensive attention worldwide,being featured in Lifehacker,Samsung and Webmarketing,just to name a few.<br>"
+                +"As a to-do list app, it contains key features like：<br>"
+                +"- cross-platform synchronization<br>"
+                +"- notes & checklist mode<br>"
+                +"- multi-level priorities<br>"
+                +"- recurring tasks<br>"
+                +"- time & location reminders<br>"
+                +"- homescreen widget.<br>"
+                +"Unlike traditional to-do apps,it is specifically designed for today's smart life. You can <br>"
+                +"- upload attachments to tasks<br>"
+                +"- set to-do's via email<br>"
+                +"- create hashtag to organize tasks<br>"
+                +"- subscribe TickTick in calendar. <br>"
+                +"And all of these can be managed on its own web portal <a href=http://www.ticktick.com>www.ticktick.com</a>.";
+    reviewText = "Customer Reviews";
+    li = "<li>“The best to do app that I have seen so far, with all of the features that I need in one pack.”<br><p class=author>Minh Huy Nguyen Tran</p></li><span class=clear></span><br>"
+    +"<br><li>“This is now my one and only task app, replacing the now-defunct Astrid and beating out Any.do and all the others I've used. Great app and it keeps improving!”<br><p class=author>Kevin J. Wangler</p></li><span class=clear></span><br>"
+    +"<br><li>“Best app in the category. I probably tried all these applications on the Market and stop there.”<br><p class=author>Pyotr Merkulov</p></li><span class=clear></span>";
+    installText = "<a onClick="+"_gaq.push(['_trackEvent','app','download','en']);"+">Install</a>";
+    setText();
+    getImg(
+        "screenshots_en/1.png",
+        "screenshots_en/2.png",
+        "screenshots_en/3.png",
+        "screenshots_en/4.png",
+        "screenshots_en/5.png"
+    );
+    install.onclick = function () {
+      var url = 'https://play.google.com/store/apps/details?id=com.ticktick.task';
+      download(url);
+    }
+  }
+
+  </script>
+  <script>
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36126366-7']);
+    _gaq.push(['_setDomainName', 'appest.com']);
+    _gaq.push(['_setAllowLinker', true]);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+</body>
+</html>
+
+		
+	
