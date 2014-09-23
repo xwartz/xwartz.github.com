@@ -24,7 +24,9 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
 <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
+
+  <script src="/js/jquery.min.js" type="text/javascript"></script>
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -45,12 +47,6 @@
 		  <header id="header" class='normal_mode'>
 		    <nav id="main-nav">
   <ul class='container'>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-      <li><a href="/flickr">Flickr</a></li>
     
   </ul>
   <div class="clearfix"></div>
@@ -74,7 +70,7 @@
 		 <ul class="my-socials">
   
   <li>
-  	<a href="https://github.com/hizhi" class="github" target="_blank">
+  	<a href="https://github.com/xwartz" class="github" target="_blank">
   		<i class="fa fa-github"></i>
   	</a>
   </li>
@@ -95,6 +91,135 @@
 </ul>
 	</div>
 </div>
+
+
+  <article class="post">
+
+  <div class="post-content">
+    <header>
+      <div class="icon"></div>
+      
+      <time datetime="2014-09-23T16:29:36.000Z"><a href="/2014/09/24/css3-webkit-filter/">周三, 9月 24 2014, 0:29:36 凌晨</a></time>
+
+  
+    <h1 class="title"><a href="/2014/09/24/css3-webkit-filter/"></a></h1>
+  
+
+<div class="clear"></div>
+      
+    </header>
+    
+      <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+    
+    <div class="entry">
+      
+        <p>title: -webkit-filter:<br>date: 2014-03-09 13:18:47<br>categories: css</p>
+<h2 id="tags:_-webkit-filter">tags: -webkit-filter</h2>
+<p>今天在CSSConf看到首页的头像效果挺酷的，就研究了下，发现用了<code>webkit-filter</code>滤镜效果。<br>虽然之前也有看过这个css3的属性，但一直没具体去了解，今天就好好学习下。</p>
+<h4 id="首先">首先</h4>
+<p>它不是那个IE下设置透明度的属性，支持它的浏览器只有<code>webkit</code>内核的。<br><a href="http://caniuse.com/css-filters" target="_blank" rel="external">caniuse</a>可以查看，最新版IE11和firefox27都还没有支持它，还是chrome最给力，最早支持，opera应该是跟随chrome用blink引擎后才支持的吧。</p>
+<h3 id="语法">语法</h3>
+<figure class="highlight css"><figcaption><span>webkit-filter</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class">.selector</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-filter</span>:<span class="value"> none | &lt;filter-function&gt; [,&lt;filter-function&gt;]*</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+
+<p><code>filter-function</code>取值：</p>
+<ul>
+<li><code>grayscale()</code>  灰度  默认100%</li>
+<li><code>sepia()</code> 褐色(旧照片效果) 默认100%</li>
+<li><code>saturate()</code> 饱和度 默认100%</li>
+<li><code>hue-rotate()</code> 色相旋转  默认0deg</li>
+<li><code>invert()</code> 反色 默认100%</li>
+<li><code>opacity()</code> 透明度  默认100%</li>
+<li><code>brightness()</code> 亮度 默认100%</li>
+<li><code>contrast()</code> 对比度 默认100%</li>
+<li><code>blur()</code> 模糊值 默认0</li>
+<li><code>drop-shadow()</code> 阴影值</li>
+</ul>
+<p>具体用法可以写个demo试试：<br>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2014/09/24/css3-webkit-filter/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+
+  <div class="post-content">
+    <header>
+      <div class="icon"></div>
+      
+      <time datetime="2014-09-23T16:29:36.000Z"><a href="/2014/09/24/hexo-render-error/">周三, 9月 24 2014, 0:29:36 凌晨</a></time>
+
+  
+    <h1 class="title"><a href="/2014/09/24/hexo-render-error/"></a></h1>
+  
+
+<div class="clear"></div>
+      
+    </header>
+    
+      <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+    
+    <div class="entry">
+      
+        <p>title: HexoError: Render failed<br>date: 2013-12-10 14:51:42<br>categories: blog</p>
+<h2 id="tags:_hexo">tags: hexo</h2>
+<p><code>Hexo</code> 默认会对<code>source</code>目录下的所有文件进行<code>render</code>,这会造成<code>.html</code>文件不正常，<code>.html</code> 文件都会被当成 <code>.md</code> 处理。github上也有讨论组这个问题,<a href="https://github.com/tommy351/hexo/issues/158" target="_blank" rel="external">issue：HexoError: Render failed</a>。</p>
+<p>使用主题的时候遇到过这个问题，只需在<code>layout.ejs</code>里面加一个判断</p>
+<figure class="highlight ejs"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="vbscript">&lt;%</span></div><div class="line"><span class="keyword">if</span>(page.layout !== <span class="comment">'false'){</span></div><div class="line">%&gt;</div><div class="line"><span class="comment">&lt;!--渲染--&gt;</span></div><div class="line"> </div><div class="line"><span class="vbscript">&lt;%}<span class="keyword">else</span>{ %&gt;</span></div><div class="line"><span class="comment">&lt;!--不想渲染的页面内容-&gt;</span></div><div class="line">&lt;%- page.content %&gt;</div><div class="line">&lt;%};%&gt;</div></pre></td></tr></table></figure>
+
+<p>按照这个方法，如果创建的页面不想使用主题的渲染，可以在 <code>.html</code> 页面最上方加入:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="header">layout: false</span></div><div class="line">---</div></pre></td></tr></table></figure>
+
+<p>这样就可以在页面中使用自己创建的样式渲染，比如创建demo.</p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2014/09/24/hexo-render-error/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
 
 
   <article class="post">
@@ -127,181 +252,19 @@
     
     <div class="entry">
       
-        <p> 最近在搞浏览器兼容性，被光标定位搞得够呛的，所以有必要把遇到的坑记一下。<br> 遇到的情景是这样子的，<code>div</code>和<code>textarea</code>互相切换，<code>div</code>层来表现<code>textarea</code>,<br> 因为需要展现一些标签，超链接什么的，所以需要<code>div</code>层，当然使用可编辑的<code>div</code>来表示，就另说了。<br> 张鑫旭有篇博客详细介绍了<a href="http://www.zhangxinxu.com/wordpress/2011/04/js-range-html%E6%96%87%E6%A1%A3%E6%96%87%E5%AD%97%E5%86%85%E5%AE%B9%E9%80%89%E4%B8%AD%E3%80%81%E5%BA%93%E5%8F%8A%E5%BA%94%E7%94%A8%E4%BB%8B%E7%BB%8D/" target="_blank">Range</a> 可以参考下。不过文章写的时间比较久了，最新的ie版本有些不适用了。</p>
+        <p> 最近在搞浏览器兼容性，被光标定位搞得够呛的，所以有必要把遇到的坑记一下。<br> 遇到的情景是这样子的，<code>div</code>和<code>textarea</code>互相切换，<code>div</code>层来表现<code>textarea</code>,<br> 因为需要展现一些标签，超链接什么的，所以需要<code>div</code>层，当然使用可编辑的<code>div</code>来表示，就另说了。<br> 张鑫旭有篇博客详细介绍了<a href="http://www.zhangxinxu.com/wordpress/2011/04/js-range-html%E6%96%87%E6%A1%A3%E6%96%87%E5%AD%97%E5%86%85%E5%AE%B9%E9%80%89%E4%B8%AD%E3%80%81%E5%BA%93%E5%8F%8A%E5%BA%94%E7%94%A8%E4%BB%8B%E7%BB%8D/" target="_blank" rel="external">Range</a> 可以参考下。不过文章写的时间比较久了，最新的ie版本有些不适用了。</p>
 <p> 首先是获取点击<code>div</code>时的光标对象。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre></td><td class="code"><pre>  <span class="keyword">var</span> Caret = {};
-  Caret.hasUserSelection = <span class="function"><span class="keyword">function</span> <span class="params">(argument)</span> {</span>
-    <span class="keyword">var</span> userSelection;
-    <span class="keyword">if</span> (window.getSelection) {
-      userSelection = window.getSelection();
-    } <span class="keyword">else</span> <span class="keyword">if</span> (document.selection) {
-      <span class="comment">//低版本ie</span>
-      userSelection = document.selection.createRange();
-    }
-     <span class="keyword">return</span> userSelection;
-  };
-</pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Caret = {};</div><div class="line">Caret.hasUserSelection = <span class="function"><span class="keyword">function</span> <span class="params">(argument)</span> </span>{</div><div class="line">  <span class="keyword">var</span> userSelection;</div><div class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.getSelection) {</div><div class="line">    userSelection = <span class="built_in">window</span>.getSelection();</div><div class="line">  } <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">document</span>.selection) {</div><div class="line">    <span class="comment">//低版本ie</span></div><div class="line">    userSelection = <span class="built_in">document</span>.selection.createRange();</div><div class="line">  }</div><div class="line">   <span class="keyword">return</span> userSelection;</div><div class="line">};</div></pre></td></tr></table></figure>
 
 <p> 设置range长度</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-</pre></td><td class="code"><pre> Caret.getLength = <span class="function"><span class="keyword">function</span> <span class="params">(selection, node)</span> {</span>
-    <span class="keyword">var</span> anchorNode, parentNode, range;
-    <span class="keyword">if</span> (selection !== <span class="literal">null</span>) {
-      <span class="keyword">if</span> (node == <span class="string">'anchorNode'</span>) {
-          anchorNode = selection.anchorNode, anchorOffset = selection.anchorOffset;
-        }<span class="keyword">else</span>{
-          anchorNode = selection.focusNode, anchorOffset = selection.focusOffset;
-        }
-
-        <span class="comment">//设置range对象</span>
-        parentNode = <span class="keyword">this</span>.$el.get(<span class="number">0</span>);
-        range = document.createRange();
-        <span class="keyword">if</span> (parentNode != <span class="literal">null</span>) {
-          range.setStartBefore(parentNode);
-        }
-        <span class="keyword">if</span> (anchorNode != <span class="literal">null</span>) {
-          range.setEnd(anchorNode, anchorOffset);
-        }
-        <span class="keyword">if</span> (settings.isIE) {
-          <span class="comment">//@todo ie bug 会计算回车在内，但是点击行首又不算在内</span>
-          <span class="keyword">return</span> range.toString().replace(<span class="regexp">/\n/g</span>,<span class="string">''</span>).length;
-        }
-        <span class="keyword">return</span> range.toString().length;
-    }<span class="keyword">else</span>{
-      <span class="keyword">return</span> <span class="number">0</span>;
-    }
-  };
-</pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">Caret.getLength = <span class="function"><span class="keyword">function</span> <span class="params">(selection, node)</span> </span>{</div><div class="line">   <span class="keyword">var</span> anchorNode, parentNode, range;</div><div class="line">   <span class="keyword">if</span> (selection !== <span class="literal">null</span>) {</div><div class="line">     <span class="keyword">if</span> (node == <span class="string">'anchorNode'</span>) {</div><div class="line">         anchorNode = selection.anchorNode, anchorOffset = selection.anchorOffset;</div><div class="line">       }<span class="keyword">else</span>{</div><div class="line">         anchorNode = selection.focusNode, anchorOffset = selection.focusOffset;</div><div class="line">       }</div><div class="line"></div><div class="line">       <span class="comment">//设置range对象</span></div><div class="line">       parentNode = <span class="keyword">this</span>.$el.get(<span class="number">0</span>);</div><div class="line">       range = <span class="built_in">document</span>.createRange();</div><div class="line">       <span class="keyword">if</span> (parentNode != <span class="literal">null</span>) {</div><div class="line">         range.setStartBefore(parentNode);</div><div class="line">       }</div><div class="line">       <span class="keyword">if</span> (anchorNode != <span class="literal">null</span>) {</div><div class="line">         range.setEnd(anchorNode, anchorOffset);</div><div class="line">       }</div><div class="line">       <span class="keyword">if</span> (settings.isIE) {</div><div class="line">         <span class="comment">//@todo ie bug 会计算回车在内，但是点击行首又不算在内</span></div><div class="line">         <span class="keyword">return</span> range.toString().replace(<span class="regexp">/\n/g</span>,<span class="string">''</span>).length;</div><div class="line">       }</div><div class="line">       <span class="keyword">return</span> range.toString().length;</div><div class="line">   }<span class="keyword">else</span>{</div><div class="line">     <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">   }</div><div class="line"> };</div></pre></td></tr></table></figure>
 
 <p> 以上代码中，<code>setStartBefore</code> 指用户选择内容起始处的容器父节点。</p>
 <p> 设置光标位置</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-</pre></td><td class="code"><pre> Caret.simulateCaret = <span class="function"><span class="keyword">function</span><span class="params">(length)</span> {</span>
-    <span class="keyword">try</span> {
-      <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).get(<span class="number">0</span>).selectionStart = length;
-      <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).get(<span class="number">0</span>).selectionEnd = length;
-    } <span class="keyword">catch</span> (_error) {}
-  };
-</pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Caret.simulateCaret = <span class="function"><span class="keyword">function</span><span class="params">(length)</span> </span>{</div><div class="line">   <span class="keyword">try</span> {</div><div class="line">     <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).get(<span class="number">0</span>).selectionStart = length;</div><div class="line">     <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).get(<span class="number">0</span>).selectionEnd = length;</div><div class="line">   } <span class="keyword">catch</span> (_error) {}</div><div class="line"> };</div></pre></td></tr></table></figure>
 
 <p> 切换到<code>textarea</code>时设置光标位置或者选中文字</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-</pre></td><td class="code"><pre> Caret.showEditor = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> {</span>
-    <span class="keyword">var</span> length, startPosition, endPosition;
-    <span class="keyword">var</span> editor = <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).get(<span class="number">0</span>);
-    <span class="keyword">var</span> userSelection = Caret.hasUserSelection();
-    <span class="keyword">var</span> userSelectionText = userSelection;
-    <span class="keyword">if</span> (!((event != <span class="literal">null</span>) && $(event.target).is(<span class="string">'a'</span>))) {
-      <span class="comment">//for 低版本ie</span>
-      <span class="keyword">if</span> (document.selection) {
-        userSelectionText = userSelection.text;
-      }
-      <span class="keyword">if</span> (userSelectionText !== <span class="literal">undefined</span> && userSelectionText.toString().length) {
-        <span class="comment">// 选中文字</span>
-        <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).show();
-        startPosition = <span class="keyword">this</span>.getLength(userSelection, <span class="string">'anchorNode'</span>);
-        endPosition = <span class="keyword">this</span>.getLength(userSelection, <span class="string">'focusNode'</span>);
-          <span class="keyword">if</span> (startPosition &lt; endPosition) {
-            editor.setSelectionRange(startPosition, endPosition);
-          }<span class="keyword">else</span>{
-            editor.setSelectionRange(endPosition, startPosition);
-          }
-          <span class="keyword">if</span> (settings.isFirefox) {
-            <span class="comment">// firefox 需要获取焦点，不然不会显示选中高亮</span>
-            editor.focus();
-          }
-      }<span class="keyword">else</span>{
-        <span class="comment">// 点击</span>
-        length = <span class="keyword">this</span>.getLength(userSelection, <span class="string">'anchorNode'</span>);
-        <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).show();
-        <span class="keyword">if</span> (event != <span class="literal">null</span>) {
-          <span class="keyword">if</span> (settings.isFirefox) {
-            <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).focus();
-          }
-          <span class="keyword">this</span>.simulateCaret(length);
-        }
-      }
-    }
-  };
-</pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">Caret.showEditor = <span class="function"><span class="keyword">function</span><span class="params">(event)</span> </span>{</div><div class="line">   <span class="keyword">var</span> length, startPosition, endPosition;</div><div class="line">   <span class="keyword">var</span> editor = <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).get(<span class="number">0</span>);</div><div class="line">   <span class="keyword">var</span> userSelection = Caret.hasUserSelection();</div><div class="line">   <span class="keyword">var</span> userSelectionText = userSelection;</div><div class="line">   <span class="keyword">if</span> (!((event != <span class="literal">null</span>) && $(event.target).is(<span class="string">'a'</span>))) {</div><div class="line">     <span class="comment">//for 低版本ie</span></div><div class="line">     <span class="keyword">if</span> (<span class="built_in">document</span>.selection) {</div><div class="line">       userSelectionText = userSelection.text;</div><div class="line">     }</div><div class="line">     <span class="keyword">if</span> (userSelectionText !== <span class="literal">undefined</span> && userSelectionText.toString().length) {</div><div class="line">       <span class="comment">// 选中文字</span></div><div class="line">       <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).show();</div><div class="line">       startPosition = <span class="keyword">this</span>.getLength(userSelection, <span class="string">'anchorNode'</span>);</div><div class="line">       endPosition = <span class="keyword">this</span>.getLength(userSelection, <span class="string">'focusNode'</span>);</div><div class="line">         <span class="keyword">if</span> (startPosition &lt; endPosition) {</div><div class="line">           editor.setSelectionRange(startPosition, endPosition);</div><div class="line">         }<span class="keyword">else</span>{</div><div class="line">           editor.setSelectionRange(endPosition, startPosition);</div><div class="line">         }</div><div class="line">         <span class="keyword">if</span> (settings.isFirefox) {</div><div class="line">           <span class="comment">// firefox 需要获取焦点，不然不会显示选中高亮</span></div><div class="line">           editor.focus();</div><div class="line">         }</div><div class="line">     }<span class="keyword">else</span>{</div><div class="line">       <span class="comment">// 点击</span></div><div class="line">       length = <span class="keyword">this</span>.getLength(userSelection, <span class="string">'anchorNode'</span>);</div><div class="line">       <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).show();</div><div class="line">       <span class="keyword">if</span> (event != <span class="literal">null</span>) {</div><div class="line">         <span class="keyword">if</span> (settings.isFirefox) {</div><div class="line">           <span class="keyword">this</span>.$(<span class="string">'.editor'</span>).focus();</div><div class="line">         }</div><div class="line">         <span class="keyword">this</span>.simulateCaret(length);</div><div class="line">       }</div><div class="line">     }</div><div class="line">   }</div><div class="line"> };</div></pre></td></tr></table></figure>
 
 <p>至此可以算是填了点，<code>div</code>和<code>textarea</code>互切时的光标以及选中文字的坑，但是还是存在不少问题，主要是ie下。<br>比如ie下未能在<code>textarea</code>中显示选中的文字，以及光标定位不准，点击行首的时候会跑到上一行的末尾。<br>而且测试的是IE11下，低版本就不想说什么了。</p>
 <p>关于使用可编辑<code>div</code>来替代，也就是给<code>div</code>设置 <code>contenteditable=true</code>属性，<br>应该会简单很多，至少chrome下不需要写这些定位代码了，当然chrome定位也简单。<br>IE定位应该也不需要多做处理，但是选中文字还是会存在问题，firefox选中文字也需要手动写代码。</p>
@@ -309,33 +272,7 @@
 <p>希望有好的方案可以提供。</p>
 <hr>
 <p>顺便说下窗口切换的时候记录光标位置，使用window <code>blur</code>和<code>focus</code>。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-</pre></td><td class="code"><pre>
-Caret.windowSwitch = <span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-      <span class="keyword">var</span> _this = <span class="keyword">this</span>;
-      $(window).blur(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-        focusEditor = ($(document.activeElement).is(<span class="string">'textarea'</span>) && $(document.activeElement).hasClass(<span class="string">'editor'</span>));
-      });
-      $(window).focus(<span class="function"><span class="keyword">function</span> <span class="params">()</span> {</span>
-        <span class="keyword">if</span>(focusEditor){
-          _this.$(<span class="string">'#taskcontent .editor'</span>).css(<span class="string">'display'</span>,<span class="string">'block'</span>);
-          _this.$(<span class="string">'#taskcontent .editor'</span>).focus();
-        }
-      });
-    },
-</pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Caret.windowSwitch = <span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">      <span class="keyword">var</span> _this = <span class="keyword">this</span>;</div><div class="line">      $(<span class="built_in">window</span>).blur(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">        focusEditor = ($(<span class="built_in">document</span>.activeElement).is(<span class="string">'textarea'</span>) && $(<span class="built_in">document</span>.activeElement).hasClass(<span class="string">'editor'</span>));</div><div class="line">      });</div><div class="line">      $(<span class="built_in">window</span>).focus(<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">        <span class="keyword">if</span>(focusEditor){</div><div class="line">          _this.$(<span class="string">'#taskcontent .editor'</span>).css(<span class="string">'display'</span>,<span class="string">'block'</span>);</div><div class="line">          _this.$(<span class="string">'#taskcontent .editor'</span>).focus();</div><div class="line">        }</div><div class="line">      });</div><div class="line">    },</div></pre></td></tr></table></figure>
 
 
       
@@ -344,80 +281,6 @@ Caret.windowSwitch = <span class="function"><span class="keyword">function</span
       
         <div class="alignleft">
             <a href="/2014/07/03/set-get-caret-position/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-
-  <div class="post-content">
-    <header>
-      <div class="icon"></div>
-      
-      <time datetime="2014-03-09T05:18:47.000Z"><a href="/2014/03/09/css3-webkit-filter/">周日, 3月 9 2014, 13:18:47 下午</a></time>
-
-  
-    <h1 class="title"><a href="/2014/03/09/css3-webkit-filter/">-webkit-filter:</a></h1>
-  
-
-<div class="clear"></div>
-      
-    </header>
-    
-      <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-    
-    <div class="entry">
-      
-        <p>今天在CSSConf看到首页的头像效果挺酷的，就研究了下，发现用了<code>webkit-filter</code>滤镜效果。<br>虽然之前也有看过这个css3的属性，但一直没具体去了解，今天就好好学习下。</p>
-<h4 id="首先">首先</h4>
-<p>它不是那个IE下设置透明度的属性，支持它的浏览器只有<code>webkit</code>内核的。<br><a href="http://caniuse.com/css-filters" target="_blank">caniuse</a>可以查看，最新版IE11和firefox27都还没有支持它，还是chrome最给力，最早支持，opera应该是跟随chrome用blink引擎后才支持的吧。</p>
-<h3 id="语法">语法</h3>
-<figure class="highlight css"><figcaption><span>webkit-filter</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="class">.selector</span><span class="rules">{
-	<span class="rule"><span class="attribute">-webkit-filter</span>:<span class="value"> none | &lt;filter-function&gt; [,&lt;filter-function&gt;]*</span></span>;
-<span class="rule">}</span></span>
-</pre></td></tr></table></figure>
-
-<p><code>filter-function</code>取值：</p>
-<ul>
-<li><code>grayscale()</code>  灰度  默认100%</li>
-<li><code>sepia()</code> 褐色(旧照片效果) 默认100%</li>
-<li><code>saturate()</code> 饱和度 默认100%</li>
-<li><code>hue-rotate()</code> 色相旋转  默认0deg</li>
-<li><code>invert()</code> 反色 默认100%</li>
-<li><code>opacity()</code> 透明度  默认100%</li>
-<li><code>brightness()</code> 亮度 默认100%</li>
-<li><code>contrast()</code> 对比度 默认100%</li>
-<li><code>blur()</code> 模糊值 默认0</li>
-<li><code>drop-shadow()</code> 阴影值</li>
-</ul>
-<p>具体用法可以写个demo试试：<br>
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2014/03/09/css3-webkit-filter/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
       
@@ -462,49 +325,13 @@ Caret.windowSwitch = <span class="function"><span class="keyword">function</span
       
         <p>由于需要将字体设置小于12px，但是chrome默认的最小字体是12px（其他浏览器是9px）,而<code>-webkit-text-size-adjust:none;</code>属性已经在chrome27之后被删除了，估计是由于不人性化(不能通过缩放改变)。</p>
 <p>现在只好通过<code>transform</code>的<code>scale</code>来缩小字体了。</p>
-<figure class="highlight css"><figcaption><span>css</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="code"><pre><span class="tag">body</span><span class="rules">{
-    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">9</span>px</span></span>;
-<span class="rule">}</span></span>
-<span class="at_rule">@<span class="keyword">media</span> screen and (-webkit-min-device-pixel-ratio:<span class="number">0</span>)</span>{
-    <span class="tag">body</span><span class="rules">{
-        <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"> <span class="function">scale(<span class="number">0.75</span>)</span></span></span>;
-        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;
-        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;
-    <span class="rule">}</span></span>
-}
-</pre></td></tr></table></figure>
+<figure class="highlight css"><figcaption><span>css</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">body</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">9px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="at_rule">@<span class="keyword">media</span> screen and (-webkit-min-device-pixel-ratio:<span class="number">0</span>)</span>{</div><div class="line">    <span class="tag">body</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"> <span class="function">scale</span>(<span class="number">0.75</span>)</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p>以上代码对同时webkit内核的safari也会产生影响，所以需要js判断一下浏览器</p>
 <iframe width="100%" height="200" src="http://jsfiddle.net/stddup/EC8uH/embedded/result,css,html/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
 
 <p>经测试此方法对<code>span</code>元素无效，然后查了下</p>
-<figure class="highlight transform"><figcaption><span>transform:</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre>Initial <span class="built_in">value</span>:   <span class="constant">none</span>
-Applies <span class="built_in">to</span>:      transformable elements
-Inherited:       no
-Percentages:     refer <span class="built_in">to</span> <span class="operator">the</span> size <span class="operator">of</span> bounding box
-Media:           visual
-Computed <span class="built_in">value</span>:  <span class="keyword">as</span> specified, but <span class="operator">with</span> <span class="built_in">relative</span> lengths converted <span class="keyword">into</span> absolute lengths
-Animatable:      yes, <span class="keyword">as</span> <span class="operator">a</span> transform
-Canonical order: <span class="operator">the</span> unique non-ambiguous order defined <span class="keyword">by</span> <span class="operator">the</span> formal grammar
-</pre></td></tr></table></figure>
+<figure class="highlight transform"><figcaption><span>transform:</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Initial <span class="built_in">value</span>:   <span class="constant">none</span></div><div class="line">Applies <span class="built_in">to</span>:      transformable elements</div><div class="line">Inherited:       no</div><div class="line">Percentages:     refer <span class="built_in">to</span> <span class="operator">the</span> size <span class="operator">of</span> bounding box</div><div class="line">Media:           visual</div><div class="line">Computed <span class="built_in">value</span>:  <span class="keyword">as</span> specified, but <span class="operator">with</span> <span class="built_in">relative</span> lengths converted <span class="keyword">into</span> absolute lengths</div><div class="line">Animatable:      yes, <span class="keyword">as</span> <span class="operator">a</span> transform</div><div class="line">Canonical order: <span class="operator">the</span> unique non-ambiguous order defined <span class="keyword">by</span> <span class="operator">the</span> formal grammar</div></pre></td></tr></table></figure>
 
 <p><code>Applies to:    transformable elements</code> 适用于可变型的元素，哪些是可变型的元素啊（块元素肯定是）。。。<br>然后只能通过<code>display</code> 来检查适用哪些了。。发现<code>inline-block</code>可以（其他的还有很多，常用一个就够）。<br>所以就可以通过给内联元素设置<code>display: inline-block</code>属性，来缩放字体。</p>
 
@@ -563,7 +390,7 @@ Canonical order: <span class="operator">the</span> unique non-ambiguous order de
 
 <p>由于设置opacity值小于1，创建了局部的叠层上下文，子元素无法超越父级。</p>
 <p>当时搞得蛋疼死，so，记录下这个bug，z-index这么个简单的属性水也挺深的。</p>
-<p><a href="http://blog.doyoe.com/~posts/css/2014-01-21-%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BA%86%E8%A7%A3%E7%9A%84z-index%E4%B8%96%E7%95%8C.md" target="_blank">飘零雾雨的博客</a>对于z-index有详细研究，可以多学习学习。</p>
+<p><a href="http://blog.doyoe.com/~posts/css/2014-01-21-%E4%BD%A0%E9%9C%80%E8%A6%81%E4%BA%86%E8%A7%A3%E7%9A%84z-index%E4%B8%96%E7%95%8C.md" target="_blank" rel="external">飘零雾雨的博客</a>对于z-index有详细研究，可以多学习学习。</p>
 
       
     </div>
@@ -571,71 +398,6 @@ Canonical order: <span class="operator">the</span> unique non-ambiguous order de
       
         <div class="alignleft">
             <a href="/2014/03/05/css-position-opacity/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="link">
-
-  <div class="post-content">
-    <header>
-      <div class="icon"></div>
-      
-      <time datetime="2014-03-01T14:23:56.000Z"><a href="/2014/03/01/font-icon/">周六, 3月 1 2014, 22:23:56 晚上</a></time>
-
-  
-    <h1 class="title"><a href="http://fontawesome.io/icons/" target="_blank">Font Awesome  不错的font icon</a></h1>
-  
-
-<div class="clear"></div>
-      
-    </header>
-    
-      <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-    
-    <div class="entry">
-      
-        <p><img src="http://coolestguidesontheplanet.com/wp-content/uploads/2014/02/fontawesome-icon-fonts.png" alt="Font Awesome"><br>对于我这种不会PS的人来说，font icon实在是太方便了。<br>直接引进来，在元素添加相应的<code>class</code>,就可以使用了，</p>
-<p><code>&lt;i class=&quot;fa fa-link&quot;&gt;&lt;/i&gt; fa-link</code></p>
-<p><i class="fa fa-link"></i> fa-link</p>
-<p>如果不添加class的话，也可以在自己定义的<code>class</code> 或元素上这样使用</p>
-<figure class="highlight css"><figcaption><span>font icon</span></figcaption><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="class">.icon</span><span class="pseudo">:before</span> <span class="rules">{
-	<span class="rule"><span class="attribute">font-family</span>:<span class="value"> FontAwesome</span></span>;
-	<span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">'\f0c1'</span></span></span>;
-<span class="rule">}</span></span>
-</pre></td></tr></table></figure>
-
-<p><code>&lt;i class=&quot;icon&quot;&gt;&lt;/i&gt;自定义的class中使用</code></p>
-<p><i class="icon"></i>自定义的class中使用</p>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2014/03/01/font-icon/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
       
@@ -658,8 +420,9 @@ Canonical order: <span class="operator">the</span> unique non-ambiguous order de
 </nav>
 
 
-<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
-<script type="text/javascript" src="/js/cover.js"></script>
+<script src="/js/jquery.anystretch.min.js" type="text/javascript"></script>
+<script src="/js/cover.js" type="text/javascript"></script>
+
 
 
 		    <div class="clearfix"></div>
@@ -673,10 +436,10 @@ Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="ex
 
 <div class="clearfix"></div></footer>
 		  
-<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
-<script type="text/javascript" src="/js/gallery.js"></script>
-<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/fartscroll.js"></script>
+<script src="/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
+<script src="/js/gallery.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
 
 
 <script type="text/javascript">
@@ -734,11 +497,10 @@ var disqus_shortname = 'stddup';
 
     });
   });
-
-  fartscroll(800);
 </script>
-<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
-<script type="text/javascript" src="/js/nav.js"></script>
+<script src="/js/jquery.anystretch.min.js" type="text/javascript"></script>
+<script src="/js/nav.js" type="text/javascript"></script>
+
 
 		</body>
 		</html>

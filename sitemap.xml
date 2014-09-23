@@ -2,123 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://stddup.com/2014/07/03/set-get-caret-position/</loc>
-    <lastmod>2014-07-03T13:16:12.000Z</lastmod>
+    <loc>http://stddup.com/2013/12/10/never-need-to-enter-password-for-git-push/</loc>
+    <lastmod>2013-12-10T07:40:13.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://stddup.com/demos/js/caret/index.html</loc>
-    <lastmod>2014-07-03T15:45:51.000Z</lastmod>
+    <loc>http://stddup.com/2013/12/10/throw-try-catch-finally/</loc>
+    <lastmod>2013-12-10T04:29:30.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://stddup.com/demos/PartitioningTool/README.html</loc>
-    <lastmod>2014-07-01T17:01:33.000Z</lastmod>
+    <loc>http://stddup.com/2014/09/24/css3-webkit-filter/</loc>
+    <lastmod>2014-09-23T16:29:36.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://stddup.com/demos/PartitioningTool/index.html</loc>
-    <lastmod>2014-07-01T17:01:30.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/PartitioningTool/script/hehe.html</loc>
-    <lastmod>2014-07-01T17:01:33.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/PartitioningTool/test/test.html</loc>
-    <lastmod>2014-07-01T17:01:33.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/index.html</loc>
-    <lastmod>2013-12-12T04:20:12.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/css/loading/index.html</loc>
-    <lastmod>2014-04-26T03:08:11.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/app/index.html</loc>
-    <lastmod>2014-04-21T13:17:54.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/404.html</loc>
-    <lastmod>2014-04-19T04:04:58.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2014/03/09/css3-webkit-filter/</loc>
-    <lastmod>2014-03-09T05:18:47.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2014/03/08/chrome-min-fontsize/</loc>
-    <lastmod>2014-03-08T07:12:20.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2013/12/03/sublime-text-settings/</loc>
-    <lastmod>2013-12-03T14:20:50.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/css/triangle/index.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/flickr/index.html</loc>
-    <lastmod>2014-04-19T04:04:58.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/backbonejs/todo/index.html</loc>
-    <lastmod>2014-06-19T08:52:11.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2014/03/05/css-position-opacity/</loc>
-    <lastmod>2014-03-05T15:58:29.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/drag-scroll/index.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/creatposition/index.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/accordion/index.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/css/photo/index.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/css/nav/index.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/css/crash/index.html</loc>
-    <lastmod>2014-04-26T03:17:15.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/css/moon/index.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
+    <loc>http://stddup.com/2013/11/26/duoshuo-avatar/</loc>
+    <lastmod>2013-11-26T12:40:12.000Z</lastmod>
   </url>
   
   <url>
@@ -127,8 +27,28 @@
   </url>
   
   <url>
-    <loc>http://stddup.com/2014/01/25/css-custom-scrollbar-style/</loc>
-    <lastmod>2014-01-24T16:15:53.000Z</lastmod>
+    <loc>http://stddup.com/2014/03/01/hexo-photo/</loc>
+    <lastmod>2014-03-01T06:02:19.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/2014/09/24/hexo-render-error/</loc>
+    <lastmod>2014-09-23T16:29:36.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/2013/12/07/ie6-bug/</loc>
+    <lastmod>2013-12-06T16:21:48.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/2013/12/24/js-compatibility-collect/</loc>
+    <lastmod>2013-12-24T08:29:36.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/2013/12/10/js-distribution/</loc>
+    <lastmod>2013-12-10T13:34:45.000Z</lastmod>
   </url>
   
   <url>
@@ -137,13 +57,18 @@
   </url>
   
   <url>
-    <loc>http://stddup.com/2014/03/01/hexo-photo/</loc>
-    <lastmod>2014-03-01T06:02:19.000Z</lastmod>
+    <loc>http://stddup.com/2013/11/27/linux-ps/</loc>
+    <lastmod>2013-11-27T06:56:48.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://stddup.com/demos/js/flickr/index.html</loc>
-    <lastmod>2014-06-19T12:07:24.000Z</lastmod>
+    <loc>http://stddup.com/2013/11/26/my-new-blog/</loc>
+    <lastmod>2013-11-25T16:11:00.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/2013/12/08/css-sudoku/</loc>
+    <lastmod>2013-12-08T12:52:37.000Z</lastmod>
   </url>
   
   <url>
@@ -152,38 +77,8 @@
   </url>
   
   <url>
-    <loc>http://stddup.com/demos/css/css-sudoku.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2014/01/25/remove-ie10+-clear-filed-x-button-on-input/</loc>
-    <lastmod>2014-01-24T16:58:23.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/nodejs/node_modules/formidable/test/tools/base64.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/nodejs/node_modules/formidable/test/fixture/http/special-chars-in-filename/info.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/nodejs/node_modules/formidable/Readme.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/preview/index.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2014/01/01/use-git/</loc>
-    <lastmod>2014-01-01T07:12:08.000Z</lastmod>
+    <loc>http://stddup.com/2013/11/27/origin-null-is-not-allowed-access/</loc>
+    <lastmod>2013-11-27T15:09:40.000Z</lastmod>
   </url>
   
   <url>
@@ -197,163 +92,13 @@
   </url>
   
   <url>
-    <loc>http://stddup.com/2013/12/24/js-compatibility-collect/</loc>
-    <lastmod>2013-12-24T08:29:36.000Z</lastmod>
+    <loc>http://stddup.com/2014/01/25/remove-ie10+-clear-filed-x-button-on-input/</loc>
+    <lastmod>2014-01-24T16:58:23.000Z</lastmod>
   </url>
   
   <url>
-    <loc>http://stddup.com/demos/js/mf-glass/index.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/waterfall/index.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/louver/index.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/css/center/index.html</loc>
-    <lastmod>2014-05-27T05:30:22.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/photowall/pw.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/ball/threeball.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/ball/dragball.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/ball/anotherball.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/ball/oneball.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/nav/nav.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/magnify-pic/mf-pic.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/to-top/demo1.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/to-top/demo2.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/shade/shade.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/roll/vertical-roll.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/share/share.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/drag/js-cookie-drag.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/js-codeEdit.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/roll/horizontal-roll.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/js-clock.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/demos/js/js-calendar.html</loc>
-    <lastmod>2014-04-21T03:40:07.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2013/12/10/js-distribution/</loc>
-    <lastmod>2013-12-10T13:34:45.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2013/12/10/never-need-to-enter-password-for-git-push/</loc>
-    <lastmod>2013-12-10T07:40:13.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2013/12/10/hexo-render-error/</loc>
-    <lastmod>2013-12-10T06:51:42.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2013/12/08/css-sudoku/</loc>
-    <lastmod>2013-12-08T12:52:37.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/about/index.html</loc>
-    <lastmod>1992-05-09T00:08:00.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2013/12/10/throw-try-catch-finally/</loc>
-    <lastmod>2013-12-10T04:29:30.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2013/12/05/css-navigation/</loc>
-    <lastmod>2013-12-05T14:06:29.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2013/12/07/ie6-bug/</loc>
-    <lastmod>2013-12-06T16:21:48.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2013/11/27/origin-null-is-not-allowed-access/</loc>
-    <lastmod>2013-11-27T15:09:40.000Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://stddup.com/2013/11/27/linux-ps/</loc>
-    <lastmod>2013-11-27T06:56:48.000Z</lastmod>
+    <loc>http://stddup.com/2014/07/03/set-get-caret-position/</loc>
+    <lastmod>2014-07-03T13:16:12.000Z</lastmod>
   </url>
   
   <url>
@@ -362,8 +107,18 @@
   </url>
   
   <url>
-    <loc>http://stddup.com/2013/11/26/duoshuo-avatar/</loc>
-    <lastmod>2013-11-26T12:40:12.000Z</lastmod>
+    <loc>http://stddup.com/2013/12/03/sublime-text-settings/</loc>
+    <lastmod>2013-12-03T14:20:50.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/2014/03/05/css-position-opacity/</loc>
+    <lastmod>2014-03-05T15:58:29.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/2014/01/01/use-git/</loc>
+    <lastmod>2014-01-01T07:12:08.000Z</lastmod>
   </url>
   
   <url>
@@ -372,8 +127,253 @@
   </url>
   
   <url>
-    <loc>http://stddup.com/2013/11/26/my-new-blog/</loc>
-    <lastmod>2013-11-25T16:11:00.000Z</lastmod>
+    <loc>http://stddup.com/2013/12/05/css-navigation/</loc>
+    <lastmod>2013-12-05T14:06:29.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/2014/03/08/chrome-min-fontsize/</loc>
+    <lastmod>2014-03-08T07:12:20.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/2014/01/25/css-custom-scrollbar-style/</loc>
+    <lastmod>2014-01-24T16:15:53.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/caret/index.html</loc>
+    <lastmod>2014-08-02T18:10:48.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/PartitioningTool/README.html</loc>
+    <lastmod>2014-08-02T18:08:36.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/PartitioningTool/index.html</loc>
+    <lastmod>2014-08-02T17:57:49.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/PartitioningTool/script/hehe.html</loc>
+    <lastmod>2014-08-02T18:29:54.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/PartitioningTool/test/test.html</loc>
+    <lastmod>2014-08-02T17:57:56.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/index.html</loc>
+    <lastmod>2013-12-12T04:20:12.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/css/loading/index.html</loc>
+    <lastmod>2014-08-02T18:11:45.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/app/index.html</loc>
+    <lastmod>2014-08-02T18:45:20.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/404.html</loc>
+    <lastmod>2014-08-02T17:50:03.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/css/triangle/index.html</loc>
+    <lastmod>2014-08-02T18:10:53.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/flickr/index.html</loc>
+    <lastmod>2014-08-02T17:55:23.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/backbonejs/todo/index.html</loc>
+    <lastmod>2014-08-02T18:19:11.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/drag-scroll/index.html</loc>
+    <lastmod>2014-08-02T18:29:54.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/creatposition/index.html</loc>
+    <lastmod>2014-08-02T18:12:02.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/accordion/index.html</loc>
+    <lastmod>2014-08-02T18:15:06.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/css/photo/index.html</loc>
+    <lastmod>2014-08-02T18:10:50.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/css/nav/index.html</loc>
+    <lastmod>2014-08-02T18:13:54.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/css/crash/index.html</loc>
+    <lastmod>2014-08-02T18:10:50.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/css/moon/index.html</loc>
+    <lastmod>2014-08-02T18:11:44.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/flickr/index.html</loc>
+    <lastmod>2014-08-02T18:19:19.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/css/css-sudoku.html</loc>
+    <lastmod>2014-08-02T18:14:04.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/nodejs/node_modules/formidable/test/fixture/http/special-chars-in-filename/info.html</loc>
+    <lastmod>2014-08-03T03:53:15.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/nodejs/node_modules/formidable/test/tools/base64.html</loc>
+    <lastmod>2014-08-03T03:36:05.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/nodejs/node_modules/formidable/Readme.html</loc>
+    <lastmod>2014-08-02T18:43:12.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/preview/index.html</loc>
+    <lastmod>2014-08-02T18:15:05.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/mf-glass/index.html</loc>
+    <lastmod>2014-08-02T18:22:58.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/waterfall/index.html</loc>
+    <lastmod>2014-08-02T18:19:50.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/louver/index.html</loc>
+    <lastmod>2014-08-02T18:18:57.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/css/center/index.html</loc>
+    <lastmod>2014-08-02T18:18:34.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/photowall/pw.html</loc>
+    <lastmod>2014-08-02T18:29:36.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/ball/threeball.html</loc>
+    <lastmod>2014-08-02T18:15:06.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/ball/dragball.html</loc>
+    <lastmod>2014-08-02T18:29:04.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/ball/anotherball.html</loc>
+    <lastmod>2014-08-02T18:18:58.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/ball/oneball.html</loc>
+    <lastmod>2014-08-02T18:14:04.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/nav/nav.html</loc>
+    <lastmod>2014-08-02T18:13:05.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/magnify-pic/mf-pic.html</loc>
+    <lastmod>2014-08-02T18:19:11.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/to-top/demo1.html</loc>
+    <lastmod>2014-08-02T18:18:56.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/to-top/demo2.html</loc>
+    <lastmod>2014-08-02T18:14:04.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/shade/shade.html</loc>
+    <lastmod>2014-08-02T18:14:04.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/roll/vertical-roll.html</loc>
+    <lastmod>2014-08-02T18:12:02.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/share/share.html</loc>
+    <lastmod>2014-08-02T18:19:49.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/drag/js-cookie-drag.html</loc>
+    <lastmod>2014-08-02T18:11:45.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/js-codeEdit.html</loc>
+    <lastmod>2014-08-02T18:14:04.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/roll/horizontal-roll.html</loc>
+    <lastmod>2014-08-02T18:19:20.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/js-clock.html</loc>
+    <lastmod>2014-08-02T18:15:03.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/demos/js/js-calendar.html</loc>
+    <lastmod>2014-08-02T18:18:54.000Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://stddup.com/about/index.html</loc>
+    <lastmod>1992-05-09T00:08:00.000Z</lastmod>
   </url>
   
 </urlset>

@@ -24,7 +24,9 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
 <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
+
+  <script src="/js/jquery.min.js" type="text/javascript"></script>
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -45,12 +47,6 @@
 		  <header id="header" class='normal_mode'>
 		    <nav id="main-nav">
   <ul class='container'>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-      <li><a href="/flickr">Flickr</a></li>
     
   </ul>
   <div class="clearfix"></div>
@@ -74,7 +70,7 @@
 		 <ul class="my-socials">
   
   <li>
-  	<a href="https://github.com/hizhi" class="github" target="_blank">
+  	<a href="https://github.com/xwartz" class="github" target="_blank">
   		<i class="fa fa-github"></i>
   	</a>
   </li>
@@ -95,6 +91,76 @@
 </ul>
 	</div>
 </div>
+
+
+  <article class="post">
+
+  <div class="post-content">
+    <header>
+      <div class="icon"></div>
+      
+      <time datetime="2013-12-10T13:34:45.000Z"><a href="/2013/12/10/js-distribution/">周二, 12月 10 2013, 21:34:45 晚上</a></time>
+
+  
+    <h1 class="title"><a href="/2013/12/10/js-distribution/">JavaScript分布应用</a></h1>
+  
+
+<div class="clear"></div>
+      
+    </header>
+    
+      <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+    
+    <div class="entry">
+      
+        <p>如果我们需要一个函数，但是其中一个操作符的参数已经给定了会怎么样？<br>针对这种情况，分布应用就派上用场了。<br><strong>接收一个函数func和一个或多个参数，然后创建一个新函数调用func，原来的参数和新传入的参数，在调用的时候都会用到</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">partial</span><span class="params">(func)</span></span>{</div><div class="line">    <span class="keyword">var</span> knowArgs = <span class="built_in">arguments</span>;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">        <span class="keyword">var</span> realArgs = [];</div><div class="line">        <span class="comment">/*第一个参数是func，所以循环从1开始*/</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;knowArgs.length;i++)</div><div class="line">            realArgs.push(knowArgs[i]);</div><div class="line">        <span class="comment">/*获取内嵌函数的参数*/</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;<span class="built_in">arguments</span>.length;i++)</div><div class="line">            realArgs.push(<span class="built_in">arguments</span>[i]);</div><div class="line">        <span class="keyword">return</span> func.apply(<span class="literal">null</span>,realArgs);</div><div class="line">    };</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><code>partial(op[&quot;*&quot;],5)</code>应该返回一个将参数与5进行相乘的新函数(javascript编程精解说是进行5次相乘，出错了吧，<code>partial(op[&quot;*&quot;],5)(2);</code>的结果是10)</p>
+<p>这里<code>op[&quot;*&quot;]</code>是自定义的操作符函数</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var op = {</div><div class="line">    <span class="string">"+"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a + b;},</div><div class="line">    <span class="string">"-"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a - b;},</div><div class="line">    <span class="string">"/"</span>:         <span class="keyword">function</span>(a,b){<span class="keyword">return</span> a / b;}</div><div class="line">    /*等等<span class="keyword">...</span>*/</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>这里使用到了<code>apply()</code>，有必要了解一下这个函数，不然还真是有点难理解。</p>
+<hr>
+<p><code>apply()</code>和<code>call()</code>这两个方法的用途都是在特定的作用域中调用函数，实际上等于设置函数体内<code>this</code>对象的值。</p>
+<p><code>apply()</code>方法接收两个参数：一个是在其中运行函数的作用域，另一个是参数数组。其中，第二个参数可以是Array的实例，也可以是arguments对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> num1 + num2; </div><div class="line">} </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callSum1</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> sum.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>); <span class="comment">// 传入arguments对象</span></div><div class="line">} </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callSum2</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> sum.apply(<span class="keyword">this</span>, [num1, num2]); <span class="comment">// 传入数组</span></div><div class="line">} </div><div class="line">alert(callSum1(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20 </span></div><div class="line">alert(callSum2(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20</span></div></pre></td></tr></table></figure>
+
+<p><code>call()</code>方法与<code>apply()</code>方法的作用相同，它们的区别仅在于接收参数的方式不同。对于<code>call()</code>方法而言，第一个参数是<code>this</code>值没有变化，变化的是其余参数都直接传递给函数。换句话说，在使用<code>call()</code>方法时，传递给函数的参数必须逐个列举出来。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> num1 + num2; </div><div class="line">} </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callSum</span><span class="params">(num1, num2)</span></span>{ </div><div class="line"><span class="keyword">return</span> sum.call(<span class="keyword">this</span>, num1, num2); </div><div class="line">} </div><div class="line">alert(callSum(<span class="number">10</span>,<span class="number">10</span>)); <span class="comment">//20</span></div></pre></td></tr></table></figure>
+
+<p>事实上，传递参数并非<code>apply()</code>和<code>call()</code>真正的用武之地；它们真正强大的地方是能够扩充函数<br>赖以运行的作用域。下面来看一个例子。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.color = <span class="string">"red"</span>; </div><div class="line"><span class="keyword">var</span> o = { color: <span class="string">"blue"</span> }; </div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayColor</span><span class="params">()</span></span>{ </div><div class="line">alert(<span class="keyword">this</span>.color); </div><div class="line">} </div><div class="line">sayColor(); <span class="comment">//red </span></div><div class="line">sayColor.call(<span class="keyword">this</span>); <span class="comment">//red </span></div><div class="line">sayColor.call(<span class="built_in">window</span>); <span class="comment">//red </span></div><div class="line">sayColor.call(o); <span class="comment">//blue</span></div></pre></td></tr></table></figure>
+
+<p>在ECMAScript 5的严格模式中，<code>call()</code>和<code>apply()</code>的第一个参数都会变为<code>this</code>的值，哪怕传入的实参是原始值甚至是<code>null</code>,<code>undefined</code>。在ECMAScript 3和非严格模式中传入的<code>null</code>和<code>undefined</code>都会被全局对象代替，而其他原始则会被相应的包装对象所替代。</p>
+<hr>
+<p>现在再来看函数<code>partial()</code>,变量<code>knowArgs</code>是必需的，因为在内部函数里，<code>arguments</code>(<em>是个伪数组</em>)变量引用的是内部函数的参数，而不是<code>partial</code>的参数。<br>
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/2013/12/10/js-distribution/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
 
 
   <article class="post">
@@ -132,24 +198,14 @@
 <li>首先添加环境变量</li>
 </ul>
 <p>计算机—属性—高级系统设置—环境变量</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>变量名： HOME
-变量值： <span class="variable">%USERPROFILE</span>%
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">变量名： <span class="variable">HOME</span></div><div class="line">变量值： <span class="comment">%USERPROFILE%</span></div></pre></td></tr></table></figure>
 
 <ul>
 <li>在用户文件夹<code>C:\Users\&quot;yourusername&quot;</code>下新建一个名为<code>_netrc</code>的文件</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>machine github<span class="preprocessor">.com</span>
-login <span class="string">"your git username"</span>(你的github用户名,不包括引号)
-password <span class="string">"your password"</span>(你的github密码,不包括引号)
-</pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">machine github.<span class="keyword">com</span></div><div class="line">login <span class="string">"your git username"</span>(你的github用户名,不包括引号)</div><div class="line">password <span class="string">"your password"</span>(你的github密码,不包括引号)</div></pre></td></tr></table></figure>
 
-<p>参考：<a href="http://zipperary.com/2013/05/26/ssh-errors-with-github/" target="_blank">http://zipperary.com/2013/05/26/ssh-errors-with-github/</a></p>
+<p>参考：<a href="http://zipperary.com/2013/05/26/ssh-errors-with-github/" target="_blank" rel="external">http://zipperary.com/2013/05/26/ssh-errors-with-github/</a></p>
 
       
     </div>
@@ -157,85 +213,6 @@ password <span class="string">"your password"</span>(你的github密码,不包�
       
         <div class="alignleft">
             <a href="/2013/12/10/never-need-to-enter-password-for-git-push/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
-        </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-
-  <article class="post">
-
-  <div class="post-content">
-    <header>
-      <div class="icon"></div>
-      
-      <time datetime="2013-12-10T06:51:42.000Z"><a href="/2013/12/10/hexo-render-error/">周二, 12月 10 2013, 14:51:42 下午</a></time>
-
-  
-    <h1 class="title"><a href="/2013/12/10/hexo-render-error/">HexoError: Render failed</a></h1>
-  
-
-<div class="clear"></div>
-      
-    </header>
-    
-      <div class="gallery">
-  <div class="photoset">
-    
-      <img src="">
-    
-  </div>
-  <div class="control">
-    <div class="prev"></div>
-    <div class="next"></div>
-  </div>
-</div>
-    
-    <div class="entry">
-      
-        <p><code>Hexo</code> 默认会对<code>source</code>目录下的所有文件进行<code>render</code>,这会造成<code>.html</code>文件不正常，<code>.html</code> 文件都会被当成 <code>.md</code> 处理。github上也有讨论组这个问题,<a href="https://github.com/tommy351/hexo/issues/158" target="_blank">issue：HexoError: Render failed</a>。</p>
-<p>使用主题的时候遇到过这个问题，只需在<code>layout.ejs</code>里面加一个判断</p>
-<figure class="highlight ejs"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre></td><td class="code"><pre><span class="vbscript">&lt;%
-<span class="keyword">if</span>(page.layout !== <span class="comment">'false'){</span>
-%&gt;</span>
-<span class="comment">&lt;!--渲染--&gt;</span>
- 
-<span class="vbscript">&lt;%}<span class="keyword">else</span>{ %&gt;</span>
-<span class="comment">&lt;!--不想渲染的页面内容-&gt;
-&lt;%- page.content %&gt;
-&lt;%};%&gt;</span>
-</pre></td></tr></table></figure>
-
-<p>按照这个方法，如果创建的页面不想使用主题的渲染，可以在 <code>.html</code> 页面最上方加入:</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="header">layout: false
----</span>
-</pre></td></tr></table></figure>
-
-<p>这样就可以在页面中使用自己创建的样式渲染，比如创建demo.</p>
-
-      
-    </div>
-    <footer>
-      
-        <div class="alignleft">
-            <a href="/2013/12/10/hexo-render-error/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
         </div>
         
       
@@ -282,177 +259,31 @@ password <span class="string">"your password"</span>(你的github密码,不包�
 <p>当程序由于某种原因不能正常返回时，要立即停止现在的操作，然后跳转到能够处理问题的位置，这就是异常处理。</p>
 <p>工作原理：代码抛出异常，该异常是一个值。会跳出当前函数，还会离开该函数的调用者，一直到当前执行的最顶部（展开堆栈）。<br>异常会放大堆栈，丢弃所有有关上下文，为了不让异常一直放大到栈的根部，需要沿着栈为异常设置障碍，抓住放大的异常并且进行相应的处理，程序便可以在异常的抛出点继续运行。</p>
 <p>JavaScript编程精简里的一个示例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-</pre></td><td class="code"><pre><span class="function"><span class="keyword">function</span> <span class="title">lastElement</span><span class="params">(array)</span>{</span>
-    <span class="keyword">if</span>(array.length &gt; <span class="number">0</span>)
-        <span class="keyword">return</span> array[array.length -<span class="number">1</span>];
-    <span class="keyword">else</span>
-        <span class="keyword">throw</span> <span class="string">"empty array"</span>;
-}
-<span class="keyword">try</span>{
-    lastElement([]);
-}
-
-<span class="keyword">catch</span>(error){
-   alert(error);
-}
-</pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lastElement</span><span class="params">(array)</span></span>{</div><div class="line">    <span class="keyword">if</span>(array.length &gt; <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> array[array.length -<span class="number">1</span>];</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">throw</span> <span class="string">"empty array"</span>;</div><div class="line">}</div><div class="line"><span class="keyword">try</span>{</div><div class="line">    lastElement([]);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">catch</span>(error){</div><div class="line">   alert(error);</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p><code>throw</code>是抛出异常的关键字，<code>try</code>用于设立异常障碍：<br>如果代码块里的代码抛出异常，<code>catch</code>代码将会执行，在执行时，<code>catch</code>后面的变量将拥有该异常值（也就是说<code>catch</code>接收的参数，就是<code>throw</code>抛出的异常信息）。</p>
 <p>异常错误的一大优点：只在错误的发生点以及处理错误的点上才需要处理错误代码，两者之间的代码可以忽略这些。（也就是在<code>throw</code>和<code>try</code>中间执行的代码，可以忽略出错的可能性）</p>
 <hr>
 <h4 id="异常之后的错误清除">异常之后的错误清除</h4>
 <p>有如下代码:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre><span class="keyword">var</span> currentThing = <span class="literal">null</span>;
-<span class="function"><span class="keyword">function</span> <span class="title">processThing</span><span class="params">(thing)</span>{</span>
-        <span class="keyword">var</span> prevThing = currentThing;
-        currentThing = thing;
-       <span class="comment">/*做复杂的处理..*/</span>
-      currentThing = prevThing;
-}
-</pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> currentThing = <span class="literal">null</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">processThing</span><span class="params">(thing)</span></span>{</div><div class="line">        <span class="keyword">var</span> prevThing = currentThing;</div><div class="line">        currentThing = thing;</div><div class="line">       <span class="comment">/*做复杂的处理..*/</span></div><div class="line">      currentThing = prevThing;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p>如果做复杂处理的时候引发异常，<code>processThing()</code>的调用将通过异常脱离当前栈，所以<code>currentThing</code>就不能恢复到原来的值了。<br>这样就需要<code>finally</code>语句来清除错误，不管发生什么，尝试运行<code>try</code>块的代码后，运行<code>finally</code>块的代码。</p>
-<figure class="highlight javasript"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-</pre></td><td class="code"><pre><span class="keyword">var</span> currentThing = <span class="literal">null</span>;
-<span class="function"><span class="keyword">function</span> <span class="title">processThing</span><span class="params">(thing)</span>{</span>
-        <span class="keyword">var</span> prevThing = currentThing;
-        currentThing = thing;
-       <span class="keyword">try</span>{
-                <span class="comment">/*做复杂的处理..*/</span>
-     }
-}
-
-<span class="keyword">finally</span>{
-       currentThing = prevThing;
-}
-</pre></td></tr></table></figure>
+<figure class="highlight javasript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> currentThing = <span class="literal">null</span>;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">processThing</span><span class="params">(thing)</span></span>{</div><div class="line">        <span class="keyword">var</span> prevThing = currentThing;</div><div class="line">        currentThing = thing;</div><div class="line">       <span class="keyword">try</span>{</div><div class="line">                <span class="comment">/*做复杂的处理..*/</span></div><div class="line">     }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">finally</span>{</div><div class="line">       currentThing = prevThing;</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p>现在不管复杂的处理返回正常值还是抛出异常，<code>currentThing</code>都会恢复原来的值。<br><strong>如果有<code>catch</code>语句块，<code>finally</code>块要放在它之后</strong></p>
 <hr>
-<h4 id="<code>Error</code>对象"><code>Error</code>对象</h4>
+<h4 id="Error对象"><code>Error</code>对象</h4>
 <p>可以通过<code>new</code>创建一个<code>Error</code>对象，<code>var e = new Error(&quot;empty array&quot;);</code>,每个<code>Error</code>对象都有一个<code>message</code>属性，包含对错误问题的描述。<br>这样就可以把之前的示例修改为：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-</pre></td><td class="code"><pre><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"empty array"</span>);
-<span class="function"><span class="keyword">function</span> <span class="title">lastElement</span><span class="params">(array)</span>{</span>
-    <span class="keyword">if</span>(array.length &gt; <span class="number">0</span>)
-        <span class="keyword">return</span> array[array.length -<span class="number">1</span>];
-    <span class="keyword">else</span>
-        <span class="keyword">throw</span> e;
-       <span class="comment">// ==  throw new Error("empty array");</span>
-}
-<span class="keyword">try</span>{
-    lastElement([]);
-}
-
-<span class="keyword">catch</span>(error){
-   alert(error.message);
-}
-</pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> e = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"empty array"</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">lastElement</span><span class="params">(array)</span></span>{</div><div class="line">    <span class="keyword">if</span>(array.length &gt; <span class="number">0</span>)</div><div class="line">        <span class="keyword">return</span> array[array.length -<span class="number">1</span>];</div><div class="line">    <span class="keyword">else</span></div><div class="line">        <span class="keyword">throw</span> e;</div><div class="line">       <span class="comment">// ==  throw new Error("empty array");</span></div><div class="line">}</div><div class="line"><span class="keyword">try</span>{</div><div class="line">    lastElement([]);</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">catch</span>(error){</div><div class="line">   alert(error.message);</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <hr>
-<h4 id="选择性<code>catch</code>">选择性<code>catch</code></h4>
+<h4 id="选择性catch">选择性<code>catch</code></h4>
 <p>使用<code>catch</code>显示处理异常时，不要<code>catch</code>太多内容。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre></td><td class="code"><pre><span class="keyword">for</span>(; ;){
-    <span class="keyword">try</span>{
-        alert(inputNumber() + <span class="number">5</span>);
-       <span class="keyword">break</span>;
-  }
-<span class="keyword">catch</span>(e){
-       alert(<span class="string">"Not a number"</span>);
-  }
-}
-</pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(; ;){</div><div class="line">    <span class="keyword">try</span>{</div><div class="line">        alert(inputNumber() + <span class="number">5</span>);</div><div class="line">       <span class="keyword">break</span>;</div><div class="line">  }</div><div class="line"><span class="keyword">catch</span>(e){</div><div class="line">       alert(<span class="string">"Not a number"</span>);</div><div class="line">  }</div><div class="line">}</div></pre></td></tr></table></figure>
 
 <p>以上代码要求输入数字，如果输入不合法就会抛出异常，直到输入合法数字，才停止循环。<br>但如果<code>inputNumber</code>引发其他的一些异常，程序还是会认为输入不合法，一直循环。因此，明智的做法是验证是否由输入引发的异常。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-</pre></td><td class="code"><pre><span class="keyword">var</span> invalidInputError = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Invalid numeric input"</span>);
-<span class="function"><span class="keyword">function</span> <span class="title">inputNumber</span><span class="params">()</span>{</span>
-         <span class="keyword">var</span> input = <span class="built_in">Number</span>(prompt(<span class="string">"input a number"</span>,<span class="string">""</span>));
-        <span class="keyword">if</span>(<span class="built_in">isNaN</span>(input))
-            <span class="keyword">throw</span> invalidInputError;
-       <span class="keyword">return</span> input;
-}
-
-<span class="keyword">try</span>{
-    alert(inputNumber() + <span class="number">5</span>);
-    <span class="keyword">break</span>;
-}
-<span class="keyword">catch</span>(e){
-    <span class="keyword">if</span>(e != invalidInputError)
-        <span class="keyword">throw</span> e;
-   alert(Not a number);
-}
-</pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> invalidInputError = <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"Invalid numeric input"</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">inputNumber</span><span class="params">()</span></span>{</div><div class="line">         <span class="keyword">var</span> input = <span class="built_in">Number</span>(prompt(<span class="string">"input a number"</span>,<span class="string">""</span>));</div><div class="line">        <span class="keyword">if</span>(<span class="built_in">isNaN</span>(input))</div><div class="line">            <span class="keyword">throw</span> invalidInputError;</div><div class="line">       <span class="keyword">return</span> input;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keyword">try</span>{</div><div class="line">    alert(inputNumber() + <span class="number">5</span>);</div><div class="line">    <span class="keyword">break</span>;</div><div class="line">}</div><div class="line"><span class="keyword">catch</span>(e){</div><div class="line">    <span class="keyword">if</span>(e != invalidInputError)</div><div class="line">        <span class="keyword">throw</span> e;</div><div class="line">   alert(Not a number);</div><div class="line">}</div></pre></td></tr></table></figure>
 
 
       
@@ -504,81 +335,11 @@ password <span class="string">"your password"</span>(你的github密码,不包�
     <div class="entry">
       
         <p>用css实现一个如图的九宫格,border-width为5px，每个格子大小50px.<br><img src="http://farm3.staticflickr.com/2811/11269131403_0c6f5979ab_o.png" alt="九宫格"></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-</pre></td><td class="code"><pre>*<span class="rules">{
-        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;
-        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;
-    <span class="rule">}</span></span>
-    <span class="class">.mySudoku</span> <span class="rules">{
-        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">170</span>px</span></span>;
-        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> auto</span></span>;
-    <span class="rule">}</span></span>
-    <span class="class">.mySudoku</span> <span class="tag">a</span><span class="rules">{
-        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;
-        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;
-        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">50</span>px</span></span>;
-        <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">50</span>px</span></span>;
-        <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">50</span>px</span></span>;
-        <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;
-        <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;
-        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">5</span>px solid <span class="hexcolor">#1b12c9</span></span></span>;
-        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> -<span class="number">5</span>px -<span class="number">5</span>px <span class="number">0</span></span></span>;
-        <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;
-    <span class="rule">}</span></span>
-    <span class="class">.mySudoku</span> <span class="tag">a</span><span class="pseudo">:hover</span><span class="rules">{
-        <span class="rule"><span class="attribute">border-color</span>:<span class="value"> <span class="hexcolor">#A50833</span></span></span>;
-        <span class="rule"><span class="attribute">z-index</span>:<span class="value"> <span class="number">100</span></span></span>;
-    <span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">*<span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="class">.mySudoku</span> <span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">170px</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> auto</span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="class">.mySudoku</span> <span class="tag">a</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">50px</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">50px</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">50px</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">5px</span> solid <span class="hexcolor">#1b12c9</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span> -<span class="number">5px</span> -<span class="number">5px</span> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="class">.mySudoku</span> <span class="tag">a</span><span class="pseudo">:hover</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">border-color</span>:<span class="value"> <span class="hexcolor">#A50833</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">z-index</span>:<span class="value"> <span class="number">100</span></span></span>;</div><div class="line">    <span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <p><code>relative</code> 主要有两个作用：<br>为子元素定位做参考；<br>当元素设置了position属性，被其他元素遮挡住时，可以通过设置更高的<code>z-index</code>(<em>仅对定位元素有效</em>),来反遮挡。</p>
 <p>上面css代码就是使用了后者方法。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre></td><td class="code"><pre>    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"mySudoku"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>1<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>2<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>3<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>4<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>5<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>6<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>7<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>8<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>9<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-</pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"mySudoku"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>1<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>2<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>3<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>4<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>5<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>6<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>7<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>8<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>9<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>效果演示<a href="/demos/css-sudoku.html">九宫格</a></p>
 
@@ -630,113 +391,45 @@ password <span class="string">"your password"</span>(你的github密码,不包�
     
     <div class="entry">
       
-        <p><br /></p>
+        <p><br></p>
 <h4 id="双外边距浮动bug">双外边距浮动bug</h4>
 <p>IE6和更低版本中双外边距浮动bug，会是浮动元素的外边距加倍。<br>修复方法 将元素的<code>display</code>属性设置为<code>inline</code>就行。</p>
-<p><br /></p>
+<p><br></p>
 <h4 id="3像素文本偏移bug">3像素文本偏移bug</h4>
 <p>IE6上，当文本和一个浮动元素相邻时，这个bug就会表现出来。例如将一个元素向左浮动，并且不希望相邻段落中的文本围绕浮动元素。<br>我们可以设置如下css</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre><span class="class">.myFloat</span><span class="rules">{
-    <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;
-    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100</span>px</span></span>;
-<span class="rule">}</span></span>
-
-<span class="tag">p</span><span class="rules">{
-    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">100</span>px</span></span>;
-<span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class">.myFloat</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"></div><div class="line"><span class="tag">p</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">100px</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <p>如果这么做，在文本和浮动元素之间就会出现一个莫名其妙的3像素间隙。一旦浮动元素停下来，3像素间隙就会消失。</p>
 <p>修复这个bug，首先，给包含文本的元素设置任意的高度。迫使元素拥有布局，这在表面上会消除文本偏移。因为IE6将height作为min-height对待，<br>所以设置一个小的高度并不会影响元素在这些浏览器中的实际尺寸。<br>但是这会影响其他浏览器，所以要对其他浏览器隐藏这个规则。最好使用条件注释将这些样式移动单独的css文件中。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="tag">p</span><span class="rules">{
-    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1</span>%</span></span>;
-<span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">p</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1%</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <p>由于布局元素被限制为矩形，并且在浮动元素旁边而不是它们的下面，添加的外边距实际会在段落和浮动元素之间产生100px间隙，<br>为解决这个问题，需要将IE6的外边距重新设置为0.</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="tag">p</span><span class="rules">{
-    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1</span>%</span></span>;
-    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">0</span></span></span>;
-<span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">p</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1%</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <p>文本偏移被修复了，但是在浮动元素上又会出现3像素间隙，为了去掉这个间隙，需要在浮动元素上设置一个负的3像素右外边距</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="class">.myFloat</span><span class="rules">{
-    <span class="rule"><span class="attribute">margin-right</span>:<span class="value"> -<span class="number">3</span>px</span></span>;
-<span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class">.myFloat</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">margin-right</span>:<span class="value"> -<span class="number">3px</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
-<p><br /></p>
+<p><br></p>
 <h4 id="IE6的重复字符bug">IE6的重复字符bug</h4>
 <p>一系列浮动元素的最后一个元素中的最后几个字符会在浮动元素下面重复出现。<br>当在一系列浮动元素的一个元素和最后一个元素之间有多个注释时，就会出现这个bug。前两个注释没影响，但是后续的每个注释会导致两个字符重复出现。<br>所以，3个注释会导致2个重复字符，4个注释会导致4个重复字符，5个注释会导致6个重复字符。。。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span>&gt;</span>
-    <span class="comment">&lt;!--  aaa--&gt;</span>
-    <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-       <span class="comment">&lt;!-- bbb---&gt;</span>
-       <span class="comment">&lt;!-- ccc--&gt;</span>
-      <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-</pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--  aaa--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line">       <span class="comment">&lt;!-- bbb---&gt;</span></div><div class="line">       <span class="comment">&lt;!-- ccc--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>为了修复这个bug，最好是删除注释。</p>
-<p><br /></p>
+<p><br></p>
 <h4 id="IE6的藏猫猫_bug">IE6的藏猫猫 bug</h4>
 <p>一个浮动元素后面跟着一些非浮动元素，然后是一个清理元素，所有这些元素都包含在一个设置了背景颜色或图像的父元素中。<br>如果清理元素碰到了浮动元素，那么中间的非浮动元素看起来消失了，隐藏到了父元素的背景颜色或者图像后面，<strong>只有在刷新页面时才重新出现。</strong></p>
 <p>修复方法： 避免清理元素与浮动元素接触；给父元素应用特定尺寸或设置行高；也可以将浮动元素和容器元素的<code>position</code>属性设置为<code>relative</code>。</p>
-<p><br /></p>
+<p><br></p>
 <h4 id="相对容器中的绝对定位">相对容器中的绝对定位</h4>
 <p>由于相对定位的元素没有获得IE的内部布局属性，因此他们创建新的定位上下文，所有绝对定位元素相对于视口进行定位。</p>
 <p>解决这个bug的方法是，为容器布局提供一个任意的高度，使容器拥有布局属性。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="class">.container</span><span class="rules">{
-    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1</span>%</span></span>;
-<span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1%</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
-<p><br /><br>使用条件注释将IE6的样式单独放置</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="comment">&lt;!-- [if IE 6]
-    &lt;link rel="stylesheet" type="text/css" href="/css/ie6.css" /&gt;
---&gt;</span>
-</pre></td></tr></table></figure>
+<p><br><br>使用条件注释将IE6的样式单独放置</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- [if IE 6]</span></div><div class="line">    &lt;link rel="stylesheet" type="text/css" href="/css/ie6.css" /&gt;</div><div class="line">--&gt;</div></pre></td></tr></table></figure>
 
 <p>还可以向IE隐藏特定的样式表</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="comment">&lt;!-- [if !IE 6]&gt; --&gt;</span>
-   <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"/css/advanced.css"</span> /&gt;</span>
-<span class="comment">&lt;!-- &lt;![endif] --&gt;</span>
-</pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- [if !IE 6]&gt; --&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"/css/advanced.css"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- &lt;![endif] --&gt;</span></div></pre></td></tr></table></figure>
 
 <p><em>摘自精通css</em></p>
 
@@ -770,8 +463,9 @@ password <span class="string">"your password"</span>(你的github密码,不包�
 </nav>
 
 
-<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
-<script type="text/javascript" src="/js/cover.js"></script>
+<script src="/js/jquery.anystretch.min.js" type="text/javascript"></script>
+<script src="/js/cover.js" type="text/javascript"></script>
+
 
 
 		    <div class="clearfix"></div>
@@ -785,10 +479,10 @@ Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="ex
 
 <div class="clearfix"></div></footer>
 		  
-<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
-<script type="text/javascript" src="/js/gallery.js"></script>
-<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/fartscroll.js"></script>
+<script src="/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
+<script src="/js/gallery.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
 
 
 <script type="text/javascript">
@@ -846,11 +540,10 @@ var disqus_shortname = 'stddup';
 
     });
   });
-
-  fartscroll(800);
 </script>
-<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
-<script type="text/javascript" src="/js/nav.js"></script>
+<script src="/js/jquery.anystretch.min.js" type="text/javascript"></script>
+<script src="/js/nav.js" type="text/javascript"></script>
+
 
 		</body>
 		</html>

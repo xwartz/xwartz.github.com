@@ -24,7 +24,9 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
 <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
+
+  <script src="/js/jquery.min.js" type="text/javascript"></script>
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -45,12 +47,6 @@
 		  <header id="header" class='normal_mode'>
 		    <nav id="main-nav">
   <ul class='container'>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-      <li><a href="/flickr">Flickr</a></li>
     
   </ul>
   <div class="clearfix"></div>
@@ -88,18 +84,8 @@
     <div class="entry">
       
         <p>在学习AJAX，用jQuery调用load()方法加载另外html文件时，出现了错误<br><code>Failed to load resource: No &#39;Access-Control-Allow-Origin&#39; header is present on the requested resource. Origin &#39;null&#39; is therefore not allowed access.</code><br><code>XMLHttpRequest cannot load file:///E:/code/JQuery/AJAX/a.html.</code></p>
-<p>然后google了一下，在<a href="http://stackoverflow.com/questions/8456538/origin-null-is-not-allowed-by-access-control-allow-origin" target="_blank">stackoverflow</a>上看到以下解释：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>Origin <span class="keyword">null</span> <span class="keyword">is</span> the local <span class="keyword">file</span> system, so that suggests that you<span class="attribute">'re</span> loading the HTML page that does the load call via a <span class="keyword">file</span>:/// URL (e.g., just double-clicking it <span class="keyword">in</span> a local <span class="keyword">file</span> browser <span class="keyword">or</span> similar). Different browsers take different approaches <span class="keyword">to</span> applying the Same Origin Policy <span class="keyword">to</span> local files.
-
-My guess <span class="keyword">is</span> that you<span class="attribute">'re</span> seeing this using Chrome. Chrome<span class="attribute">'s</span> rules <span class="keyword">for</span> applying the SOP <span class="keyword">to</span> local files are very tight, it disallows even loading files from the same directory as the document. So does Opera. Some other browsers, such as Firefox, allow limited <span class="keyword">access</span> <span class="keyword">to</span> local files. But basically, using ajax <span class="keyword">with</span> local resources isn<span class="attribute">'t</span> going <span class="keyword">to</span> work cross-browser.
-
-<span class="keyword">If</span> you<span class="attribute">'re</span> just testing something locally that you<span class="attribute">'ll</span> really be deploying <span class="keyword">to</span> the web, rather than <span class="keyword">use</span> local files, install a simple web server <span class="keyword">and</span> test via http:// URLs instead. That gives you a much more accurate security picture.
-</pre></td></tr></table></figure>
+<p>然后google了一下，在<a href="http://stackoverflow.com/questions/8456538/origin-null-is-not-allowed-by-access-control-allow-origin" target="_blank" rel="external">stackoverflow</a>上看到以下解释：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Origin <span class="keyword">null</span> <span class="keyword">is</span> the local <span class="keyword">file</span> system, so that suggests that you<span class="attribute">'re</span> loading the HTML page that does the load call via a <span class="keyword">file</span>:/// URL (e.g., just double-clicking it <span class="keyword">in</span> a local <span class="keyword">file</span> browser <span class="keyword">or</span> similar). Different browsers take different approaches <span class="keyword">to</span> applying the Same Origin Policy <span class="keyword">to</span> local files.</div><div class="line"></div><div class="line">My guess <span class="keyword">is</span> that you<span class="attribute">'re</span> seeing this using Chrome. Chrome<span class="attribute">'s</span> rules <span class="keyword">for</span> applying the SOP <span class="keyword">to</span> local files are very tight, it disallows even loading files from the same directory as the document. So does Opera. Some other browsers, such as Firefox, allow limited <span class="keyword">access</span> <span class="keyword">to</span> local files. But basically, using ajax <span class="keyword">with</span> local resources isn<span class="attribute">'t</span> going <span class="keyword">to</span> work cross-browser.</div><div class="line"></div><div class="line"><span class="keyword">If</span> you<span class="attribute">'re</span> just testing something locally that you<span class="attribute">'ll</span> really be deploying <span class="keyword">to</span> the web, rather than <span class="keyword">use</span> local files, install a simple web server <span class="keyword">and</span> test via http:// URLs instead. That gives you a much more accurate security picture.</div></pre></td></tr></table></figure>
 
 <p>大致意思就是因为load本地的HTML文件，谷歌浏览器对于这种行为比较苛刻，禁止访问本地文件。<br>但是火狐允许，所以用火狐测试通过。这里回答者建议搭建一个简单的web server来测试AJAX。</p>
 
@@ -161,10 +147,10 @@ Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="ex
 
 <div class="clearfix"></div></footer>
 		  
-<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
-<script type="text/javascript" src="/js/gallery.js"></script>
-<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/fartscroll.js"></script>
+<script src="/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
+<script src="/js/gallery.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
 
 
 <script type="text/javascript">
@@ -222,11 +208,10 @@ var disqus_shortname = 'stddup';
 
     });
   });
-
-  fartscroll(800);
 </script>
-<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
-<script type="text/javascript" src="/js/nav.js"></script>
+<script src="/js/jquery.anystretch.min.js" type="text/javascript"></script>
+<script src="/js/nav.js" type="text/javascript"></script>
+
 
 		</body>
 		</html>

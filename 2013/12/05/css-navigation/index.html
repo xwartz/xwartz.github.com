@@ -24,7 +24,9 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
 <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
+
+  <script src="/js/jquery.min.js" type="text/javascript"></script>
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -45,12 +47,6 @@
 		  <header id="header" class='normal_mode'>
 		    <nav id="main-nav">
   <ul class='container'>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-      <li><a href="/flickr">Flickr</a></li>
     
   </ul>
   <div class="clearfix"></div>
@@ -89,379 +85,33 @@
       
         <h4 id="创建垂直的导航条">创建垂直的导航条</h4>
 <p>首先创建<code>HTML</code></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"nav"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Home<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>About<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Server<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Work<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>News<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Contact<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
-</pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"nav"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Home<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>About<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Server<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Work<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>News<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Contact<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>css文档</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-</pre></td><td class="code"><pre><span class="comment">/* 创建垂直导航条 */</span>
-    <span class="tag">ul</span><span class="class">.nav</span><span class="rules">{
-        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;
-        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;
-        <span class="rule"><span class="attribute">list-style</span>:<span class="value"> none</span></span>;
-        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">8</span>em</span></span>;
-        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#8BD400</span></span></span>;
-        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#486B02</span></span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ul</span><span class="class">.nav</span> <span class="tag">a</span><span class="rules">{
-        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;
-        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#2b3f00</span></span></span>;
-        <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;
-        <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#e4ffd3</span></span></span>;
-        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#486b02</span></span></span>;
-        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.3</span>em <span class="number">1</span>em</span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ul</span><span class="class">.nav</span><span class="pseudo">:last-child</span><span class="rules">{
-        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">0</span></span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ul</span><span class="class">.nav</span> <span class="tag">a</span><span class="pseudo">:hover</span><span class="rules">{
-        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#e4ffd3</span></span></span>;
-        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#6da203</span></span></span>;
-    <span class="rule">}</span></span>
-    <span class="comment">/* IE6下兼容 */</span>
-    <span class="tag">ul</span><span class="class">.nav</span> <span class="tag">li</span><span class="rules">{
-        <span class="rule"><span class="attribute">display</span>:<span class="value"> inline</span></span>;
-    <span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 创建垂直导航条 */</span></div><div class="line">    <span class="tag">ul</span><span class="class">.nav</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">list-style</span>:<span class="value"> none</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">8em</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#8BD400</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#486B02</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.nav</span> <span class="tag">a</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#2b3f00</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#e4ffd3</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#486b02</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.3em</span> <span class="number">1em</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.nav</span><span class="pseudo">:last-child</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.nav</span> <span class="tag">a</span><span class="pseudo">:hover</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#e4ffd3</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#6da203</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="comment">/* IE6下兼容 */</span></div><div class="line">    <span class="tag">ul</span><span class="class">.nav</span> <span class="tag">li</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">display</span>:<span class="value"> inline</span></span>;</div><div class="line">    <span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <p><strong>IE6由于块元素<code>li</code>会添加额外的空间，所以需要将列表项上的<code>display</code>属性设置为<code>inline</code></strong></p>
 <p><a id="more"></a></p>
 <h4 id="创建水平导航条">创建水平导航条</h4>
 <p>HTML</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"pnav"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Home<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>About<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>News<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Server<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Contact<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
-</pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"pnav"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Home<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>About<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>News<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Server<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Contact<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>CSS</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-</pre></td><td class="code"><pre><span class="tag">ul</span><span class="class">.pnav</span><span class="rules">{
-        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;
-        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;
-        <span class="rule"><span class="attribute">margin-top</span>:<span class="value"> <span class="number">5</span>em</span></span>;
-        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">35</span>em</span></span>;
-        <span class="rule"><span class="attribute">list-style</span>:<span class="value"> none</span></span>;
-        <span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;
-        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#FAA819</span></span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ul</span><span class="class">.pnav</span> <span class="tag">li</span><span class="rules">{
-        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ul</span><span class="class">.pnav</span> <span class="tag">a</span><span class="rules">{
-        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;
-        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span> <span class="number">2</span>em</span></span>;
-        <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;
-        <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">2.1</span>em</span></span>;
-        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#fff</span></span></span>;
-        <span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">0.1</span>em solid <span class="hexcolor">#fff</span></span></span>; 
-    <span class="rule">}</span></span>
-    <span class="tag">ul</span><span class="class">.pnav</span> <span class="tag">a</span><span class="pseudo">:hover</span><span class="rules">{
-        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;
-    <span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="tag">ul</span><span class="class">.pnav</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">margin-top</span>:<span class="value"> <span class="number">5em</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">35em</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">list-style</span>:<span class="value"> none</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#FAA819</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.pnav</span> <span class="tag">li</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.pnav</span> <span class="tag">a</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span> <span class="number">2em</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">2.1em</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#fff</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">0.1em</span> solid <span class="hexcolor">#fff</span></span></span>; </div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.pnav</span> <span class="tag">a</span><span class="pseudo">:hover</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;</div><div class="line">    <span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <h4 id="下拉菜单">下拉菜单</h4>
 <p>HTML</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"dropdown"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Home<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Products<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">ul</span>&gt;</span>
-            <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>product1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-            <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>product2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
-        <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Server<span class="tag">&lt;/<span class="title">a</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">ul</span>&gt;</span>
-            <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">""</span>&gt;</span>server1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-            <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">""</span>&gt;</span>server2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-            <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">""</span>&gt;</span>server3<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
-        <span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Contact<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span>
-</pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">class</span>=<span class="value">"dropdown"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Home<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Products<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>product1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>product2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Server<span class="tag">&lt;/<span class="title">a</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">ul</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">""</span>&gt;</span>server1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">""</span>&gt;</span>server2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">            <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">""</span>&gt;</span>server3<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div><div class="line">        <span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>Contact<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>CSS</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-</pre></td><td class="code"><pre><span class="tag">ul</span><span class="class">.dropdown</span>,<span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">ul</span> <span class="rules">{
-        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;
-        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;
-        <span class="rule"><span class="attribute">list-style</span>:<span class="value"> none</span></span>;
-        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;
-        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#486B02</span></span></span>;
-        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#8BD400</span></span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ul</span><span class="class">.dropdown</span><span class="rules">{
-        <span class="rule"><span class="attribute">margin-top</span>:<span class="value"> <span class="number">5</span>em</span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">li</span><span class="rules">{
-        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;
-        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">8</span>em</span></span>;
-        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#8BD400</span></span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">li</span> <span class="tag">ul</span><span class="rules">{
-        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">8</span>em</span></span>;
-        <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;
-        <span class="rule"><span class="attribute">left</span>:<span class="value"> -<span class="number">999</span>em</span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">li</span><span class="pseudo">:hover</span> <span class="tag">ul</span><span class="rules">{
-        <span class="rule"><span class="attribute">left</span>:<span class="value"> auto</span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">a</span><span class="rules">{
-        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;
-        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#2B3F00</span></span></span>;
-        <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;
-        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.3</span>em <span class="number">1</span>em</span></span>;
-        <span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#486B02</span></span></span>;
-        <span class="rule"><span class="attribute">border-left</span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#E4FFD3</span></span></span>;
-
-    <span class="rule">}</span></span>
-    <span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">li</span> <span class="tag">li</span> <span class="tag">a</span><span class="rules">{
-        <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#E4FFD3</span></span></span>;
-        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#486B02</span></span></span>;
-        <span class="rule"><span class="attribute">border-left</span>:<span class="value"> <span class="number">0</span></span></span>;
-        <span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">0</span></span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">a</span><span class="pseudo">:hover</span><span class="rules">{
-        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#E4FFD3</span></span></span>;
-        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#6da203</span></span></span>;
-    <span class="rule">}</span></span>
-    <span class="comment">/*删除多余的border*/</span>
-    <span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">li</span><span class="pseudo">:last-child</span> <span class="tag">a</span><span class="rules">{
-        <span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">0</span></span></span>;
-        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">0</span></span></span>;
-    <span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="tag">ul</span><span class="class">.dropdown</span>,<span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">ul</span> <span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">list-style</span>:<span class="value"> none</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#486B02</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#8BD400</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.dropdown</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">margin-top</span>:<span class="value"> <span class="number">5em</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">li</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">8em</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#8BD400</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">li</span> <span class="tag">ul</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">8em</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">left</span>:<span class="value"> -<span class="number">999em</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">li</span><span class="pseudo">:hover</span> <span class="tag">ul</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">left</span>:<span class="value"> auto</span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">a</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#2B3F00</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.3em</span> <span class="number">1em</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#486B02</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border-left</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#E4FFD3</span></span></span>;</div><div class="line"></div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">li</span> <span class="tag">li</span> <span class="tag">a</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">border-top</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#E4FFD3</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#486B02</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border-left</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">a</span><span class="pseudo">:hover</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">color</span>:<span class="value"> <span class="hexcolor">#E4FFD3</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">background</span>:<span class="value"> <span class="hexcolor">#6da203</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="comment">/*删除多余的border*/</span></div><div class="line">    <span class="tag">ul</span><span class="class">.dropdown</span> <span class="tag">li</span><span class="pseudo">:last-child</span> <span class="tag">a</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">border-right</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border-bottom</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <h4 id="水平分页导航">水平分页导航</h4>
 <p>HTML</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">ol</span> <span class="attribute">class</span>=<span class="value">"pagination"</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">rel</span>=<span class="value">"prev"</span>&gt;</span>Prev<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>3<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>4<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>5<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">rel</span>=<span class="value">"next"</span>&gt;</span>Next<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">ol</span>&gt;</span>
-</pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ol</span> <span class="attribute">class</span>=<span class="value">"pagination"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">rel</span>=<span class="value">"prev"</span>&gt;</span>Prev<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>1<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>2<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>3<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>4<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span>&gt;</span>5<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;<span class="title">a</span> <span class="attribute">href</span>=<span class="value">"#"</span> <span class="attribute">rel</span>=<span class="value">"next"</span>&gt;</span>Next<span class="tag">&lt;/<span class="title">a</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="title">ol</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>CSS</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-</pre></td><td class="code"><pre><span class="tag">ol</span><span class="class">.pagination</span> <span class="rules">{
-        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;
-        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;
-        <span class="rule"><span class="attribute">margin-top</span>:<span class="value"> <span class="number">5</span>em</span></span>;
-        <span class="rule"><span class="attribute">list-style</span>:<span class="value"> none</span></span>;
-        <span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ol</span><span class="class">.pagination</span> <span class="tag">li</span><span class="rules">{
-        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;
-        <span class="rule"><span class="attribute">margin-right</span>:<span class="value"> <span class="number">0.6</span>em</span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ol</span><span class="class">.pagination</span> <span class="tag">li</span> <span class="tag">a</span><span class="rules">{
-        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;
-        <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;
-        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.2</span>em <span class="number">0.5</span>em</span></span>;
-        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1</span>px solid <span class="hexcolor">#ccc</span></span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ol</span><span class="class">.pagination</span> <span class="tag">li</span> <span class="tag">a</span><span class="pseudo">:hover</span><span class="rules">{
-        <span class="rule"><span class="attribute">background</span>:<span class="value"> blue</span></span>;
-        <span class="rule"><span class="attribute">color</span>:<span class="value"> white</span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ol</span><span class="class">.pagination</span> <span class="tag">li</span> <span class="tag">a</span><span class="attr_selector">[rel="prev"]</span>,
-    <span class="tag">ol</span><span class="class">.pagination</span> <span class="tag">li</span> <span class="tag">a</span><span class="attr_selector">[rel="next"]</span><span class="rules">{
-        <span class="rule"><span class="attribute">border</span>:<span class="value"> none</span></span>;
-    <span class="rule">}</span></span>
-    <span class="tag">ol</span><span class="class">.pagination</span> <span class="tag">li</span> <span class="tag">a</span><span class="attr_selector">[rel="prev"]</span><span class="pseudo">:before</span><span class="rules">{
-        <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">"\00AB"</span></span></span>;
-        <span class="rule"><span class="attribute">padding-right</span>:<span class="value"> <span class="number">0.5</span>em</span></span>; 
-    <span class="rule">}</span></span>
-    <span class="tag">ol</span><span class="class">.pagination</span> <span class="tag">li</span> <span class="tag">a</span><span class="attr_selector">[rel="next"]</span><span class="pseudo">:after</span><span class="rules">{
-        <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">"\00BB"</span></span></span>;
-        <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">0.5</span>em</span></span>;
-    <span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="tag">ol</span><span class="class">.pagination</span> <span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">margin-top</span>:<span class="value"> <span class="number">5em</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">list-style</span>:<span class="value"> none</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ol</span><span class="class">.pagination</span> <span class="tag">li</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">margin-right</span>:<span class="value"> <span class="number">0.6em</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ol</span><span class="class">.pagination</span> <span class="tag">li</span> <span class="tag">a</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">display</span>:<span class="value"> block</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">text-decoration</span>:<span class="value"> none</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">0.2em</span> <span class="number">0.5em</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#ccc</span></span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ol</span><span class="class">.pagination</span> <span class="tag">li</span> <span class="tag">a</span><span class="pseudo">:hover</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">background</span>:<span class="value"> blue</span></span>;</div><div class="line">        <span class="rule"><span class="attribute">color</span>:<span class="value"> white</span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ol</span><span class="class">.pagination</span> <span class="tag">li</span> <span class="tag">a</span><span class="attr_selector">[rel="prev"]</span>,</div><div class="line">    <span class="tag">ol</span><span class="class">.pagination</span> <span class="tag">li</span> <span class="tag">a</span><span class="attr_selector">[rel="next"]</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">border</span>:<span class="value"> none</span></span>;</div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ol</span><span class="class">.pagination</span> <span class="tag">li</span> <span class="tag">a</span><span class="attr_selector">[rel="prev"]</span><span class="pseudo">:before</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">"\00AB"</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding-right</span>:<span class="value"> <span class="number">0.5em</span></span></span>; </div><div class="line">    <span class="rule">}</span></div><div class="line">    <span class="tag">ol</span><span class="class">.pagination</span> <span class="tag">li</span> <span class="tag">a</span><span class="attr_selector">[rel="next"]</span><span class="pseudo">:after</span><span class="rules">{</span></div><div class="line">        <span class="rule"><span class="attribute">content</span>:<span class="value"> <span class="string">"\00BB"</span></span></span>;</div><div class="line">        <span class="rule"><span class="attribute">padding-left</span>:<span class="value"> <span class="number">0.5em</span></span></span>;</div><div class="line">    <span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <p>以上代码演示：<a href="/demos/css-nav.html">导航条学习</a></p>
 
@@ -523,10 +173,10 @@ Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="ex
 
 <div class="clearfix"></div></footer>
 		  
-<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
-<script type="text/javascript" src="/js/gallery.js"></script>
-<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/fartscroll.js"></script>
+<script src="/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
+<script src="/js/gallery.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
 
 
 <script type="text/javascript">
@@ -584,11 +234,10 @@ var disqus_shortname = 'stddup';
 
     });
   });
-
-  fartscroll(800);
 </script>
-<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
-<script type="text/javascript" src="/js/nav.js"></script>
+<script src="/js/jquery.anystretch.min.js" type="text/javascript"></script>
+<script src="/js/nav.js" type="text/javascript"></script>
+
 
 		</body>
 		</html>

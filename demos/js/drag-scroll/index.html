@@ -10,7 +10,7 @@
 #div3 {position:absolute;}
 #div4 {width: 200px; height: 20px; background: red;cursor: pointer;position: absolute;opacity: 0.2;}
 </style>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>无标题文档</title>
 </head>
 <body>
@@ -20,31 +20,31 @@
 </div>
 <div id="div2">
 	<div id="div3">
-	<br />
-    	开始位置<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
-    	测试<br />
+	<br>
+    	开始位置<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
+    	测试<br>
     	结束位置
     </div>
     <div id="div4"></div>
@@ -69,11 +69,14 @@ function myAddEvent(obj, sEvent, fn)
 	var oDiv2=document.getElementById('div2');
 	var oDiv3=document.getElementById('div3');
 	var oDiv4=document.getElementById('div4');
+	
 	function onMouseWheel(ev)
 	{
 		var oEvent=ev||event;
 		var bDown=true;
+		
 		bDown=oEvent.wheelDelta?oEvent.wheelDelta<0:oEvent.detail>0;
+		
 		if(bDown)
 		{
 			setTop(oDiv1.offsetTop+10,oDiv1,oDiv3);
@@ -82,10 +85,12 @@ function myAddEvent(obj, sEvent, fn)
 		{
 			setTop(oDiv1.offsetTop-10,oDiv1,oDiv3);
 		}
+		
 		if(oEvent.preventDefault)
 		{
 			oEvent.preventDefault();
 		}
+		
 		return false;
 	}
 	/*绑定滚轮事件*/
@@ -93,8 +98,11 @@ function myAddEvent(obj, sEvent, fn)
 	myAddEvent(oDiv, 'DOMMouseScroll', onMouseWheel);
 	myAddEvent(oDiv2, 'mousewheel', onMouseWheel);
 	myAddEvent(oDiv2, 'DOMMouseScroll', onMouseWheel);
+	
+	
 	fnDrag(oDiv1);
 	fnDrag(oDiv4);
+	
 	function setTop(t,obj)
 	{
 		if(t<0)
@@ -105,9 +113,12 @@ function myAddEvent(obj, sEvent, fn)
 		{
 			t=obj.parentNode.offsetHeight-obj.offsetHeight;
 		}
+		
 		obj.style.top=t+'px';
 		var scale=t / (obj.parentNode.offsetHeight-obj.offsetHeight);
+		
 		oDiv3.style.top=(oDiv3.parentNode.offsetHeight-oDiv3.offsetHeight)*scale+'px';
+		
 		document.title=scale;
 	}
 
@@ -140,6 +151,7 @@ function myAddEvent(obj, sEvent, fn)
 
 				var t = scaleY * (oDiv1.parentNode.offsetHeight - oDiv1.offsetHeight);
 				setTop(t,oDiv1);
+				
 				// if (left < 0) {
 				// 	left = 0;
 				// }
@@ -168,7 +180,7 @@ function myAddEvent(obj, sEvent, fn)
 }
 </script>
 </body>
-</html>
+
 
 		
 	

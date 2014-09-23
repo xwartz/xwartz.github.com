@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,7 +29,7 @@
 	</style>
 
 
-	<script src = "img.js"></script>
+	<script src="img.js"></script>
 	<script type="text/javascript">
 	window.onload = function () {
 		var oWfall = document.getElementById('waterfall');
@@ -53,17 +51,20 @@
 					var src = images[j++ % images.length].src;
 
 					var oLi = document.createElement('li');
+					
 					oLi.innerHTML = '<img src = "' + src + '"/>';
 					aUl[i].appendChild(oLi);
 					            
 				}
 			}
+				
 			};
 	};
 
 /*	function getNewImg () {
 		var imgSrc;
 		var url = 'http://api.flickr.com/services/feeds/photos_public.gne?tags=Landscape&tagmode=any&format=json&jsoncallback=?';
+		
 		ajax(url,function (data) {
 			var json = eval(data);
 			var items = json.items;
@@ -72,8 +73,10 @@
 		});
 		return imgSrc;
 
+		
 		// var oImg = new Image();
 		// oImg.src = 'http://i11.topit.me/t/201101/14/12949742814823.jpg';
+		
 		//  return oImg.src;
 
 

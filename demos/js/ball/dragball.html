@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -33,8 +31,10 @@
 	<!-- css 结束 -->
 
 	<script type="text/javascript">
+		
 		window.onload = function () {
 			var oCircle = document.getElementsByTagName('a')[0];
+			
 			fnDrag(oCircle);
 			fnMove(oCircle,12,20);
 
@@ -48,6 +48,7 @@
 				obj.timer = setInterval(function () {
 
 					iSpeedY += 3; //这个加速度一定要放最前面
+					
 					var left = iSpeedX + obj.offsetLeft;
 				  var top = iSpeedY + obj.offsetTop;
 				  var disX =  document.documentElement.clientWidth - obj.offsetWidth;
@@ -138,12 +139,14 @@
 							lastY = top;
 						};
 						document.onmouseup = function () {
+							
 							document.onmousemove = null;
 							document.onmousedown = null;
 							document.onmouseup = null;
 
 							/*传递速度*/
 							fnMove(obj,iSpeedX,iSpeedY);
+							
 						};
 
 						clearInterval(obj.timer); //按下鼠标停止运动
@@ -152,6 +155,7 @@
 					};
 			}
 
+			
 	};
 	</script>
 
@@ -159,6 +163,6 @@
 
 </head>
 <body>
-	<a href="javascript:;"></a>
+	<a href="javascript:;" target="_blank" rel="external"></a>
 </body>
 </html>

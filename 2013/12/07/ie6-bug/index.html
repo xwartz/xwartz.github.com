@@ -24,7 +24,9 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
 <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script type="text/javascript" src="/js/jquery.min.js"></script>
+
+  <script src="/js/jquery.min.js" type="text/javascript"></script>
+
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 <script type="text/javascript">
@@ -45,12 +47,6 @@
 		  <header id="header" class='normal_mode'>
 		    <nav id="main-nav">
   <ul class='container'>
-    
-      <li><a href="/">Home</a></li>
-    
-      <li><a href="/archives">Archives</a></li>
-    
-      <li><a href="/flickr">Flickr</a></li>
     
   </ul>
   <div class="clearfix"></div>
@@ -87,113 +83,45 @@
     
     <div class="entry">
       
-        <p><br /></p>
+        <p><br></p>
 <h4 id="双外边距浮动bug">双外边距浮动bug</h4>
 <p>IE6和更低版本中双外边距浮动bug，会是浮动元素的外边距加倍。<br>修复方法 将元素的<code>display</code>属性设置为<code>inline</code>就行。</p>
-<p><br /></p>
+<p><br></p>
 <h4 id="3像素文本偏移bug">3像素文本偏移bug</h4>
 <p>IE6上，当文本和一个浮动元素相邻时，这个bug就会表现出来。例如将一个元素向左浮动，并且不希望相邻段落中的文本围绕浮动元素。<br>我们可以设置如下css</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre><span class="class">.myFloat</span><span class="rules">{
-    <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;
-    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100</span>px</span></span>;
-<span class="rule">}</span></span>
-
-<span class="tag">p</span><span class="rules">{
-    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">100</span>px</span></span>;
-<span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class">.myFloat</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">float</span>:<span class="value"> left</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"> <span class="number">100px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"></div><div class="line"><span class="tag">p</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">100px</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <p>如果这么做，在文本和浮动元素之间就会出现一个莫名其妙的3像素间隙。一旦浮动元素停下来，3像素间隙就会消失。</p>
 <p>修复这个bug，首先，给包含文本的元素设置任意的高度。迫使元素拥有布局，这在表面上会消除文本偏移。因为IE6将height作为min-height对待，<br>所以设置一个小的高度并不会影响元素在这些浏览器中的实际尺寸。<br>但是这会影响其他浏览器，所以要对其他浏览器隐藏这个规则。最好使用条件注释将这些样式移动单独的css文件中。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="tag">p</span><span class="rules">{
-    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1</span>%</span></span>;
-<span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="tag">p</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1%</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <p>由于布局元素被限制为矩形，并且在浮动元素旁边而不是它们的下面，添加的外边距实际会在段落和浮动元素之间产生100px间隙，<br>为解决这个问题，需要将IE6的外边距重新设置为0.</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="tag">p</span><span class="rules">{
-    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1</span>%</span></span>;
-    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">0</span></span></span>;
-<span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">p</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1%</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <p>文本偏移被修复了，但是在浮动元素上又会出现3像素间隙，为了去掉这个间隙，需要在浮动元素上设置一个负的3像素右外边距</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="class">.myFloat</span><span class="rules">{
-    <span class="rule"><span class="attribute">margin-right</span>:<span class="value"> -<span class="number">3</span>px</span></span>;
-<span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class">.myFloat</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">margin-right</span>:<span class="value"> -<span class="number">3px</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
-<p><br /></p>
+<p><br></p>
 <h4 id="IE6的重复字符bug">IE6的重复字符bug</h4>
 <p>一系列浮动元素的最后一个元素中的最后几个字符会在浮动元素下面重复出现。<br>当在一系列浮动元素的一个元素和最后一个元素之间有多个注释时，就会出现这个bug。前两个注释没影响，但是后续的每个注释会导致两个字符重复出现。<br>所以，3个注释会导致2个重复字符，4个注释会导致4个重复字符，5个注释会导致6个重复字符。。。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">div</span>&gt;</span>
-    <span class="comment">&lt;!--  aaa--&gt;</span>
-    <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-       <span class="comment">&lt;!-- bbb---&gt;</span>
-       <span class="comment">&lt;!-- ccc--&gt;</span>
-      <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">div</span>&gt;</span>
-</pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!--  aaa--&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line">       <span class="comment">&lt;!-- bbb---&gt;</span></div><div class="line">       <span class="comment">&lt;!-- ccc--&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="title">div</span>&gt;</span><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></td></tr></table></figure>
 
 <p>为了修复这个bug，最好是删除注释。</p>
-<p><br /></p>
+<p><br></p>
 <h4 id="IE6的藏猫猫_bug">IE6的藏猫猫 bug</h4>
 <p>一个浮动元素后面跟着一些非浮动元素，然后是一个清理元素，所有这些元素都包含在一个设置了背景颜色或图像的父元素中。<br>如果清理元素碰到了浮动元素，那么中间的非浮动元素看起来消失了，隐藏到了父元素的背景颜色或者图像后面，<strong>只有在刷新页面时才重新出现。</strong></p>
 <p>修复方法： 避免清理元素与浮动元素接触；给父元素应用特定尺寸或设置行高；也可以将浮动元素和容器元素的<code>position</code>属性设置为<code>relative</code>。</p>
-<p><br /></p>
+<p><br></p>
 <h4 id="相对容器中的绝对定位">相对容器中的绝对定位</h4>
 <p>由于相对定位的元素没有获得IE的内部布局属性，因此他们创建新的定位上下文，所有绝对定位元素相对于视口进行定位。</p>
 <p>解决这个bug的方法是，为容器布局提供一个任意的高度，使容器拥有布局属性。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="class">.container</span><span class="rules">{
-    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1</span>%</span></span>;
-<span class="rule">}</span></span>
-</pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">1%</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
-<p><br /><br>使用条件注释将IE6的样式单独放置</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="comment">&lt;!-- [if IE 6]
-    &lt;link rel="stylesheet" type="text/css" href="/css/ie6.css" /&gt;
---&gt;</span>
-</pre></td></tr></table></figure>
+<p><br><br>使用条件注释将IE6的样式单独放置</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- [if IE 6]</span></div><div class="line">    &lt;link rel="stylesheet" type="text/css" href="/css/ie6.css" /&gt;</div><div class="line">--&gt;</div></pre></td></tr></table></figure>
 
 <p>还可以向IE隐藏特定的样式表</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="comment">&lt;!-- [if !IE 6]&gt; --&gt;</span>
-   <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"/css/advanced.css"</span> /&gt;</span>
-<span class="comment">&lt;!-- &lt;![endif] --&gt;</span>
-</pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- [if !IE 6]&gt; --&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="title">link</span> <span class="attribute">rel</span>=<span class="value">"stylesheet"</span> <span class="attribute">type</span>=<span class="value">"text/css"</span> <span class="attribute">href</span>=<span class="value">"/css/advanced.css"</span> /&gt;</span></div><div class="line"><span class="comment">&lt;!-- &lt;![endif] --&gt;</span></div></pre></td></tr></table></figure>
 
 <p><em>摘自精通css</em></p>
 
@@ -255,10 +183,10 @@ Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="ex
 
 <div class="clearfix"></div></footer>
 		  
-<script type="text/javascript" src="/js/jquery.imagesloaded.min.js"></script>
-<script type="text/javascript" src="/js/gallery.js"></script>
-<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/fartscroll.js"></script>
+<script src="/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
+<script src="/js/gallery.js" type="text/javascript"></script>
+<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+
 
 
 <script type="text/javascript">
@@ -316,11 +244,10 @@ var disqus_shortname = 'stddup';
 
     });
   });
-
-  fartscroll(800);
 </script>
-<script type="text/javascript" src="/js/jquery.anystretch.min.js"></script>
-<script type="text/javascript" src="/js/nav.js"></script>
+<script src="/js/jquery.anystretch.min.js" type="text/javascript"></script>
+<script src="/js/nav.js" type="text/javascript"></script>
+
 
 		</body>
 		</html>

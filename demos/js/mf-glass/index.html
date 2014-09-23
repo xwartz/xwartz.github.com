@@ -1,5 +1,3 @@
-
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,6 +20,7 @@
 		background: #eee;
 		filter: alpha(opacity: 40);
 		opacity: 0.4;
+		
 		display: none;
 		position: absolute;
 		top: 0;
@@ -34,6 +33,7 @@
 		/*background: red;*/
 		filter:   alpha(opacity:0);
 		opacity: 0;
+		
 		display: block;
 		position: absolute;
 		z-index: 999;
@@ -78,6 +78,8 @@
 			var oEvent = ev || window.event;
 			var left = oEvent.clientX - oSmall.offsetLeft - oSmallImg.offsetLeft - oSpan.offsetWidth / 2;
 			var top = oEvent.clientY - oSmall.offsetTop - oSmallImg.offsetTop - oSpan.offsetHeight / 2;
+			
+			
 			if (left < 0) {
 				left = 0;
 			}
@@ -108,6 +110,7 @@
 	var aEle = oParent.getElementsByTagName('*');
 	var aResult = [];
 	var reg = new RegExp('\\b'+sClass+'\\b','i');
+	
 	for(var i = 0 , len = aEle.length; i < len; i++){
 		if ( reg.test(aEle[i].className) ) {
 			aResult.push(aEle[i]);
@@ -119,12 +122,12 @@
 </head>
 <body>
 	<div class="small">
-		<img src="1.jpg" />
+		<img src="1.jpg">
 		<span></span>
 		<span class="mark"></span>
 	</div>
 	<div class="big">
-		<img src="1.jpg" />
+		<img src="1.jpg">
 	</div>
 </body>
 </html>
