@@ -1,0 +1,547 @@
+
+		<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>第 3 页 | stddup</title>
+  <meta name="author" content="stddup">
+  
+  <meta name="description" content="stand up and stretch">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="stddup"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <!-- <link href="/flickr/favicon.ico" rel="icon"> -->
+  <link rel="alternate" href="/flickr/atom.xml" title="stddup" type="application/atom+xml">
+  <link rel="stylesheet" href="/flickr/css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" type="text/css">
+<link rel="stylesheet" href="/flickr/css/style.css" type="text/css">
+
+  <script src="/flickr/js/jquery.min.js" type="text/javascript"></script>
+
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-49710675-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+</head>
+
+		<body>
+		  <header id="header" class='normal_mode'>
+		    <nav id="main-nav">
+  <ul class='container'>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+		  </header>
+		  <div id="content" class="container">
+		    <div id="cover">
+	<div id="profile" alt="/bg.jpg">
+		
+			<div class="logo">
+			 <a href="/flickr/">
+				<img src="/flickr/logo.png" alt="Profile Picture">
+			 </a>
+			</div>
+			<div id="title">stddup</div>
+		
+
+		
+			<div id="subtitle">stand up and stretch</div>
+		
+		 <ul class="my-socials">
+  
+  <li>
+  	<a href="https://github.com/xwartz" class="github" target="_blank">
+  		<i class="fa fa-github"></i>
+  	</a>
+  </li>
+  
+  <li>
+  	<a href="http://weibo.com/samedie" class="weibo" target="_blank">
+  		<i class="fa fa-weibo"></i>
+  	</a>
+  </li>
+  
+ 
+ <li>
+   	<a href="mailto:stddup@gmail.com" class="email" target="_blank" title="Email Me">
+  		<i class="fa fa-envelope"></i>
+  	</a>
+ </li>
+ 
+</ul>
+	</div>
+</div>
+
+
+  <article class="post">
+
+  <div class="post-content">
+    <header>
+      <div class="icon"></div>
+      
+      <time datetime="2014-01-10T15:42:58.000Z"><a href="/flickr/2014/01/10/js-for-caret-position/">周五, 1月 10 2014, 23:42:58 晚上</a></time>
+
+  
+    <h1 class="title"><a href="/flickr/2014/01/10/js-for-caret-position/">js设置/获取文本光标位置</a></h1>
+  
+
+<div class="clear"></div>
+      
+    </header>
+    
+      <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+    
+    <div class="entry">
+      
+        <p>主要使用<code>Range</code> 对象，具体可查看文档<a href="http://www.w3school.com.cn/xmldom/dom_range.asp" target="_blank" rel="external">Range</a><br>还有一篇博客讲的挺详细<a href="http://www.zhangxinxu.com/wordpress/2011/04/js-range-html%E6%96%87%E6%A1%A3%E6%96%87%E5%AD%97%E5%86%85%E5%AE%B9%E9%80%89%E4%B8%AD%E3%80%81%E5%BA%93%E5%8F%8A%E5%BA%94%E7%94%A8%E4%BB%8B%E7%BB%8D/" target="_blank" rel="external">JS Range HTML文档/文字内容选中、库及应用介绍</a></p>
+<p>获取光标的位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">getInputCaretPosition = <span class="function"><span class="keyword">function</span><span class="params">(oField)</span> </span>{</div><div class="line">  <span class="keyword">var</span> iCaretPos = <span class="number">0</span>;</div><div class="line">  <span class="comment">// IE Support</span></div><div class="line">  <span class="keyword">if</span> (<span class="built_in">document</span>.selection) {</div><div class="line">    <span class="comment">// Set focus on the element</span></div><div class="line">    oField.focus ();</div><div class="line">    <span class="comment">// To get cursor position, get empty selection range</span></div><div class="line">    <span class="keyword">var</span> oSel = <span class="built_in">document</span>.selection.createRange ();</div><div class="line">    <span class="comment">// Move selection start to 0 position</span></div><div class="line">    oSel.moveStart (<span class="string">'character'</span>, -oField.value.length);</div><div class="line">    <span class="comment">// The caret position is selection length</span></div><div class="line">    iCaretPos = oSel.text.length;</div><div class="line">  }</div><div class="line">  <span class="comment">// Firefox support</span></div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (oField.selectionStart || oField.selectionStart == <span class="string">'0'</span>)</div><div class="line">    iCaretPos = oField.selectionStart;</div><div class="line">  <span class="comment">// Return results</span></div><div class="line">  <span class="keyword">return</span> (iCaretPos);</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>设置光标的位置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">setInputCaretPosition = <span class="function"><span class="keyword">function</span> <span class="params">(oField,pos)</span> </span>{</div><div class="line">    <span class="comment">//Firefox support</span></div><div class="line">  <span class="keyword">if</span> (oField.setSelectionRange) {</div><div class="line">    oField.focus();</div><div class="line">    oField.setSelectionRange(pos,pos);</div><div class="line">  }</div><div class="line">  <span class="comment">// IE Support</span></div><div class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (oField.createTextRange) {</div><div class="line">    <span class="keyword">var</span> range = oField.createTextRange();</div><div class="line">    range.collapse(<span class="literal">true</span>);</div><div class="line">    range.moveEnd(<span class="string">'character'</span>,pos);</div><div class="line">    range.moveStart(<span class="string">'character'</span>,pos);</div><div class="line">    range.select();</div><div class="line">  }</div><div class="line">};</div></pre></td></tr></table></figure>
+
+<p>关于jquery实现stackoverflow上有讨论，其实都一样<a href="http://stackoverflow.com/questions/499126/jquery-set-cursor-position-in-text-area" target="_blank" rel="external">jquery实现</a><br>写个东西用一下<a href="/demos/js/creatposition/">demo</a></p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/flickr/2014/01/10/js-for-caret-position/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+
+  <div class="post-content">
+    <header>
+      <div class="icon"></div>
+      
+      <time datetime="2014-01-03T13:49:57.000Z"><a href="/flickr/2014/01/03/remote-debugging-chrome-on-android/">周五, 1月 3 2014, 21:49:57 晚上</a></time>
+
+  
+    <h1 class="title"><a href="/flickr/2014/01/03/remote-debugging-chrome-on-android/">remote-debugging-chrome-on-android</a></h1>
+  
+
+<div class="clear"></div>
+      
+    </header>
+    
+      <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+    
+    <div class="entry">
+      
+        <p>由于iphone没越狱，最后发现hosts不能更改啊。。蛋疼，懒得越狱，只好用安卓机子来debug。<br>用下来还是安卓方便很多。</p>
+<p>这里就稍微记录下怎么在安卓的机子上远程调试页面，不需要安装<code>Android SDK</code>。</p>
+<ol>
+<li><p>首先把电脑和安卓机子的<code>chrome</code>都更新到最新，版本应该是<code>32+</code>了</p>
+</li>
+<li><p>usb链接上安卓机子，当然<code>hosts</code>要改一下，打开<code>usb debugging</code></p>
+</li>
+<li><p>电脑上下载安装谷歌插件<a href="https://chrome.google.com/webstore/detail/adb/dpngiggdglpdnjdoaefidgiigpemgage" target="_blank" rel="external">ABD</a></p>
+</li>
+<li><p>安装插件之后，点击插件图标，wiew inspction targets<br><img src="https://developers.google.com/chrome-developer-tools/docs/remote-debugging/adb-plugin-menu-active.png" alt="wiew inspction targets"></p>
+</li>
+<li><p>在打开的<code>about:inspect</code>页面，可以看到链接着的安卓机子，<br><img src="https://developers.google.com/chrome-developer-tools/docs/remote-debugging/about-inspect-stuff.png" alt="devices"></p>
+</li>
+<li><p>点击<code>inspct</code>就可以调试安卓机子上的页面了</p>
+</li>
+<li><p>最后来个官网教程<a href="https://developers.google.com/chrome-developer-tools/docs/remote-debugging" target="_blank" rel="external">https://developers.google.com/chrome-developer-tools/docs/remote-debugging</a></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/flickr/2014/01/03/remote-debugging-chrome-on-android/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+
+  <div class="post-content">
+    <header>
+      <div class="icon"></div>
+      
+      <time datetime="2014-01-01T13:21:51.000Z"><a href="/flickr/2014/01/01/remote-debugging-chrome-on-ios7/">周三, 1月 1 2014, 21:21:51 晚上</a></time>
+
+  
+    <h1 class="title"><a href="/flickr/2014/01/01/remote-debugging-chrome-on-ios7/">在windows上使用chrome远程调试ios7上的网页</a></h1>
+  
+
+<div class="clear"></div>
+      
+    </header>
+    
+      <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+    
+    <div class="entry">
+      
+        <p>这几天需要开发移动端的网页，想要在电脑上远程调试。查了下资料发现，android平台上很方便啊，只要在chrome上开启开发者工具就可以在电脑上调试移动端的网页了。但是手头上没有android机子，ios上的chrome没有开发者工具，真是略坑啊，然后电脑又是windows的，safari的调试功能也没得用。。。</p>
+<p>幸好还有Adobe Edge Inspect CC，用起来还是很方便的。</p>
+<p>电脑上需要做的事</p>
+<ol>
+<li><p>官网下载<a href="https://creative.adobe.com/products/inspect?promoid=KFKMN" target="_blank" rel="external">Adobe Edge Inspect CC</a>，需要注册账号，下载安装。(如果没安装过苹果软件的话，还需要安装banjour)</p>
+</li>
+<li><p>安装chrome插件 <a href="https://chrome.google.com/webstore/detail/adobe-edge-inspect-cc/ijoeapleklopieoejahbpdnhkjjgddem?" target="_blank" rel="external">Edge Inspect</a></p>
+</li>
+<li><p>登陆账号，打开chrome插件，等待移动端的链接(需要在同一个局域网中，我用win8分享了wifi，下面说下方法)</p>
+</li>
+<li><p>win8分享wifi方法:<br>1.管理员身份运行命令提示符，输入命令<code>netsh wlan set hostednetwork mode=allow ssid=MyNetName key=passworld</code>，启动虚拟网卡，设置网络名和密码；2.在网络共享中心—更改设配器设置，选择正在使用的网络，属性—共享，选择刚刚新建的网络；3.命令行下输入<code>netsh wlan start hostednetwork</code>启动虚拟网络，这时手机端可以收到你分享的网络，连接上就可以了。</p>
+</li>
+</ol>
+<p>移动端需要做的事</p>
+<ol>
+<li><p>在app store上下载Edge Inspect，安装</p>
+</li>
+<li><p>登陆账号与pc端连接，会产生一个密码，在chrome插件上输入，就可以连接上了，这时移动端就可以和pc端同步显示chrome的页面了。<br><img src="http://html.adobe.com/_/img/edge/inspect/edge_inspect_feature1.png" alt="同步"></p>
+</li>
+<li><p>点击chrome插件上的’&lt;&gt;’符号，开始在pc端调试移动端的网页<br><img src="http://html.adobe.com/_/img/edge/inspect/edge_inspect_feature2.png" alt="远程调试"></p>
+</li>
+</ol>
+<p>官网也有进一步使用的教程<a href="https://helpx.adobe.com/creative-cloud/learn/tutorials/edge-tools.html" target="_blank" rel="external">https://helpx.adobe.com/creative-cloud/learn/tutorials/edge-tools.html</a></p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/flickr/2014/01/01/remote-debugging-chrome-on-ios7/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+
+  <div class="post-content">
+    <header>
+      <div class="icon"></div>
+      
+      <time datetime="2014-01-01T07:12:08.000Z"><a href="/flickr/2014/01/01/use-git/">周三, 1月 1 2014, 15:12:08 下午</a></time>
+
+  
+    <h1 class="title"><a href="/flickr/2014/01/01/use-git/">git使用</a></h1>
+  
+
+<div class="clear"></div>
+      
+    </header>
+    
+      <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+    
+    <div class="entry">
+      
+        <p>从远端服务器获取一个仓库 <code>git clone %PATH%</code></p>
+<p>克隆到本地之后可以使用sublime text打开修改代码</p>
+<p>修改之后的文件可以是用 <code>git add .</code>把当前目录的文件(在项目的目录下)添加到缓存区。</p>
+<p>提交到远程仓库之前先 <code>git status</code>，查看当前信息包括当前所在的分支<code>branch</code>，和修改过的文件</p>
+<p>查看修改过的详细信息使用 <code>git diff HEAD</code> ，具体的代码修改</p>
+<p>进一步提交，<code>git commit -m &quot;代码提交信息&quot;</code>，给暂存区域生成快照并提交到<code>head</code>区域</p>
+<p>接下来就可以提交的远程仓库了，<code>git push origin master</code>,<code>master</code>可以替换为任意分支(创建分支: <code>git checkout -b %BranchName%</code>，同时也切换到该分支)</p>
+<p>以上过程就已经提交到了远程服务器上。</p>
+<p>如果与人合作项目的话，<code>git remote add  %NAME%  %PATH%</code> 链接到服务器</p>
+<p>获取项目更新本地的： <code>git fetch %NAME%</code></p>
+<p>获取然后合并到你当前分支，<code>git merge %NAME%/%BRANCH%</code>,就可以继续工作了。</p>
+<p><em>简单的入门教程可以参考<a href="http://marklodato.github.io/visual-git-guide/index-en.html" target="_blank" rel="external">图解git</a></em></p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/flickr/2014/01/01/use-git/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+  <article class="post">
+
+  <div class="post-content">
+    <header>
+      <div class="icon"></div>
+      
+      <time datetime="2013-12-24T08:29:36.000Z"><a href="/flickr/2013/12/24/js-compatibility-collect/">周二, 12月 24 2013, 16:29:36 下午</a></time>
+
+  
+    <h1 class="title"><a href="/flickr/2013/12/24/js-compatibility-collect/">JS中浏览器兼容问题收集</a></h1>
+  
+
+<div class="clear"></div>
+      
+    </header>
+    
+      <div class="gallery">
+  <div class="photoset">
+    
+      <img src="">
+    
+  </div>
+  <div class="control">
+    <div class="prev"></div>
+    <div class="next"></div>
+  </div>
+</div>
+    
+    <div class="entry">
+      
+        <p>收集一些js方面的，各浏览器兼容问题。下面是平时搞小玩意的时候碰到的，或者书上读到的，或者网上博客看到的一些问题的收集，方便自己以后查找、学习，持续更新…..</p>
+<h4 id="字符串">字符串</h4>
+<p>返回某个个位置的字符<br><code>var str = “abc”</code><br>可以使用<code>charAt()</code>，如<code>str.charAt(0)</code>，也可以使用数组方式，如<code>str[0]</code> ， 但IE6只能使用前者。</p>
+<h4 id="事件">事件</h4>
+<p><strong>绑定事件</strong><br>IE6使用的是 <code>attachEvent</code>， 对象. attachEvent(事件名，函数); <em>执行顺序与绑定顺序相反</em>。如<code>oBtn.attachEvent(&#39;onclick&#39;, fn);</code>，<br>解除绑定，用<code>detachEvent</code> 。<br><strong>ie中绑定事件的第二个参数，也就是函数，使用<code>this</code>的话，指向的是<code>window</code>，而不是被绑定的对象，这个可以用<code>.call()</code>方法来解决。</strong></p>
+<p>chrome,fireFox等使用的是 <code>addEventListener</code> ，对象.addEventListener(事件名，函数，是否捕获) ，<em>执行顺序与绑定顺序相同</em>。 如<code>oBtn.addEventListener(&#39;click&#39;,fn,false);</code>  <em>注意没 <code>on</code></em><br>解除绑定用，<code>removeEventListener</code>。<br>写个函数搞定</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span> <span class="params">(obj,sEvent,fn)</span> </span>{</div><div class="line">    <span class="keyword">if</span> (obj.attachEvent) {</div><div class="line">        obj.attachEvent(<span class="string">'on'</span> + sEvent,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">                     fn.call(obj);</div><div class="line">               });</div><div class="line">    }<span class="keyword">else</span>{</div><div class="line">        obj.addEventListener(sEvent,fn,<span class="literal">false</span>);</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><em>当火狐下绑定了一个默认事件，需要使用火狐独有的<code>oEvent.preventDefault()</code>，(使用这个,ie、chrome会报错)，简单的<code>return false</code> 会失效。</em></p>
+<p>所以特别需要注意这个问题，可以这样阻止默认事件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(oEvent.preventDefault)</div><div class="line">{</div><div class="line">    oEvent.preventDefault();</div><div class="line">}</div><div class="line"><span class="keyword">return</span> <span class="literal">false</span>;</div></pre></td></tr></table></figure>
+
+<p><strong>IE中的事件捕获</strong><br><code>setCapture()</code>，把整个电脑的事件都占有了，这是IE独有的方法，与之对应的撤销捕获 <code>releaseCapture()</code>，这在搞定一些ie的默认事件Bug还是挺有用的。</p>
+<p><strong>鼠标滚轮事件</strong><br>ie和chrome(这次chrome叛变了)使用：<code>onmousewheel</code>，例如 <code>oBtn.onmousewheel = function () {
+    alert(&#39;a&#39;);
+};</code></p>
+<p>但是fireFox使用： <code>DOMMouseScroll</code>，而且需要通过绑定事件才行,</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">oBtn.addEventListener(<span class="string">'DOMMouseScroll'</span>,<span class="function"><span class="keyword">function</span> <span class="params">()</span> </span>{</div><div class="line">    alert(<span class="string">'a'</span>);</div><div class="line">},<span class="literal">false</span>);</div></pre></td></tr></table></figure>
+
+<p>这样可以稍稍利用下上面的绑定事件函数:</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">addEvent</span> <span class="params">(obj,sEvent,fn)</span> </span>{</div><div class="line">    <span class="keyword">if</span> (obj.attachEvent) {</div><div class="line">        obj.attachEvent(<span class="string">'on'</span> + sEvent,fn);</div><div class="line">    }<span class="keyword">else</span>{</div><div class="line">        obj.addEventListener(sEvent,fn,<span class="literal">false</span>);</div><div class="line">    }</div><div class="line">}</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">a</span> <span class="params">()</span> </span>{</div><div class="line">    alert(<span class="string">'a'</span>);</div><div class="line">}</div><div class="line">addEvent(oBtn,<span class="string">'mousewheel'</span>,a);</div><div class="line">addEvent(oBtn,<span class="string">'DOMMouseScroll'</span>,a);</div></pre></td></tr></table></figure>
+
+<p><strong>鼠标滚轮上下滚动</strong><br>IE和chrome都是使用 <code>wheelDelta</code>，并且向下滚返回负数（-120），向上滚返回整数(120)，但是firefox 使用的是<code>detail</code>，而且向上滚返回负数(-3)，向下滚返回正数(3)。<br>解决办法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">onMouseWheel</span><span class="params">(ev)</span> </span>{</div><div class="line">    <span class="keyword">var</span> oEvent = ev || <span class="built_in">window</span>.event;</div><div class="line">    <span class="keyword">var</span> bDown = <span class="literal">true</span>;</div><div class="line">    bDown = oEvent.wheelDelta ? oEvent.wheelDelta &lt; <span class="number">0</span> : oEvent.detail &gt; <span class="number">0</span>;</div><div class="line">    <span class="keyword">return</span> bDown;</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>事件对象<code>event</code>：</strong><br>IE里直接使用 <code>event</code>，firefox使用的是函数参数，最新版chrome，ie11两者都支持</p>
+<p>例如获取鼠标点击坐标：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.onclick = <span class="function"><span class="keyword">function</span> <span class="params">(ev)</span> </span>{</div><div class="line">        <span class="keyword">var</span> oEvent =  ev || <span class="built_in">window</span>.event ; </div><div class="line">        alert(oEvent.clientX + <span class="string">','</span> + oEvent.clientY);</div><div class="line">    }</div></pre></td></tr></table></figure>
+
+<p><strong> 获取滚动条高度<code>scrollTop</code>：</strong><br>chrome和ie、firefox不同，使用的是<code>document.body.scrollTop;</code>，而后者是使用<code>document.documentElement.scrollTop</code> ，谷歌和火狐竟然不同步…</p>
+<hr>
+<p><strong> 创建<code>ajax</code>对象：</strong></p>
+<p>IE6以上的浏览器使用，<code>new XMLHttpRequest()</code>；<br>IE6需要使用，<code>new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;)</code>.</p>
+<p>所以创建<code>ajax</code>对象就需要这样写，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> oAjax=<span class="literal">null</span>;</div><div class="line"> <span class="comment">//使用window.XMLHttpRequest是因为IE6下XMLHttpRequest不存在，直接弹错，</span></div><div class="line"><span class="comment">//加window表示为定义这个属性</span></div><div class="line"><span class="keyword">if</span>(<span class="built_in">window</span>.XMLHttpRequest){</div><div class="line"></div><div class="line">    oAjax=<span class="keyword">new</span> XMLHttpRequest();</div><div class="line">  }<span class="keyword">else</span>{</div><div class="line">    oAjax=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);   </div><div class="line">  }</div></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="获取样式表里的样式">获取样式表里的样式</h4>
+<p><strong> IE使用，<code>currentStyle</code> ， firefox和chrome使用<code>getComputedStyle</code></strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"> <span class="function"><span class="keyword">function</span> <span class="title">getStyle</span><span class="params">(obj,attr)</span></span>{</div><div class="line">       <span class="keyword">if</span>(obj.currentStyle){</div><div class="line">           <span class="keyword">return</span> obj.currentStyle[attr];  </div><div class="line">       }<span class="keyword">else</span>{</div><div class="line">            <span class="keyword">return</span> getComputedStyle(obj, <span class="literal">false</span>)[attr];</div><div class="line">       }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<h4 id="DOM中存在的一些兼容性问题">DOM中存在的一些兼容性问题</h4>
+<p><strong> 子节点个数<code>childNodes</code>存在不兼容性，</strong><br>例如：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="title">ul</span> <span class="attribute">id</span>=<span class="value">"lis"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">li</span>&gt;</span><span class="tag">&lt;/<span class="title">li</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="title">ul</span>&gt;</span></div></pre></td></tr></table></figure>
+
+<p>上面这个<code>ul</code>下子节点的个数<code>oUl.childNodes.length</code> 在IE6下是2，<br>而 IE11，firefox chrome是5，是因为这些浏览器会添加空白部分<code>textNode</code></p>
+<p>可以使用这个方法获取子节点个数：<code>oUl.children.length</code>。</p>
+<p><strong> 获取第一个子元素</strong><br>IE使用的是 <code>firstChild</code>， 火狐下是使用<code>firstElementChild</code></p>
+<p>可以使用这样的方法: <code>var first = obj.firstElementChild || obj.firstChild;</code></p>
+
+      
+    </div>
+    <footer>
+      
+        <div class="alignleft">
+            <a href="/flickr/2013/12/24/js-compatibility-collect/#more" class="more-link"><i class="fa fa-chevron-right"></i>Read More</a>
+        </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/flickr/page/2/" class="alignleft prev">上一页</a>
+  
+  
+    <a href="/flickr/page/4/" class="alignright next">下一页</a>
+  
+  <div class="clearfix"></div>
+</nav>
+
+
+<script src="/flickr/js/jquery.anystretch.min.js" type="text/javascript"></script>
+<script src="/flickr/js/cover.js" type="text/javascript"></script>
+
+
+
+		    <div class="clearfix"></div>
+		  </div>
+		  <footer id="footer" class="inner"><div>
+  
+  &copy; 2013 - 2014 stddup
+  
+</div>
+Powered by <a href="http://zespia.tw/hexo/" title="Hexo" target="_blank" rel="external">Hexo</a> and <a href="http://pages.github.com/" title="GitHub Pages" target="_blank" rel="external">GitHub Pages</a>
+
+<div class="clearfix"></div></footer>
+		  
+<script src="/flickr/js/jquery.imagesloaded.min.js" type="text/javascript"></script>
+<script src="/flickr/js/gallery.js" type="text/javascript"></script>
+<script src="/flickr/js/bootstrap.min.js" type="text/javascript"></script>
+
+
+
+<script type="text/javascript">
+var disqus_shortname = 'stddup';
+
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+
+    <script type="text/javascript">
+        $(function(){
+          var headerHeight = $('#header').height();
+          $(window).scroll(function(){
+            var scrollTop = $(window).scrollTop();
+            if ( scrollTop > headerHeight ){
+                $("#main-nav").addClass('top_mode');
+            } else{
+                $("#main-nav").removeClass('top_mode');
+            }
+          });
+        });
+    </script>
+
+
+
+  <link rel="stylesheet" href="/flickr/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+  <script src="/flickr/fancybox/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript">
+  (function($){
+    $('.fancybox').fancybox({
+      'titlePosition': 'inside'
+    });
+  })(jQuery);
+  </script>
+
+
+<script type="text/javascript">
+
+  $(function(){
+    $('header .title').hover(
+      function() {
+        $(this).stop().animate(
+          {'marginLeft': '10px'}, 200
+        );
+      },
+      function() {
+        $(this).stop().animate({'marginLeft': '0px'}, 200);
+
+    });
+  });
+</script>
+<script src="/flickr/js/jquery.anystretch.min.js" type="text/javascript"></script>
+<script src="/flickr/js/nav.js" type="text/javascript"></script>
+
+
+		</body>
+		</html>
+	
