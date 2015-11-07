@@ -10,8 +10,13 @@
   <title>@xwartz</title>
   <style type="text/css">
     @keyframes rotation {
-        0% {transform: rotate(0deg);}
-        100% {transform: rotate(359deg);}
+        from {transform: rotate(0deg);}
+        to {transform: rotate(360deg);}
+    }
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
     }
     .loading {
         z-index: 1;
@@ -26,9 +31,10 @@
         animation: rotation .6s infinite linear;
     }
     .loading:before {
+        box-sizing: border-box;
         position: absolute;
         content: '';
-        display: block;
+        left: 0;
         top: -3px;
         height: 100%;
         width: 100%;
