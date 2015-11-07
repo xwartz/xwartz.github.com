@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+// variables
+@import 
+  'utils/variables';
+
+// base
+@import 
+  'base/reset',
+  'base/type';
+
+// font
+@import
+  'font/iconfont';
+
+// components
+@import
+  'component/loading',
+  'component/cover',
+  'component/about',
+  'component/social';
+
+// layout
+@import 
+  'layout/page';

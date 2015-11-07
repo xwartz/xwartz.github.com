@@ -1,0 +1,35 @@
+$avatar-box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+$avatar-size: rem-calc(80);
+
+.about {
+    padding-bottom: 40px;
+    text-align: center;
+    .avatar {
+        display: inline-block;
+        margin-top: -$avatar-size/2;
+        overflow: hidden;
+        border: 3px solid $white;
+        background-color: $white;
+        box-shadow: $avatar-box-shadow;
+        border-radius: 50%;
+
+        > img {
+            display: block;
+            width: $avatar-size;
+            height: $avatar-size;
+        }
+    }
+
+    .author {
+        font-weight: 700;
+        padding: rem-calc(10) 0;
+    }
+
+    .description {
+        color: $manatee;
+        word-wrap: break-word;
+        word-break: break-word;
+        padding: 0 40px;
+        margin: 0 auto;
+    }
+}

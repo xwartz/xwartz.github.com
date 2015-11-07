@@ -1,0 +1,40 @@
+$color-github: #000;
+$color-weibo: #df3e3e;
+$color-twitter: #55acee;
+$color-email: #d14836;
+
+.social {
+    padding-top: 15px;
+    margin: 0 40px 40px;
+    text-align: center;
+    border-top: $base-border;
+
+    .social-item {
+        display: inline-block;
+        width: 25%;
+
+        &:nth-child(1) > a {
+            color: $color-github;
+        }
+
+        &:nth-child(2) > a {
+            color: $color-weibo;
+        }
+
+        &:nth-child(3) > a {
+            color: $color-twitter;
+        }
+
+        &:nth-child(4) > a {
+            color: $color-email;
+        }
+
+        > a {
+            opacity: 1;
+            transition: all .2s ease;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+}
