@@ -8,12 +8,13 @@ $color-email: #d14836;
     padding: 15px 0;
     text-align: center;
     border-top: $base-border;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: $base-border-radius;
+    border-bottom-right-radius: $base-border-radius;
 
     .social-item {
         display: inline-block;
         width: 15%;
+        min-width: rem-calc(60);
 
         &:nth-child(1) > a {
             color: $color-github;
