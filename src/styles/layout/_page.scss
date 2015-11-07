@@ -22,12 +22,12 @@ $page-bg-color: #f4f4f4;
             z-index: -1;
             position: absolute;
             content: "";
-            bottom: 8px;
+            bottom: 5px;
             left: 5px;
             width: 50%;
             height: 45px;
             max-width: rem-calc(300);
-            box-shadow: 0 4px 20px 0 rgba(40,55,77,.075),4px 10px 20px 0 rgba(40,55,77,.075);
+            box-shadow: -6px 6px 10px 0 rgba(40,55,77,.075), 6px 6px 10px 0 rgba(40,55,77,.075);
             transform: rotate(-3deg);
         }
 
