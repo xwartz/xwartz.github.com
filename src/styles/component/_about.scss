@@ -1,5 +1,6 @@
 $avatar-box-shadow: 0 1px 1px rgba(0,0,0,0.3);
 $avatar-size: rem-calc(80);
+$hover-border-color: #3ab079;
 
 .about {
     padding-bottom: 40px;
@@ -12,6 +13,11 @@ $avatar-size: rem-calc(80);
         background-color: $white;
         box-shadow: $avatar-box-shadow;
         border-radius: 50%;
+        transition: transform .2s ease;
+
+        &:hover {
+            transform: scale(1.1) rotate(-10deg);
+        }
 
         > img {
             display: block;

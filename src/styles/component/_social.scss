@@ -13,7 +13,7 @@ $color-email: #d14836;
 
     .social-item {
         display: inline-block;
-        width: 25%;
+        width: 15%;
 
         &:nth-child(1) > a {
             color: $color-github;
@@ -35,7 +35,7 @@ $color-email: #d14836;
             opacity: 1;
             transition: all .2s ease;
             &:hover {
-                opacity: 0.8;
+                opacity: 0.6;
             }
         }
     }
