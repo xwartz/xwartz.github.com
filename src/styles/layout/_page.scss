@@ -7,11 +7,30 @@
         transform: translate(-50%, -50%);
         max-width: rem-calc(400);
         min-width: rem-calc(400);
-        background-color: $white;
         margin: 0 auto;
-        overflow: hidden;
         border: $base-border;
         border-radius: 5px;
         box-shadow: $base-box-shadow;
+        background-color: $white;
+
+        &:before,
+        &:after {
+            z-index: -1;
+            position: absolute;
+            content: "";
+            bottom: 8px;
+            left: 5px;
+            width: 50%;
+            height: 45px;
+            max-width: 300px;
+            box-shadow: 0 4px 20px 0 rgba(40,55,77,.075),4px 10px 20px 0 rgba(40,55,77,.075);
+            transform: rotate(-3deg);
+        }
+
+        &:after {
+            transform: rotate(3deg);
+            right: 5px;
+            left: auto;
+        }
     }
 }

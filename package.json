@@ -4,7 +4,8 @@
   "description": "xwartz's page",
   "main": "app.js",
   "scripts": {
-    "dev": "node dev-server.js"
+    "dev": "node dev-server.js",
+    "build": "webpack --config webpack.config.min.js"
   },
   "repository": {
     "type": "git",
