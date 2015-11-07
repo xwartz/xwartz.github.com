@@ -1,10 +1,7 @@
 .page {
     .card {
+        @include center;
         z-index: 2;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         max-width: rem-calc(400);
         min-width: rem-calc(400);
         margin: 0 auto;
@@ -32,5 +29,11 @@
             right: 5px;
             left: auto;
         }
+    }
+}
+
+@media #{$small-only} {
+    .page .card {
+        min-width: 90%;
     }
 }
