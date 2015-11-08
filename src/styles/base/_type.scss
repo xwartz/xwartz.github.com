@@ -20,7 +20,9 @@ $paragraph-font-size: $body-font-size !default;
 $paragraph-text-rendering: optimizeLegibility !default;
 
 // Must be 100% for off canvas to work
-html, body { height: 100%; }
+html, body {
+  height: 100%;
+}
 
 // Set box-sizing globally to handle padding and border widths
 *,
@@ -29,7 +31,9 @@ html, body { height: 100%; }
   box-sizing: border-box;
 }
 
-html { font-size: $base-font-size; }
+html {
+  font-size: $base-font-size;
+}
 
 // Default body styles
 body {
@@ -48,6 +52,7 @@ body {
 
 a {
   text-decoration: none;
+
   &:hover {
     cursor: pointer;
     text-decoration: none;
@@ -56,11 +61,10 @@ a {
   &:hover, &:active {
     outline: 0;
   }
-
 }
 
 // Grid Defaults to get images and embeds to work properly
-img { 
+img {
   max-width: 100%;
   height: auto;
   -ms-interpolation-mode: bicubic;
@@ -79,12 +83,29 @@ h1, h2, h3, h4, h5, h6 {
   text-rendering: $header-text-rendering;
 }
 
-h1 { font-size: $h1-font-size; }
-h2 { font-size: $h2-font-size; }
-h3 { font-size: $h3-font-size; }
-h4 { font-size: $h4-font-size; }
-h5 { font-size: $h5-font-size; }
-h6 { font-size: $h6-font-size; }
+h1 {
+  font-size: $h1-font-size;
+}
+
+h2 {
+  font-size: $h2-font-size;
+}
+
+h3 {
+  font-size: $h3-font-size;
+}
+
+h4 {
+  font-size: $h4-font-size;
+}
+
+h5 {
+  font-size: $h5-font-size;
+}
+
+h6 {
+  font-size: $h6-font-size;
+}
 
 /* Default paragraph styles */
 p {

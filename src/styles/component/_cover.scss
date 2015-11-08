@@ -1,11 +1,11 @@
 $cover-bg-color: #0d8fdb;
 
 .cover {
-    height: rem-calc(150);
-    overflow: hidden;
-    background-color: $cover-bg-color;
-    background-position: center;
-    background-size: cover;
-    border-top-left-radius: $base-border-radius;
-    border-top-right-radius: $base-border-radius;
+  height: rem-calc(150);
+  overflow: hidden;
+  background-color: $cover-bg-color;
+  background-position: center;
+  background-size: cover;
+  border-top-left-radius: $base-border-radius;
+  border-top-right-radius: $base-border-radius;
 }
