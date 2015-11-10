@@ -1,11 +1,11 @@
-var React = require('react');
+import React, { Component } from 'react';
 
-var iconClass = 'iconfont ';
-var prefix = 'icon-';
+let iconClass = 'iconfont ';
+let prefix = 'icon-';
 
-var SocialItem = React.createClass({
+class SocialItem extends Component {
 
-    render: function() {
+    render() {
         return (
             <li className='social-item' key={this.props.key}>
               <a href={this.props.link} className={iconClass + prefix + this.props.logo} title={this.props.text} ></a>
@@ -13,12 +13,12 @@ var SocialItem = React.createClass({
         );
     }
 
-});
+}
 
-var Social = React.createClass({
+class Social extends Component {
 
-    render: function() {
-        var socialNodes = this.props.data.map(function (social,i) {
+    render() {
+        let socialNodes = this.props.data.map((social,i) => {
           return (
             <SocialItem 
               key={i}
@@ -36,25 +36,6 @@ var Social = React.createClass({
         );
     }
 
-});
+}
 
-module.exports = Social;
-
-
-// import React from 'react';
-
-// let iconClass = 'iconfont ';
-// let prefix = 'icon-';
-// let Social = React.createClass({
-
-//     render() {
-//         return (
-//             <li className="social-item">
-//               <a href={this.props.link} className={iconClass + prefix + this.this.props.logo} title={this.this.props.text} ></a>
-//             </li>
-//         );
-//     }
-
-// });
-
-// export default Social;
+export default Social;

@@ -1,3 +1,3 @@
-module.exports = {
+export default {
     image: require('../../images/cover.png')
 };

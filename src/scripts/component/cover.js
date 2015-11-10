@@ -1,14 +1,12 @@
-var React = require('react');
+import React, { Component } from 'react';
 
-var Cover = React.createClass({
-
-    render: function() {
+class Cover extends Component {
+    render() {
         return (
             <div className='cover' style={{backgroundImage: 'url(' + this.props.image + ')'}}>
             </div>
         );
     }
+}
 
-});
-
-module.exports = Cover;
+export default Cover;

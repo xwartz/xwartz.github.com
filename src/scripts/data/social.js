@@ -1,4 +1,4 @@
-module.exports = [{
+export default [{
     logo: 'github',
     text: 'Github',
     link: 'https://github.com/xwartz'

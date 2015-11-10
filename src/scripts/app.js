@@ -1,10 +1,8 @@
-var React = require('react');
-var ReactDom = require('react-dom');
+import React from 'react';
+import ReactDom from 'react-dom';
+import Page from './page';
 
-var Page = require('./page');
-
-require('../styles/main.scss');
-
+import '../styles/main.scss';
 
 ReactDom.render(
   <Page />,
