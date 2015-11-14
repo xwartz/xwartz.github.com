@@ -8,7 +8,7 @@ class SocialItem extends Component {
     render() {
         return (
             <li className='social-item' key={this.props.key}>
-              <a href={this.props.link} className={iconClass + prefix + this.props.logo} title={this.props.text} ></a>
+              <a href={this.props.link} className={iconClass + prefix + this.props.logo}></a>
             </li>
         );
     }
@@ -23,7 +23,6 @@ class Social extends Component {
             <SocialItem 
               key={i}
               logo={social.logo}
-              text={social.text}
               link={social.link}
             />
           );
