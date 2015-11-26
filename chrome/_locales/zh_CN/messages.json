@@ -1,0 +1,14 @@
+{
+  "ext_name": {
+    "message": "xwartz's Page"
+  },
+  "ext_homepage_url": {
+    "message": "https://github.com/xwartz"
+  },
+  "description": {
+    "message": "这是我的个人主页插件"
+  },
+  "language": {
+    "message": "zh_CN"
+  }
+}

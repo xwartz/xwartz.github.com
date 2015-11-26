@@ -1,7 +1,7 @@
 {
   "name": "xwartz",
   "version": "1.0.0",
-  "description": "xwartz's page",
+  "description": "xwartz's Page",
   "main": "app.js",
   "scripts": {
     "dev": "node dev-server.js",
