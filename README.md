@@ -12,3 +12,5 @@
 - [ ] 完成 Safari extension
 - [ ] 完成 `react native` 的 `iOS` 
 - [ ] 完成 `react native` 的 `Android` 
+- [ ] `windows` 版
+- [ ] `Mac` 版
