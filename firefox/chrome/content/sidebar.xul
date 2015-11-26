@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://xwartz_sidebar/skin/sidebar.css" type="text/css"?>
+
+<!DOCTYPE dialog SYSTEM "chrome://xwartz_sidebar/locale/sidebar.dtd" >
+
+<overlay id="overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+    <script type="application/x-javascript" src="chrome://xwartz_sidebar/content/app.js" />
+
+    <menupopup id="viewSidebarMenu">
+        <menuitem key="key_open_sidebar" observes="view_xwartz_sidebar" />
+    </menupopup>
+
+    <toolbarpalette id="BrowserToolbarPalette">
+        <toolbarbutton  
+            class="toolbarbutton-1 xwartz_sidebar" 
+            id="xwartz_sidebar_button" 
+            tooltiptext="&xwartz_sidebar.tooltip;" 
+            label="&xwartz_sidebar.label;" 
+            oncommand="XUL.toggleSidebar();" />  
+    </toolbarpalette>
+
+    <key id="key_search3" removeelement="true" />
+
+    <keyset id="mainKeyset">
+        <key id="key_open_sidebar" oncommand="XUL.toggleSidebar();" key="q" modifiers="alt" />
+    </keyset>
+
+    <broadcasterset id="mainBroadcasterSet">
+        <broadcaster 
+            id="view_xwartz_sidebar" 
+            autoCheck="false" 
+            label="&xwartz_sidebar.title;" 
+            type="checkbox" 
+            checked="false"
+            group="sidebar" 
+            sidebartitle="&xwartz_sidebar.title;" 
+            contentcontextmenu="contentAreaContextMenu"
+            oncommand="XUL.toggleSidebar();" />
+    </broadcasterset>
+
+</overlay>

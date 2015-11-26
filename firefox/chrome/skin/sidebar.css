@@ -1,0 +1,5 @@
+#xwartz_sidebar_button {
+	padding: 2px;
+	list-style-image: url(chrome://xwartz_sidebar/skin/icon_16.png);
+	background-repeat: no-repeat;
+}
