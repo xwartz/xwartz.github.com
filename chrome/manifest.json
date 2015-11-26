@@ -17,11 +17,13 @@
   "background": {
     "page": "background.html"
   },
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+  "web_accessible_resources": [
+    "img/*",
+    "scripts/*",
+    "manifest.json"
+  ],
   "permissions": [
-    "tabs",
-    "https://www.baidu.com/*",
-    "https://baidu.com/*",
-    "http://www.baidu.com/*",
-    "http://baidu.com/*"
+    "tabs"
   ]
 }
