@@ -1,22 +1,23 @@
 ;(function () {
 
+    var url = 'https://xwartz.github.io'
+
+    var panel = {
+        url: url,
+        top: 140,
+        left: 1000,
+        width: 385,
+        height: 689,
+        focused: true,
+        type: 'panel'
+    }
+
     var xwartz = {
 
         // 创建弹出窗口
         createPanel: function() {
-
-            var url = 'https://xwartz.github.io'
-
-            chrome.windows.create({
-                url: url,
-                top: 140,
-                left: 1000,
-                width: 385,
-                height: 689,
-                focused: true,
-                type: 'panel'
-            }, function(w) {
-                localStorage.setItem('win_popout', w.id)
+            chrome.windows.create(panel, function(win) {
+                localStorage.setItem('win_popout', win.id)
             })
         },
 
@@ -35,21 +36,23 @@
             })
         },
 
+        // 监听窗口变化
         listenWindow: function() {
+            var _this = this
             chrome.windows.onRemoved.addListener(function(id) {
-                var oid = localStorage.getItem('win_popout')
-                if (oid && id === Number(oid)) {
+                var wid = localStorage.getItem('win_popout')
+                if (wid && id === Number(wid)) {
                     localStorage.setItem('win_popout', '')
                 }
             })
             chrome.browserAction.onClicked.addListener(function(tabs) {
-                xwartz.popOut()
+                _this.popOut()
             })
         },
 
         popOut: function() {
             var id = localStorage.getItem('win_popout')
-            id ? xwartz.updatePanel(Number(id)) : xwartz.createPanel()
+            id ? this.updatePanel(Number(id)) : this.createPanel()
         }
 
     }
