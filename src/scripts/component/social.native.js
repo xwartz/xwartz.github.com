@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, LinkingIOS } from 'react-native'
+import { StyleSheet, Text, View, LinkingIOS, IntentAndroid } from 'react-native'
 
 let iconClass = 'iconfont '
 let prefix = 'icon-'
@@ -7,7 +7,14 @@ let prefix = 'icon-'
 class SocialItem extends Component {
 
     handleClick() {
-      LinkingIOS.openURL(this.props.link)
+      const url = this.props.link
+      IntentAndroid.canOpenURL(url, (supported) => {
+      if (supported) {
+          IntentAndroid.openURL(url)
+        } else {
+          LinkingIOS.openURL(url)
+        }
+      })
     }
 
     render() {

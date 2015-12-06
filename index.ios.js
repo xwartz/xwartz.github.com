@@ -3,7 +3,7 @@
 import React from 'react'
 import { AppRegistry, View, WebView } from 'react-native'
 
-import Page from './src/scripts/page.ios'
+import Page from './src/scripts/page.native'
 
 
 var mapp = React.createClass({
