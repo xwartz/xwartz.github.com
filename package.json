@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node dev-server.js",
     "build": "webpack --config webpack.config.pro.js",
-    "test": "webpack --config webpack.config.pro.js"
+    "test": "webpack --config webpack.config.pro.js",
+    "native": "react-native start"
   },
   "repository": {
     "type": "git",
@@ -46,6 +47,7 @@
   },
   "dependencies": {
     "react": "^0.14.2",
-    "react-dom": "^0.14.2"
+    "react-dom": "^0.14.2",
+    "react-native": "^0.16.0"
   }
 }

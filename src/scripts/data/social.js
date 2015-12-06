@@ -1,17 +1,17 @@
 export default [{
     logo: 'github',
-    // text: 'Github',
+    text: 'Github',
     link: 'https://github.com/xwartz'
 }, {
     logo: 'weibo',
-    // text: 'Weibo',
+    text: 'Weibo',
     link: 'http://weibo.com/samedie'
 }, {
     logo: 'twitter',
-    // text: 'Twitter',
+    text: 'Twitter',
     link: 'https://twitter.com/xwartzz'
 }, {
     logo: 'email',
-    // text: 'Gmail',
+    text: 'Gmail',
     link: 'mailto:stddup@gmail.com'
 }];
