@@ -10,7 +10,7 @@ var mapp = React.createClass({
   render: function() {
     return (
       <View>
-        {/* 好想就打开 webView 算了
+        {/*
           <WebView url={'https://xwartz.github.com'}>
           </WebView>
         */}

@@ -31,17 +31,17 @@ class Page extends Component {
 
 const styles = StyleSheet.create({
   page: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    backgroundColor: '#f4f4f4'
+    flex: 1,
+    alignItems: 'center'
   },
   card: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
     position: 'relative',
     width: 400,
     height: 390,
+    overflow: 'hidden',
     marginTop: 100,
     borderColor: '#ececec',
     borderWidth: 1,
