@@ -8,13 +8,21 @@ class SocialItem extends Component {
 
     handleClick() {
       const url = this.props.link
-      IntentAndroid.canOpenURL(url, (supported) => {
-      if (supported) {
-          IntentAndroid.openURL(url)
-        } else {
-          LinkingIOS.openURL(url)
-        }
-      })
+      
+      try {
+        IntentAndroid.canOpenURL(url, (supported) => {
+        if (supported) {
+            IntentAndroid.openURL(url)
+          }
+        })
+      } catch(e) {
+        LinkingIOS.canOpenURL(url, (supported) => {
+          if (supported) {
+            LinkingIOS.openURL(url)
+          }
+        })
+      }
+      
     }
 
     render() {
