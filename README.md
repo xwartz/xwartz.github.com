@@ -10,7 +10,7 @@
 - [x] 完成 [chrome extension](./chrome.zip)
 - [x] 完成 [firefox extension](./firefox.crx)
 - [x] 完成 `react native` 的 `iOS` 
-- [ ] 完成 `react native` 的 `Android` 
+- [x] 完成 `react native` 的 `Android` 
 - [ ] `windows` 版
 - [ ] `Mac` 版
 - ~~[ ] 完成 safari extension~~
