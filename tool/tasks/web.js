@@ -11,7 +11,7 @@ var dirs = {
 }
 
 
-gulp.task('html', function () {
+gulp.task('web', function () {
   var data = {}
   var options = {
     batch: [dirs.hbs + '/partials']
