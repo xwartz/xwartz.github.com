@@ -2,14 +2,14 @@
   "name": "xwartz",
   "version": "1.0.0",
   "description": "xwartz's Page",
-  "main": "app.js",
+  "main": "main.js",
   "scripts": {
     "dev": "node dev-server.js",
     "build": "webpack --config webpack.config.pro.js",
     "test": "webpack --config webpack.config.pro.js",
     "native": "react-native start",
     "desktop": "electron main.js",
-    "package": "electron-packager ./ xwartz --out=./ --platform=darwin --arch=x64 --version=0.36.0 --overwrite"
+    "package": "electron-packager . xwartz  --platform=darwin --arch=x64 --version=0.36.0 --overwrite --asar=true --prune --ignore=.sass-cache"
   },
   "repository": {
     "type": "git",
