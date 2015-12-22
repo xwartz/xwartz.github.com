@@ -9,7 +9,8 @@
     "test": "webpack --config webpack.config.pro.js",
     "native": "react-native start",
     "desktop": "electron main.js",
-    "package": "electron-packager . xwartz  --platform=darwin --arch=x64 --version=0.36.0 --overwrite --asar=true --prune --ignore=.sass-cache"
+    "build:osx": "electron-packager ./ Mac --out=dist/osx --platform=darwin --arch=x64 --version=0.36.0  --overwrite --ignore=dist",
+    "build:win": "electron-packager ./ Win --out=dist/win --platform=win32 --arch=ia32 --version=0.36.0  --overwrite --ignore=dist"
   },
   "repository": {
     "type": "git",
