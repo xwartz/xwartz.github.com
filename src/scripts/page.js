@@ -14,11 +14,12 @@ class Page extends Component {
       return (
           <div className='page'>
             <div className='card'>
-              <ComCover image={DataCover.image} />
-              <ComAbout 
+              <ComCover image={DataCover.image} link={DataCover.link} />
+              <ComAbout
                 avatar={DataAbout.avatar}
                 author={DataAbout.author}
                 description={DataAbout.description}
+                link={ DataAbout.link }
               />
               <ComSocial data={DataSocial} />
             </div>
