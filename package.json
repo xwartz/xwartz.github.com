@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node dev-server.js",
     "build": "webpack --config webpack.config.pro.js",
+    "build:web": "npm run build && gulp web",
     "test": "webpack --config webpack.config.pro.js",
     "native": "react-native start",
     "desktop": "electron main.js",
