@@ -33,3 +33,4 @@ project.xcworkspace
 .idea
 .gradle
 local.properties
+.DS_Store

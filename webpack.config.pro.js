@@ -2,13 +2,17 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    entry: [
-        './src/scripts/app.js'
-    ],
+    entry: {
+        app: './src/scripts/app.js',
+        vendor: [
+          'react',
+          'react-dom'
+        ]
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
         publicPath: '/dist/',
-        filename: 'app.js'
+        filename: '[name].bundle.js'
     },
     module: {
         loaders: [{
@@ -35,6 +39,14 @@ module.exports = {
         extensions: ['', '.js', '.jsx']
     },
     plugins: [
+        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify('production')
+          }
+        }),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
